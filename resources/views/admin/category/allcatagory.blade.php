@@ -4,8 +4,9 @@
            <div class="bg-success p-1 rounded text-white"> All Category</div>
         </div>
     </x-slot>
-
+    
     <div class="py-12">
+        <!-- All Category Section -->
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -42,8 +43,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('/category/edit/'.$category->id)}}" class="btn btn-sm btn-info">Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                    <a href="{{ url('/category/edit/'.$category->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                    <a href="{{ url('/softdelete/category/'.$category->id) }}" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                                 </tr>
                                 @endforeach
@@ -68,6 +69,53 @@
                                 </div>
                             </form>  
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SoftDelete Section -->
+        <div class="container">
+            <div class="row justify-content-start">
+                <div class="col-md-8">
+                    <div class="card">
+
+                        <div class="card card-header">Trasht  Category</div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">SL No</th>
+                                    <th scope="col">Category Name</th>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Created At</th>
+                                    <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                
+                                    @foreach($trachCat as $category)
+                                    <tr>
+                                    <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
+                                    <td>{{ $category->category_name }}</td>
+                                    <td>{{ $category->user->name }}</td>
+                                    <td>
+                                        @if($category->created_at == NULL)
+                                            <span class="text-danger">No Date Set</span>
+                                        @else 
+                                            {{ $category->created_at->diffForHumans() }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ url('category/restore/'.$category->id) }}" class="btn btn-sm btn-info">Restore</a>
+                                        <a href="{{ url('category/pdelete/'.$category->id) }}" class="btn btn-sm btn-danger">Permanently Delete</a>
+                                    </td>
+                                    </tr>
+                                    @endforeach
+
+                                    
+                                </tbody>
+                            </table>
+                        <div class="text-center mb-2 px-5">{{$trachCat->links()}}</div>
                     </div>
                 </div>
             </div>
