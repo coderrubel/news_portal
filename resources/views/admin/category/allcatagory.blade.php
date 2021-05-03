@@ -20,10 +20,11 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">SL No</th>
                                 <th scope="col">Category Name</th>
                                 <th scope="col">User</th>
                                 <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,6 +40,10 @@
                                     @else 
                                         {{ $category->created_at->diffForHumans() }}
                                     @endif
+                                </td>
+                                <td>
+                                    <a href="{{url('/category/edit/'.$category->id)}}" class="btn btn-sm btn-info">Edit</a>
+                                    <a href="" class="btn btn-sm btn-danger">Delete</a>
                                 </td>
                                 </tr>
                                 @endforeach

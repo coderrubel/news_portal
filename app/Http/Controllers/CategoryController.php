@@ -49,4 +49,23 @@ class CategoryController extends Controller
         return Redirect()->back()->with('success','Insert Category successfull');
 
     }
+
+    // Edit Category
+    public function EditCategory($id){
+        // Data update use Eloquent ORM & Models
+        $categories = Category::find($id);
+        // Data update use Query Builder
+        // $categories = DB::table('categories')->where('id',$id)->first();
+
+        return view('admin.category.edit',compact('categories'));
+    }
+
+    // Update Category
+    public function UpdateCategory(Request $request, $id){
+        $update = Category::find($id)->update([
+            'category_name' => $request->category_name,
+            'user_id' => Auth::user()->id
+        ]);
+        return Redirect()->route('all.category')->with('success','Update Category successfull');
+    }
 }

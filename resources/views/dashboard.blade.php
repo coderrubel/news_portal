@@ -9,28 +9,28 @@
     <div class="py-12">
         <div class="continar">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">E-mail</th>
-      <th scope="col">Created ID </th>
-    </tr>
-  </thead>
-  <tbody>
-    @php( $i = 1)
-    @foreach($users as $user)
-    <tr>
-      <th scope="row">{{ $i++ }}</th>
-      <td>{{ $user->name }}</td>
-      <td>{{ $user->email }}</td>
-      <td>{{ $user->created_at->diffForHumans() }}</td>
-    </tr>
-    @endforeach
-  </tbody>
-</table>
+                <div class="col-md-6">
+                <table class="table table-primary table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">SL No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Created ID </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @php( $i = 1)
+                      @foreach($users as $user)
+                      <tr>
+                        <th scope="row">{{ $i++ }}</th>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at->diffForHumans() }}</td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
                 </div>
             </div>
         </div>
