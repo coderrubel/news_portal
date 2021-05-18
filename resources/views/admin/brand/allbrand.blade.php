@@ -39,7 +39,10 @@
                                             {{ $brand->created_at->diffForHumans() }}
                                         @endif
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <a href="{{ url('/brand/edit/'.$brand->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                        <a href="{{ url('/brand/delete/'.$brand->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </thead>
