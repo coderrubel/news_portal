@@ -53,6 +53,7 @@
                         <div class="text-center mb-2 px-5">{{$categories->links()}}</div>
                     </div>
                 </div>
+                <!-- Add Category -->
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card card-header">Add Category </div>
@@ -76,7 +77,7 @@
 
         <!-- SoftDelete Section -->
         <div class="container">
-            <div class="row justify-content-start">
+            <div class="row justify-content-start mt-4">
                 <div class="col-md-8">
                     <div class="card">
 
@@ -88,26 +89,25 @@
                                     <th scope="col">Category Name</th>
                                     <th scope="col">User</th>
                                     <th scope="col">Created At</th>
-                                    <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 
-                                    @foreach($trachCat as $category)
+                                    @foreach($trachCat as $trach)
                                     <tr>
-                                    <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
-                                    <td>{{ $category->category_name }}</td>
-                                    <td>{{ $category->user->name }}</td>
+                                   
+                                    <td>{{ $trach->category_name }}</td>
+                                    <td>{{ $trach->user->name }}</td>
                                     <td>
-                                        @if($category->created_at == NULL)
+                                        @if($trach->created_at == NULL)
                                             <span class="text-danger">No Date Set</span>
                                         @else 
-                                            {{ $category->created_at->diffForHumans() }}
+                                            {{ $trach->created_at->diffForHumans() }}
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ url('category/restore/'.$category->id) }}" class="btn btn-sm btn-info">Restore</a>
-                                        <a href="{{ url('category/pdelete/'.$category->id) }}" class="btn btn-sm btn-danger">Permanently Delete</a>
+                                        <a href="{{ url('category/restore/'.$trach->id) }}" class="btn btn-sm btn-info">Restore</a>
+                                        <a href="{{ url('category/pdelete/'.$trach->id) }}" class="btn btn-sm btn-danger">Permanently Delete</a>
                                     </td>
                                     </tr>
                                     @endforeach
@@ -115,7 +115,7 @@
                                     
                                 </tbody>
                             </table>
-                        <div class="text-center mb-2 px-5">{{$trachCat->links()}}</div>
+                        <div class="text-center mb-2 px-5">{{ $trachCat->links() }}</div>
                     </div>
                 </div>
             </div>

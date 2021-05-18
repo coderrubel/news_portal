@@ -89,7 +89,7 @@ class CategoryController extends Controller
     // PDelete Category
     public function PDelete($id){
         $delete = Category::onlyTrashed()->find($id)->forceDelete();
-        return Redirect()->back()->with('success','Category Restore Successfully');
+        return Redirect()->back()->with('success','Category Permanently Deleted');
     }
 
 }
