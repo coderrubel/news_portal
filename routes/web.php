@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User; 
 use App\Http\Controllers\CategoryController; 
 use App\Http\Controllers\BrandController; 
+use App\Http\Controllers\AuthControllar; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,13 +17,15 @@ use App\Http\Controllers\BrandController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+// Auth Controller
+Route::get('/user/logout',[AuthControllar::class,'Logout'])->name('user.logout');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // use Models
-     $users = User::all(); 
-    return view('dashboard',compact('users'));
+    // $users = User::all(); 
+    return view('admin.index');
 })->name('dashboard');
 
 // Category Controller

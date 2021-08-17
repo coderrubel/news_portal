@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="d-flex justify-content-between">
-           <div class="bg-success p-1 rounded text-white"> All Category</div>
+           <b class="bg-success p-1 rounded text-white"> All Brand</b>
+           <b class="bg-success p-1 rounded text-white">Total Brand <span class="badge bg-danger">{{ count($brands)}}</span></b>
         </div>
     </x-slot>
     

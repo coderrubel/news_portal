@@ -8,6 +8,11 @@ use App\Models\Brand;
 
 class BrandController extends Controller
 {
+    // Login chack
+    public function __construct(){
+        $this->middleware('auth');
+    }
+    
     public function AllBrand(){
         $brands = Brand::latest()->paginate(5);
         return view('admin.brand.allbrand',compact('brands'));

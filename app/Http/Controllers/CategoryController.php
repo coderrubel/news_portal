@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    // Login chack
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function AallCategory(){
         // Eloquent ORM
         $categories = Category::latest()->paginate(5);
@@ -26,13 +31,13 @@ class CategoryController extends Controller
     public function AddCategory(Request $request){
         // form validate
         $validated = $request->validate([
-            'category_name' => 'required|unique:categories|max:15|min:3',
+            'category_name' => 'required|unique:categories|max:35|min:3',
         ],
         [
             // custom error message
             'category_name.required'=>'Please Input Category Name',
             'category_name.unique'=>'Please Input Unique Category Name',
-            'category_name.max'=>'Category Name Less Then 16 Character',
+            'category_name.max'=>'Category Name Less Then 36 Character',
             'category_name.min'=>'Category Name More Then 2 Character',
         ]);
 
