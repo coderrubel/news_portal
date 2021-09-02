@@ -1,14 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="d-flex justify-content-between">
-           <div class="bg-success p-1 rounded text-white"> Edit Brand</div>
-        </div>
-    </x-slot>
+@extends('admin.admin_master')
+@section('admin')
 
     <div class="py-12">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-10">
                     <div class="card">
                         <div class="card card-header">Add Brand </div>
                         <div class="card card-body">
@@ -29,7 +25,7 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
                                     <input type="file" name="brand_image" class="form-control rounded mb-3" id="addimg">
-                                    <img src="{{ asset($brands->brand_image) }}" style="width:400px; height:200px;" alt="brand_image">
+                                    <img src="{{ asset($brands->brand_image) }}" style="width:400px; height:200px;" alt="brand_image"><br>
                                     <button type="submit" class="btn btn-primary mt-2">Update Brand</button>
                                 </div>
                             </form>  
@@ -39,4 +35,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

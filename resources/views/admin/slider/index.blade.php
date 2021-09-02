@@ -4,7 +4,8 @@
    
         <!-- All Category Section -->
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-12">
+                   <a href="{{ route('add.slider')}}" class="btn btn-md btn-primary mb-4">Add Slider</a>
                     <div class="card">
                         @if(session('success'))
                          <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
@@ -12,32 +13,26 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         @endif
-                        <div class="card card-header">All Brand</div>
+                        <div class="card card-header">All Slider</div>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">SL No</th>
-                                    <th scope="col">Brand Name</th>
-                                    <th scope="col">Brand Image</th>
-                                    <th scope="col">Created At</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style="width:5%">SL</th>
+                                    <th scope="col" style="width:20%">Slider Title</th>
+                                    <th scope="col" style="width:40%">Description</th>
+                                    <th scope="col" style="width:20%">Image</th>
+                                    <th scope="col" style="width:15%; text-align:right">Action</th>
                                 </tr>
                                 @php($i=1)
-                                @foreach($brands as $brand)
+                                @foreach($sliders as $slider)
                                 <tr>
-                                    <td>{{ $i++ }}</td>
-                                    <td>{{$brand->brand_name }}</td>
-                                    <td><img src="{{ asset($brand->brand_image) }}" style="height:40px; widht:70px;"></td>
-                                    <td>
-                                        @if($brand->created_at == NULL)
-                                        <span class="text-danger">No Date Set</span>
-                                        @else 
-                                            {{ $brand->created_at->diffForHumans() }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ url('/brand/edit/'.$brand->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                        <a href="{{ url('/brand/delete/'.$brand->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete')">Delete</a>
+                                    <td style="width:5%">{{$i++}}</td>
+                                    <td style="width:20%">{{$slider->title }}</td>
+                                    <td style="width:40%">{{$slider->description }}</td>
+                                    <td style="width:20%"><img src="{{ asset($slider->image) }}" style="height:40px; width:70px;"></td>
+                                    <td style="width:15%; text-align:right">
+                                        <a href="{{ url('/slider/edit/'.$slider->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                        <a href="{{ url('/slider/delete/'.$slider->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete')">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -48,15 +43,15 @@
                         </table>
                     </div>
                 </div>
-                <!-- Add Brand -->
+                <!-- Add Brand
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card card-header">Add Brand </div>
+                        <div class="card card-header">Add Slider </div>
                         <div class="card card-body">
                             <form action="{{ route('store.brand')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="my-2">
-                                    <label for="addcategory" class="form-label">Brand Name</label>
+                                    <label for="addcategory" class="form-label">Slider Name</label>
                                     @error('brand_name')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
@@ -72,5 +67,6 @@
                         </div>
                     </div>
                 </div>
+                 -->
             </div>
 @endsection

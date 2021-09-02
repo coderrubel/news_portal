@@ -2,7 +2,7 @@
           <div id="sidebar" class="sidebar sidebar-with-footer">
             <!-- Aplication Brand -->
             <div class="app-brand">
-              <a href="/index.html">
+              <a href="{{ route('dashboard')}}">
                 <svg
                   class="brand-icon"
                   xmlns="http://www.w3.org/2000/svg"
@@ -35,37 +35,34 @@
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                       aria-expanded="false" aria-controls="dashboard">
                       <i class="mdi mdi-view-dashboard-outline"></i>
-                      <span class="nav-text">Dashboard</span> <b class="caret"></b>
+                      <span class="nav-text">Home</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse show"  id="dashboard"
                       data-parent="#sidebar-menu">
-                      <div class="sub-menu">
+                      <div class="sub-menu"> 
                         
-                        
+                      
+                      <li  class="active" >
+                        <a class="sidenav-item-link" href="{{ route('home.slider')}}">
+                          <span class="nav-text">Slider</span>
+                        </a>
+                      </li>     
+                      <li  class="active" >
+                        <a class="sidenav-item-link" href="index.html">
+                          <span class="nav-text">About</span>
+                        </a>
+                      </li>
+                      <li  class="active" >
+                        <a class="sidenav-item-link" href="index.html">
+                          <span class="nav-text">Portfolio</span>
+                        </a>
+                      </li>
+                      <li  class="active" >
+                        <a class="sidenav-item-link" href="{{ route('all.brand')}}">
+                          <span class="nav-text">Brand</span>
+                        </a>
+                      </li>
                           
-                            <li  class="active" >
-                              <a class="sidenav-item-link" href="index.html">
-                                <span class="nav-text">Ecommerce</span>
-                                
-                              </a>
-                            </li>
-                          
-                        
-
-                        
-                        
-                          
-                            <li >
-                              <a class="sidenav-item-link" href="analytics.html">
-                                <span class="nav-text">Analytics</span>
-                                
-                                <span class="badge badge-success">new</span>
-                                
-                              </a>
-                            </li>
-                          
-                        
-
                         
                       </div>
                     </ul>
