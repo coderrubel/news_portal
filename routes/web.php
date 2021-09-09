@@ -19,7 +19,8 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
-    return view('home',compact('brands'));
+    $abouts = DB::table('abouts')->first();
+    return view('home',compact('brands','abouts'));
 });
 // Auth Controller
 Route::get('/user/logout',[AuthControllar::class,'Logout'])->name('user.logout');
@@ -46,10 +47,19 @@ Route::get('/brand/edit/{id}',[BrandController::class,'Edit']);
 Route::post('/brand/update/{id}',[BrandController::class,'Update']);
 Route::get('/brand/delete/{id}',[BrandController::class,'Delete']);
 
-// Home Controller, Slider
+// Home Controller
+// Slider
 Route::get('/home/slider',[HomeController::class,'HomeSlider'])->name('home.slider'); 
 Route::get('/add/slider',[HomeController::class,'AddSlider'])->name('add.slider'); 
 Route::post('/store/slider',[HomeController::class,'StoreSlider'])->name('store.slider'); 
 Route::get('/slider/edit/{id}',[HomeController::class,'Edit']);
 Route::post('/slider/update/{id}',[HomeController::class,'Update']);
 Route::get('/slider/delete/{id}',[HomeController::class,'Delete']);
+
+// About
+Route::get('/home/about',[HomeController::class,'About'])->name('home.about');
+Route::get('/add/about',[HomeController::class,'AddAbout'])->name('add.about');
+Route::post('/store/about',[HomeController::class,'StoreAbout'])->name('store.about');
+Route::get('/about/edit/{id}',[HomeController::class,'EditAbout']);
+Route::post('/about/update/{id}',[HomeController::class,'UpdateAbout']);
+Route::get('about/delete/{id}',[Homecontroller::class,'DeleteAbout']);
