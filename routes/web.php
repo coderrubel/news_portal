@@ -63,3 +63,8 @@ Route::post('/store/about',[HomeController::class,'StoreAbout'])->name('store.ab
 Route::get('/about/edit/{id}',[HomeController::class,'EditAbout']);
 Route::post('/about/update/{id}',[HomeController::class,'UpdateAbout']);
 Route::get('about/delete/{id}',[Homecontroller::class,'DeleteAbout']);
+
+// Contact
+Route::get('/admin/contact/',[HomeController::class,'AdminContact'])->name('admin.contact');
+Route::get('/add/contact/',[HomeController::class,'AddConact'])->name('add.contact');
+Route::post('/store/contact/',[HomeController::class,'StoreContact'])->name('store.contact');

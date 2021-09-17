@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Slider;
 use App\Models\About;
+use App\Models\Contact;
 
 class HomeController extends Controller
 {
+     // Login chack
+     public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function HomeSlider(){
         $sliders = Slider::latest()->get();
         return view('admin.slider.index', compact('sliders'));
@@ -109,7 +115,7 @@ class HomeController extends Controller
         return view('admin.about.create');
     }
 
-    // Store Slider
+    // Store About
     public function StoreAbout(Request $request){
         About::insert([
             'title' => $request->title,
@@ -136,9 +142,30 @@ class HomeController extends Controller
         return Redirect()->route('home.about')->with('success','About Update Successfully');
     }
 
-    //
+    // Delete About
     public function DeleteAbout($id){
         About::find($id)->delete();
         return Redirect()->back()->with('success','About Delete Successfully');
+    }
+
+    // Contact 
+    public function AdminContact(Request $request){
+        $contacts = Contact::all();
+        return view('admin.contact.index',compact('contacts'));
+    }
+
+    // add contact
+    public function AddConact(){
+        return view('admin.contact.create');
+    }
+
+    // Store Contact
+    public function StoreContact(Request $request){
+        Contact::insert([
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+        ]);
+        return Redirect()->route('admin.contact')->with('success','Contact Created Successfully');
     }
 }
