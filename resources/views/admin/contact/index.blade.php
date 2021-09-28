@@ -26,13 +26,13 @@
                                 @php($i=1)
                                 @foreach($contacts as $contact)
                                 <tr>
-                                    <td style="width:5%">{{$i++}}</td>
-                                    <td style="width:25%">{{$contact->phone }}</td>
-                                    <td style="width:20%">{{$contact->email }}</td>
-                                    <td style="width:40%">{{$contact->address }}</td>
+                                    <td style="width:5%;">{{$i++}}</td>
+                                    <td style="width:25%;">{{$contact->phone }}</td>
+                                    <td style="width:20%;">{{$contact->email }}</td>
+                                    <td style="width:40%; text-align:center">{{$contact->address }}</td>
                                     <td style="width:10%; text-align:right">
-                                        <a href="{{ url('/about/edit/'.$contact->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                        <a href="{{ url('/about/delete/'.$contact->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete')">Delete</a>
+                                        <a href="{{ url('/contact/edit/'.$contact->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                        <a href="{{ url('/contact/delete/'.$contact->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete')">Delete</a>
                                     </td>
                                 </tr>
                                 @endforeach

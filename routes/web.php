@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController; 
 use App\Http\Controllers\AuthControllar; 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,12 @@ Route::get('/', function () {
     $abouts = DB::table('abouts')->first();
     return view('home',compact('brands','abouts'));
 });
+
+// Contact Page
+Route::get('/contact',[ContactController::class,'Contact'])->name('contact');
+Route::post('/contact/form',[ContactController::class,'ContactForm'])->name('contact.form');
+
+
 // Auth Controller
 Route::get('/user/logout',[AuthControllar::class,'Logout'])->name('user.logout');
 
@@ -68,3 +75,8 @@ Route::get('about/delete/{id}',[Homecontroller::class,'DeleteAbout']);
 Route::get('/admin/contact/',[HomeController::class,'AdminContact'])->name('admin.contact');
 Route::get('/add/contact/',[HomeController::class,'AddConact'])->name('add.contact');
 Route::post('/store/contact/',[HomeController::class,'StoreContact'])->name('store.contact');
+Route::get('/contact/edit/{id}',[HomeController::class,'EditContact']);
+Route::post('/contact/update/{id}',[HomeController::class,'UpdateContact']);
+Route::get('/contact/delete/{id}',[HomeController::class,'DeleteContact']);
+Route::get('/admin/message',[HomeController::class,'AdminMessage'])->name('admin.message');
+Route::get('/contact/delete/{id}',[HomeController::class,'DeleteMessage']);

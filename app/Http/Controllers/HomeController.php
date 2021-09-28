@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Slider;
 use App\Models\About;
 use App\Models\Contact;
+use App\Models\ContactForm;
 
 class HomeController extends Controller
 {
@@ -148,7 +149,7 @@ class HomeController extends Controller
         return Redirect()->back()->with('success','About Delete Successfully');
     }
 
-    // Contact 
+    // Admin Contact Page
     public function AdminContact(Request $request){
         $contacts = Contact::all();
         return view('admin.contact.index',compact('contacts'));
@@ -167,5 +168,39 @@ class HomeController extends Controller
             'address' => $request->address,
         ]);
         return Redirect()->route('admin.contact')->with('success','Contact Created Successfully');
+    }
+
+    // Edit Contact
+    public function EditContact($id){
+        $contacts = Contact::find($id);
+        return view('admin.contact.edit',compact('contacts'));
+    }
+    
+    // Update Contact
+    public function UpdateContact(Request $request, $id){
+        Contact::find($id)->update([
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'address' => $request->address,
+        ]);
+        return Redirect()->route('admin.contact')->with('success','About Update Successfully');
+    }
+
+    // Delete Contact
+    public function DeleteContact($id){
+        Contact::find($id)->delete();
+        return Redirect()->back()->with('success','Contact Delete Successfully');
+    }
+
+    // Message
+    public function AdminMessage(){
+        $message = ContactForm::all();
+        return view('admin.contact.message',compact('message'));
+    }
+
+    // Delete Message
+    public function DeleteMessage($id){
+        ContactForm::find($id)->delete();
+        return Redirect()->back()->with('success','Message Delete Successfully');
     }
 }
