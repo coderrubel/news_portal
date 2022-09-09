@@ -16,7 +16,7 @@
                         <th scope="col">SL No</th>
                         <th scope="col">Name</th>
                         <th scope="col">E-mail</th>
-                        <th scope="col">Created ID </th>
+                        <th scope="col">Created ID</th>
                       </tr>
                     </thead>
                     <tbody>
