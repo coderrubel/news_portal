@@ -13,7 +13,7 @@ class ContactController extends Controller
     // Home Contact Page
     public function Contact(){
         $contacts = Contact::first();
-        return view('contact',compact('contacts'));
+        return view('pages/contact',compact('contacts'));
     }
 
     // Contact Form
@@ -32,4 +32,11 @@ class ContactController extends Controller
         ]);
         return Redirect()->route('contact')->with('success','Your message has been sent. Thank you!');
     }
+
+    // Footer Contact 
+   /* public function FotterContact(){
+        $footer = Contact::first();
+        return view('components/footer',compact('footer'));
+    }
+    */
 }

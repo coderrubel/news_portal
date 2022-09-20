@@ -17,13 +17,14 @@ use App\Http\Controllers\ContactController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     $brands = DB::table('brands')->get();
     $abouts = DB::table('abouts')->first();
     return view('home',compact('brands','abouts'));
 });
-
+*/
+Route::view('/','pages/home');
 // Contact Page
 Route::get('/contact',[ContactController::class,'Contact'])->name('contact');
 Route::post('/contact/form',[ContactController::class,'ContactForm'])->name('contact.form');
