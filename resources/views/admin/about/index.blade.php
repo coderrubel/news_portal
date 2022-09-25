@@ -20,8 +20,8 @@
                                     <th scope="col" style="width:5%">SL</th>
                                     <th scope="col" style="width:15%">Title</th>
                                     <th scope="col" style="width:20%">Sort Description</th>
-                                    <th scope="col" style="width:50%">Long Description</th>
-                                    <th scope="col" style="width:10%; text-align:right">Action</th>
+                                    <th scope="col" style="width:45%">Long Description</th>
+                                    <th scope="col" style="width:15%; text-align:right">Action</th>
                                 </tr>
                                 @php($i=1)
                                 @foreach($abouts as $about)
@@ -29,8 +29,8 @@
                                     <td style="width:5%">{{$i++}}</td>
                                     <td style="width:15%">{{$about->title }}</td>
                                     <td style="width:20%">{{$about->sort_desc }}</td>
-                                    <td style="width:50%">{{$about->long_desc }}</td>
-                                    <td style="width:10%; text-align:right">
+                                    <td style="width:45%">{{$about->long_desc }}</td>
+                                    <td style="width:15%; text-align:right">
                                         <a href="{{ url('/about/edit/'.$about->id) }}" class="btn btn-sm btn-info">Edit</a>
                                         <a href="{{ url('/about/delete/'.$about->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete')">Delete</a>
                                     </td>

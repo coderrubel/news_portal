@@ -55,15 +55,16 @@
                     <div class="col-md-6">
                         <ul>
                             <li class="today-text">Today: {{ date('d-M-Y') }} </li>
-                            <li class="email-text">contact@arefindev.com</li>
+                            <li class="email-text">support@gmail.com</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
                         <ul class="right">
-                            <li class="menu"><a href="faq.html">FAQ</a></li>
-                            <li class="menu"><a href="about.html">About</a></li>
+                            <li class="menu"><a href="{{url('/faq');}}">FAQ</a></li>
+                            <li class="menu"><a href="{{url('/about');}}">About</a></li>
                             <li class="menu"><a href="{{url('/contact');}}">Contact</a></li>
-                            <li class="menu"><a href="login.html">Login</a></li>
+                            <li class="menu"><a href="{{route('login')}}">Login</a></li>
+                            <li class="menu"><a href="{{route('register')}}">Sign Up</a></li>
                             <li>
                                 <div class="language-switch">
                                     <select name="">
@@ -84,7 +85,7 @@
                 <div class="row">
                     <div class="col-md-4 d-flex align-items-center">
                         <div class="logo">
-                            <a href="index.html">
+                            <a href="{{url('/')}}">
                                 <img src="uploads/logo.png')}}" alt="">
                             </a>
                         </div>

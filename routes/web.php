@@ -25,6 +25,14 @@ Route::get('/', function () {
 });
 */
 Route::view('/','pages/home');
+// About Page
+Route::get('/about',function(){
+    $abouts = DB::table('abouts')->first();
+    return view('pages/about',compact('abouts'));
+});
+// FAQ Page
+Route::view('/faq','pages/faq');
+
 // Contact Page
 Route::get('/contact',[ContactController::class,'Contact'])->name('contact');
 Route::post('/contact/form',[ContactController::class,'ContactForm'])->name('contact.form');

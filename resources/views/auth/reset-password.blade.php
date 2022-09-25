@@ -1,11 +1,26 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
-        <x-jet-validation-errors class="mb-4" />
-
+<x-header/>
+        
+        <div class="page-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Login</h2>
+                        <nav class="breadcrumb-container">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Login</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <div class="login-form">
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
@@ -32,5 +47,10 @@
                 </x-jet-button>
             </div>
         </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+   <x-footer/>

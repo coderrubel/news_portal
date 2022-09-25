@@ -41,17 +41,17 @@
                       data-parent="#sidebar-menu">
                       <div class="sub-menu"> 
                         
-                      
-                      <li  class="active" >
-                        <a class="sidenav-item-link" href="{{ route('home.slider')}}">
-                          <span class="nav-text">Slider</span>
-                        </a>
-                      </li>     
+                         
                       <li  class="active" >
                         <a class="sidenav-item-link" href="{{ route('home.about') }}">
                           <span class="nav-text">About</span>
                         </a>
                       </li>
+                      <li  class="active" >
+                        <a class="sidenav-item-link" href="{{ route('home.slider')}}">
+                          <span class="nav-text">FAQ</span>
+                        </a>
+                      </li>  
 
                       <!-- <li  class="disabled" >
                         <a class="sidenav-item-link" href="#">

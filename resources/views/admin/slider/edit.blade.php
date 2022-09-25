@@ -6,7 +6,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-10">
                     <div class="card">
-                        <div class="card card-header">Update Slider </div>
+                        <div class="card card-header">Update FAQ </div>
                         <div class="card card-body">
                             <form action="{{ url('slider/update/'.$sliders->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
@@ -30,14 +30,14 @@
                                 </div>
                                 <!-- Brand Image -->
                                 <div class="my-2">
-                                    <label for="addcategory" class="form-label">Update Slider Image</label>
+                                    <label for="addcategory" class="form-label">Update FAQ Image</label>
                                     @error('brnad_name')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
                                     <input type="file" name="image" class="form-control rounded mb-3" id="addimg">
                                     <img src="{{ asset($sliders->image) }}" style="width:400px; height:200px;" alt="slider_image"><br>
                                     
-                                    <button type="submit" class="btn btn-primary mt-2">Update Slider</button>
+                                    <button type="submit" class="btn btn-primary mt-2">Update FAQ</button>
                                 </div>
                             </form>  
                         </div>

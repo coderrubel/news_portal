@@ -5,7 +5,7 @@
         <!-- All Category Section -->
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                   <a href="{{ route('add.slider')}}" class="btn btn-md btn-primary mb-4">Add Slider</a>
+                   <a href="{{ route('add.slider')}}" class="btn btn-md btn-primary mb-4">Add FAQ</a>
                     <div class="card">
                         @if(session('success'))
                          <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
@@ -13,12 +13,12 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         @endif
-                        <div class="card card-header">All Slider</div>
+                        <div class="card card-header">All FAQ</div>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col" style="width:5%">SL</th>
-                                    <th scope="col" style="width:20%">Slider Title</th>
+                                    <th scope="col" style="width:20%">FAQ Title</th>
                                     <th scope="col" style="width:40%">Description</th>
                                     <th scope="col" style="width:20%">Image</th>
                                     <th scope="col" style="width:15%; text-align:right">Action</th>
