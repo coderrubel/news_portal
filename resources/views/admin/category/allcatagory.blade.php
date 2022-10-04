@@ -1,12 +1,7 @@
-<x-app-layout>
-    <x-slot name="header">
-        <div class="d-flex justify-content-between">
-            <b class="bg-success p-1 rounded text-white"> All Category</b>
-            <b class="bg-success p-1 rounded text-white">Total Category <span class="badge bg-danger">{{ count($categories)}}</span></b>
-        </div>
-    </x-slot>
-    
-    <div class="py-12">
+
+@extends('admin.admin_master')
+@section('admin')
+
         <!-- All Category Section -->
         <div class="container">
             <div class="row justify-content-center">
@@ -18,13 +13,14 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         @endif
-                        <div class="card card-header">All Category</div>
+                        <div class="d-flex justify-content-between card-header"><span>All Category</span> <span>Total Catagory: {{ count($categories)}}</span></div>
                         <table class="table">
                             <thead>
                                 <tr>
                                 <th scope="col">SL No</th>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">User</th>
+                                <th scope="col">Show on Menu</th>
+                                <th scope="col">Menu Order</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                                 </tr>
@@ -35,6 +31,8 @@
                                 <tr>
                                 <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
                                 <td>{{ $category->category_name }}</td>
+                                <td>{{ $category->show_on_menu }}</td>
+                                <td>{{ $category->catagory_order }}</td>
                                 <td>{{ $category->user->name }}</td>
                                 <td>
                                     @if($category->created_at == NULL)
@@ -67,6 +65,11 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
                                     <input type="text" name="category_name" class="form-control rounded" id="addcategory" placeholder="Category Name">
+                                    <input type="text" name="catagory_order" class="form-control rounded mt-2" id="order" placeholder="Catagory Order">
+                                    <select name="show_on_menu" class="mt-2">
+                                        <option value="Show">Show</option>
+                                        <option value="Hide">Hide</option>
+                                    </select>
                                     <button type="submit" class="btn btn-primary mt-2">Add Category</button>
                                 </div>
                             </form>  
@@ -88,7 +91,8 @@
                                     <tr>
                                     <th scope="col">SL No</th>
                                     <th scope="col">Category Name</th>
-                                    <th scope="col">User</th>
+                                    <th scope="col">Show on Menu</th>
+                                    <th scope="col">Menu Order</th>
                                     <th scope="col">Created At</th>
                                     </tr>
                                 </thead>
@@ -98,6 +102,8 @@
                                     <tr>
                                    
                                     <td>{{ $trach->category_name }}</td>
+                                    <td>{{ $trach->show_on_menu }}</td>
+                                    <td>{{ $trach->catagory_order }}</td>
                                     <td>{{ $trach->user->name }}</td>
                                     <td>
                                         @if($trach->created_at == NULL)
@@ -121,5 +127,7 @@
                 </div>
             </div>
         </div>
-    </div>
-</x-app-layout>
+
+
+
+@endsection

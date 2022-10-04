@@ -31,14 +31,15 @@
                 
 
                 
-                  <li  class="has-sub active expand" >
+                  <!-- <li  class="has-sub active expand" > -->
+                  <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                       aria-expanded="false" aria-controls="dashboard">
                       <i class="mdi mdi-view-dashboard-outline"></i>
                       <span class="nav-text">Home</span> <b class="caret"></b>
                     </a>
-                    <ul  class="collapse show"  id="dashboard"
-                      data-parent="#sidebar-menu">
+                    <!-- <ul  class="collapse show"  id="dashboard" data-parent="#sidebar-menu"> -->
+                    <ul  class="collapse"  id="dashboard" data-parent="#sidebar-menu">
                       <div class="sub-menu"> 
                         
                          
@@ -70,11 +71,43 @@
                   </li>
                 
                 
+                  <!-- Post and catagory -->
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
+                      aria-expanded="false" aria-controls="charts">
+                      <i class="mdi mdi-chart-pie"></i>
+                      <span class="nav-text">Catagory</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="charts"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                          
+                            <li >
+                              <a class="sidenav-item-link" href="{{url('/category/all')}}">
+                                <span class="nav-text">Catagory</span>
+                              </a>
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" href="chartjs.html">
+                                <span class="nav-text">Sub Catagory</span>
+                              </a>
+                            </li>
+                            <li >
+                              <a class="sidenav-item-link" href="chartjs.html">
+                                <span class="nav-text">Post</span>
+                              </a>
+                            </li>
+                        
+                      </div>
+                    </ul>
+                  </li>
+
+                   <!-- Conatact page -->
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
                       aria-expanded="false" aria-controls="ui-elements">
                       <i class="mdi mdi-folder-multiple-outline"></i>
-                      <span class="nav-text">Contact Page</span> <b class="caret"></b>
+                      <span class="nav-text">Contact</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="ui-elements"
                       data-parent="#sidebar-menu">
@@ -93,41 +126,7 @@
                       </div>
                     </ul>
                   </li>
-                
 
-                
-
-                
-                  <li  class="has-sub" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
-                      aria-expanded="false" aria-controls="charts">
-                      <i class="mdi mdi-chart-pie"></i>
-                      <span class="nav-text">Charts</span> <b class="caret"></b>
-                    </a>
-                    <ul  class="collapse"  id="charts"
-                      data-parent="#sidebar-menu">
-                      <div class="sub-menu">
-                        
-                        
-                          
-                            <li >
-                              <a class="sidenav-item-link" href="chartjs.html">
-                                <span class="nav-text">ChartJS</span>
-                                
-                              </a>
-                            </li>
-                          
-                        
-
-                        
-                      </div>
-                    </ul>
-                  </li>
-                
-
-                
-
-                
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
                       aria-expanded="false" aria-controls="pages">

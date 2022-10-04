@@ -25,7 +25,6 @@ class footer extends Component
     public function render()
     {
         $contact = Contact::first();
-       // return view('components/footer',compact('footer'));
         return view('components.footer',compact('contact'));
     }
 }

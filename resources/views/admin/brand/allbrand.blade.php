@@ -2,7 +2,7 @@
 @section('admin')
     
    
-        <!-- All Category Section -->
+        <!-- All brand Section -->
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">

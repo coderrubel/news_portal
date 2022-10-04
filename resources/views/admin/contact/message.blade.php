@@ -21,8 +21,8 @@
                                     <th scope="col" style="width:15%;">Name</th>
                                     <th scope="col" style="width:20%;">Email</th>
                                     <th scope="col" style="width:20%;">Subject</th>
-                                    <th scope="col" style="width:40%; text-align:center;">Message</th>
-                                    <th scope="col" style="width:10%; text-align:right">Action</th>
+                                    <th scope="col" style="width:30%; text-align:center;">Message</th>
+                                    <th scope="col" style="width:20%; text-align:right">Action</th>
                                 </tr>
                                 @php($i=1)
                                 @foreach($message as $mess)
@@ -31,8 +31,8 @@
                                     <td style="width:15%;">{{$mess->name }}</td>
                                     <td style="width:20%;">{{$mess->email }}</td>
                                     <td style="width:20%;">{{$mess->subject }}</td>
-                                    <td style="width:40%; text-align:center;">{{$mess->message }}</td>
-                                    <td style="width:10%; text-align:right">
+                                    <td style="width:30%; text-align:center;">{{$mess->message }}</td>
+                                    <td style="width:20%; text-align:right">
                                         <a href="{{ url('/contact/delete/'.$mess->id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete')">Delete</a>
                                     </td>
                                 </tr>

@@ -12,9 +12,11 @@ class Category extends Model
     protected $fillable = [
         'user_id',
         'category_name',
+        'show_on_menu',
+        'catagory_order',
     ];
 
     public function user(){
-        return $this->hasOne(User::class, 'id','user_id');
+        return $this->hasOne(User::class, 'id','user_id','sho_on_menu','catagory_order');
     }
 }

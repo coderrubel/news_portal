@@ -24,12 +24,15 @@ Route::get('/', function () {
     return view('home',compact('brands','abouts'));
 });
 */
+// Home page
 Route::view('/','pages/home');
+
 // About Page
 Route::get('/about',function(){
     $abouts = DB::table('abouts')->first();
     return view('pages/about',compact('abouts'));
 });
+
 // FAQ Page
 Route::view('/faq','pages/faq');
 

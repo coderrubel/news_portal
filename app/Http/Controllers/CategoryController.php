@@ -44,6 +44,8 @@ class CategoryController extends Controller
         // Data insert use Eloquent ORM & Models
         Category::insert([
             'category_name' => $request->category_name,
+            'show_on_menu' => $request->show_on_menu,
+            'catagory_order' => $request->catagory_order,
             'user_id' => Auth::user()->id,
             'created_at' => Carbon::now()
         ]);
@@ -74,6 +76,8 @@ class CategoryController extends Controller
         ]);
         $update = Category::find($id)->update([
             'category_name' => $request->category_name,
+            'catagory_order' => $request->catagory_order,
+            'show_on_menu' => $request->show_on_menu,
             'user_id' => Auth::user()->id
         ]);
         return Redirect()->route('all.category')->with('success','Update Category Successfully');

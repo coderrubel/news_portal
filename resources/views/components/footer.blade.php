@@ -23,7 +23,6 @@
                         </div>
                     </div>
                     
-                    
                     <div class="col-md-3">
                         <div class="item">
                             <h2 class="heading">Contact</h2>
@@ -32,7 +31,7 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="right">
-                                    {{$contact->address}}
+                                    {{$contact->address??''}}
                                 </div>
                             </div>
                             <div class="list-item">
@@ -40,7 +39,7 @@
                                     <i class="far fa-envelope"></i>
                                 </div>
                                 <div class="right">
-                                    {{$contact->email}}
+                                    {{$contact->email??''}}
                                 </div>
                             </div>
                             <div class="list-item">
@@ -48,9 +47,10 @@
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
                                 <div class="right">
-                                    {{$contact->phone}}
+                                    {{$contact->phone??''}}
                                 </div>
                             </div>
+                            
                             <ul class="social">
                                 <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
                                 <li><a href=""><i class="fab fa-twitter"></i></a></li>
@@ -60,7 +60,6 @@
                             </ul>
                         </div>
                     </div>
-
                     <div class="col-md-3">
                         <div class="item">
                             <h2 class="heading">Newsletter</h2>
