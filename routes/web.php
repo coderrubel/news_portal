@@ -27,14 +27,11 @@ Route::get('/', function () {
 // Home page
 Route::view('/','pages/home');
 
-// About Page
-Route::get('/about',function(){
-    $abouts = DB::table('abouts')->first();
-    return view('pages/about',compact('abouts'));
-});
-
 // FAQ Page
-Route::view('/faq','pages/faq');
+Route::get('/faq',[HomeController::class,'faqPage'])->name('faq');
+
+// About Page
+Route::get('/about',[HomeController::class,'aboutPage'])->name('about');
 
 // Contact Page
 Route::get('/contact',[ContactController::class,'Contact'])->name('contact');

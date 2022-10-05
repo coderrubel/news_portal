@@ -5,7 +5,7 @@
         <!-- All Category Section -->
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="card">
                         @if(session('success'))
                          <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
@@ -21,6 +21,7 @@
                                 <th scope="col">Category Name</th>
                                 <th scope="col">Show on Menu</th>
                                 <th scope="col">Menu Order</th>
+                                <th scope="col">Created By</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Action</th>
                                 </tr>
@@ -53,7 +54,7 @@
                     </div>
                 </div>
                 <!-- Add Category -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card">
                         <div class="card card-header">Add Category </div>
                         <div class="card card-body">
@@ -82,9 +83,8 @@
         <!-- SoftDelete Section -->
         <div class="container">
             <div class="row justify-content-start mt-4">
-                <div class="col-md-8">
+                <div class="col-md-9">
                     <div class="card">
-
                         <div class="card card-header">Trasht  Category</div>
                             <table class="table">
                                 <thead>
@@ -93,14 +93,16 @@
                                     <th scope="col">Category Name</th>
                                     <th scope="col">Show on Menu</th>
                                     <th scope="col">Menu Order</th>
+                                    <th scope="col">Created By</th>
                                     <th scope="col">Created At</th>
+                                    <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 
                                     @foreach($trachCat as $trach)
                                     <tr>
-                                   
+                                    <td>{{ $categories->firstItem()+$loop->index }}</td>
                                     <td>{{ $trach->category_name }}</td>
                                     <td>{{ $trach->show_on_menu }}</td>
                                     <td>{{ $trach->catagory_order }}</td>

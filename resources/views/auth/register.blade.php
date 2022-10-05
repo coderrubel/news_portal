@@ -26,18 +26,22 @@
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">Name</label>
+                @error('name')<p class="text-danger">{{ $message }}</p>@enderror
                 <input type="name" name="name" class="form-control" required autofocus autocomplete="name" >
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Email</label>
+                @error('email')<p class="text-danger">{{ $message }}</p>@enderror
                 <input type="email" name="email" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Password</label>
+                @error('password')<p class="text-danger">{{ $message }}</p>@enderror
                 <input type="password" name="password" class="form-control" required autofocus autocomplete="new-password" >
             </div>
             <div class="mb-3">
                 <label for="password_confirmation" class="form-label">Confirm Password</label>
+                @error('password_confirmation')<p class="text-danger">{{ $message }}</p>@enderror
                 <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required autofocus autocomplete="new-password" >
             </div>
 

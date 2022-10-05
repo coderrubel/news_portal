@@ -25,10 +25,12 @@
                             @csrf  
                             <div class="mb-3">
                                 <label for="" class="form-label">Email Address</label>
+                                @error('email')<p class="text-danger">{{ $message }}</p>@enderror
                                 <input type="email" name="email" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Password</label>
+                                @error('password')<p class="text-danger">{{ $message }}</p>@enderror
                                 <input type="password" name="password" class="form-control">
                             </div>
                             <div class="mb-3">

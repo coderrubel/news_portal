@@ -8,6 +8,7 @@ use App\Models\Slider;
 use App\Models\About;
 use App\Models\Contact;
 use App\Models\ContactForm;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,18 @@ class HomeController extends Controller
 
     // Store Slider
     public function StoreSlider(Request $request){
-
+        $validateDate = $request->validate([
+            'title' => 'required|min:4',
+            'description' => 'required|min:10',
+            'image' => 'required',
+        ],
+        [
+            'title.required' => 'Please Input FAQ Title',
+            'title.min' => 'Title Longer Then 4 Characters',
+            'description.required' => 'Please Input FAQ Description',
+            'description.min' => 'Title Longer Then 10 Characters',
+            'image.required' => 'Please Select Image',
+        ]);
         $slider_image = $request->file('image');
         $name_genarate = hexdec(uniqid());
         $img_ext = strtolower($slider_image->getClientOriginalExtension());
@@ -43,7 +55,7 @@ class HomeController extends Controller
             'image' => $last_img,
         ]);
 
-        return Redirect()->route('home.slider')->with('success','Slider Created Successfully');
+        return Redirect()->route('home.slider')->with('success','FAQ Created Successfully');
     }
 
     //  Edit Slider
@@ -52,7 +64,7 @@ class HomeController extends Controller
         return view('admin.slider.edit',compact('sliders')); 
     }
 
-    //  Update Slider
+    //  FAQ Slider
     public function Update(Request $request, $id){
         $validateDate = $request->validate([
             'title' => 'required|min:4',
@@ -61,7 +73,6 @@ class HomeController extends Controller
         [
             'title.required' => 'Title must be 4 characters',
             'description.required' => 'Description must be 5 characters',
-            'image.min' => 'Brand Longer Then 4 Characters',
         ]);
         
         $old_image = $request->old_image;
@@ -105,7 +116,18 @@ class HomeController extends Controller
         return Redirect()->back()->with('success','Slider Delete Successfully');
     }
 
-    // About
+    // FAQ page
+    public function faqPage(){
+    return view('pages.faq');
+    }
+
+    // About page
+    public function aboutPage(){
+        $abouts = DB::table('abouts')->first();
+    return view('pages.about',compact('abouts'));
+    }
+
+    // Admin About
     public function About(){
         $abouts = About::latest()->get();
         return view('admin.about.index',compact('abouts'));
@@ -118,6 +140,19 @@ class HomeController extends Controller
 
     // Store About
     public function StoreAbout(Request $request){
+        $validateDate = $request->validate([
+            'title' => 'required|min:4',
+            'sort_desc' => 'required|min:10',
+            'long_desc' => 'required|min:20',
+        ],
+        [
+            'title.required' => 'Please Input About Title',
+            'title.min' => 'Title Longer Then 4 Characters',
+            'sort_desc.required' => 'Please Input About Sort Description',
+            'sort_desc.min' => 'Title Longer Then 10 Characters',
+            'long_desc.required' => 'Please Input About Long Description',
+            'long_desc.min' => 'Title Longer Then 20 Characters',
+        ]);
         About::insert([
             'title' => $request->title,
             'sort_desc' => $request->sort_desc,
@@ -134,6 +169,19 @@ class HomeController extends Controller
 
     // Update About
     public function UpdateAbout(Request $request, $id){
+        $validateDate = $request->validate([
+            'title' => 'required|min:4',
+            'sort_desc' => 'required|min:10',
+            'long_desc' => 'required|min:20',
+        ],
+        [
+            'title.required' => 'Please Input About Title',
+            'title.min' => 'Title Longer Then 4 Characters',
+            'sort_desc.required' => 'Please Input About Sort Description',
+            'sort_desc.min' => 'Title Longer Then 10 Characters',
+            'long_desc.required' => 'Please Input About Long Description',
+            'long_desc.min' => 'Title Longer Then 20 Characters',
+        ]);
         About::find($id)->update([
             'title' => $request->title,
             'sort_desc' => $request->sort_desc,

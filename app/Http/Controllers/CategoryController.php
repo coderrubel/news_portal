@@ -18,7 +18,7 @@ class CategoryController extends Controller
     public function AallCategory(){
         // Eloquent ORM
         $categories = Category::latest()->paginate(5);
-        $trachCat =  Category::onlyTrashed()->latest()->paginate(2);
+        $trachCat =  Category::onlyTrashed()->latest()->paginate(4);
 
 
         // Query Builder

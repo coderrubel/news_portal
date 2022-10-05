@@ -18,10 +18,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mt-4">
-                        <h3>{{ $abouts->title }}</h3>
-                        <p>{{ $abouts->sort_desc }}</p>
-                        <p>{{ $abouts->long_desc }}</p>
-                        <p><i>Updated Date: {{$abouts->updated_at}}</i></p>
+                        <h3>{{ $abouts->title??'' }}</h3>
+                        <p>{{ $abouts->sort_desc??'' }}</p>
+                        <p>{{ $abouts->long_desc??'' }}</p>
+                        @if($abouts->created_at == NULL)
+                        <span class="text-danger">No Date Set</span>
+                        @else 
+                            {{ $abouts->created_at->diffForHumans() }}
+                        @endif
+                        <!-- <p><i>Updated Date: {{$abouts->updated_at??''}}</i></p> -->
                     </div>
                 </div>
             </div>
