@@ -116,16 +116,7 @@ class HomeController extends Controller
         return Redirect()->back()->with('success','Slider Delete Successfully');
     }
 
-    // FAQ page
-    public function faqPage(){
-    return view('pages.faq');
-    }
 
-    // About page
-    public function aboutPage(){
-        $abouts = DB::table('abouts')->first();
-    return view('pages.about',compact('abouts'));
-    }
 
     // Admin About
     public function About(){

@@ -7,6 +7,8 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\AuthControllar; 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\PageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,13 +27,13 @@ Route::get('/', function () {
 });
 */
 // Home page
-Route::view('/','pages/home');
+Route::get('/',[PageController::class,'homePage'])->name('home');
 
 // FAQ Page
-Route::get('/faq',[HomeController::class,'faqPage'])->name('faq');
+Route::get('/faq',[PageController::class,'faqPage'])->name('faq');
 
 // About Page
-Route::get('/about',[HomeController::class,'aboutPage'])->name('about');
+Route::get('/about',[PageController::class,'aboutPage'])->name('about');
 
 // Contact Page
 Route::get('/contact',[ContactController::class,'Contact'])->name('contact');
@@ -42,8 +44,6 @@ Route::post('/contact/form',[ContactController::class,'ContactForm'])->name('con
 Route::get('/user/logout',[AuthControllar::class,'Logout'])->name('user.logout');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    // use Models
-    // $users = User::all(); 
     return view('admin.index');
 })->name('dashboard');
 

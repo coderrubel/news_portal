@@ -33,10 +33,4 @@ class ContactController extends Controller
         return Redirect()->route('contact')->with('success','Your message has been sent. Thank you!');
     }
 
-    // Footer Contact 
-   /* public function FotterContact(){
-        $footer = Contact::first();
-        return view('components/footer',compact('footer'));
-    }
-    */
 }

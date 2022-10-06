@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\Category;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
@@ -32,6 +32,8 @@ class CategoryController extends Controller
         // form validate
         $validated = $request->validate([
             'category_name' => 'required|unique:categories|max:35|min:3',
+            'catagory_order' => 'required|unique:categories|integer',
+            'show_on_menu' => 'required',
         ],
         [
             // custom error message
@@ -39,6 +41,7 @@ class CategoryController extends Controller
             'category_name.unique'=>'Please Input Unique Category Name',
             'category_name.max'=>'Category Name Less Then 36 Character',
             'category_name.min'=>'Category Name More Then 2 Character',
+            'catagory_order.unique'=>'Please Input Unique Integer Number Only',
         ]);
 
         // Data insert use Eloquent ORM & Models
