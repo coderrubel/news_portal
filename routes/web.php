@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\User; 
 use App\Http\Controllers\CategoryController; 
+use App\Http\Controllers\SubCategoryController; 
 use App\Http\Controllers\BrandController; 
 use App\Http\Controllers\AuthControllar; 
 use App\Http\Controllers\HomeController;
@@ -55,6 +56,15 @@ Route::post('/category/update/{id}',[CategoryController::class,'UpdateCategory']
 Route::get('/softdelete/category/{id}',[CategoryController::class,'SoftDelete']);
 Route::get('/category/restore/{id}',[CategoryController::class,'Restore']);
 Route::get('/category/pdelete/{id}',[CategoryController::class,'PDelete']);
+
+// Sub Category Controller
+Route::get('/subcategory/all',[SubCategoryController::class,'AallSubCategory'])->name('all.subcategory');
+Route::post('/subcategory/add',[SubCategoryController::class,'AddSubCategory'])->name('store.subcategory'); 
+// Route::get('/subcategory/edit/{id}',[SubCategoryController::class,'EditSubCategory']);
+// Route::post('/subcategory/update/{id}',[SubCategoryController::class,'UpdateSubCategory']);
+// Route::get('/softdelete/subcategory/{id}',[SubCategoryController::class,'SoftDelete']);
+// Route::get('/subcategory/restore/{id}',[SubCategoryController::class,'Restore']);
+// Route::get('/subcategory/pdelete/{id}',[SubCategoryController::class,'PDelete']);
 
 // Brand Controller
 Route::get('/brand/all',[BrandController::class,'AllBrand'])->name('all.brand');

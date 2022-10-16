@@ -68,7 +68,7 @@
                                 <input type="text" name="category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Category Name">
                                 <label for="addcategory" class="form-label">Category Order</label>
                                 @error('catagory_order')<p class="text-danger">{{ $message }}</p>@enderror
-                                <input type="text" name="catagory_order" class="form-control rounded mb-2" id="order" placeholder="Catagory Order">
+                                <input type="text" name="catagory_order" claSss="form-control rounded mb-2" id="order" placeholder="Catagory Order">
                                 <label for="addcategory" class="form-label d-block">Show on Menu
                                 <select name="show_on_menu" class="form-control rounded mt-2">
                                     <option value="Show">Show</option>
@@ -91,7 +91,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th scope="col">SL No</th>
                                 <th scope="col">Category Name</th>
                                 <th scope="col">Show on Menu</th>
                                 <th scope="col">Menu Order</th>
@@ -104,7 +103,6 @@
                             
                                 @foreach($trachCat as $trach)
                                 <tr>
-                                <td>{{ $categories->firstItem()+$loop->index }}</td>
                                 <td>{{ $trach->category_name }}</td>
                                 <td>{{ $trach->show_on_menu }}</td>
                                 <td>{{ $trach->catagory_order }}</td>

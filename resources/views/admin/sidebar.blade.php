@@ -88,7 +88,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="chartjs.html">
+                              <a class="sidenav-item-link" href="{{url('/subcategory/all')}}">
                                 <span class="nav-text">Sub Catagory</span>
                               </a>
                             </li>
