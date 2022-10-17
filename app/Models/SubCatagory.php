@@ -4,9 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SubCategory extends Model
+class SubCatagory extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -17,6 +16,6 @@ class SubCategory extends Model
     ];
 
     public function user(){
-        return $this->hasOne(User::class, 'id','category_id','sho_on_menu','sub_catagory_order');
+        return $this->hasOne(User::class, 'id');
     }
 }

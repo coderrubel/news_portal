@@ -15,32 +15,25 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">SL No</th>
+                            <th scope="col">Category ID</th>
                             <th scope="col">Category Name</th>
                             <th scope="col">Show on Menu</th>
                             <th scope="col">Menu Order</th>
-                            <th scope="col">Created By</th>
-                            <th scope="col">Created At</th>
                             <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             
-                            @foreach($subcategories as $category)
+                            @foreach($subcagagorys as $row)
                             <tr>
-                            <th scope="row">{{ $subcategories->firstItem()+$loop->index }}</th>
-                            <td>{{ $category->sub_category_name }}</td>
-                            <td>{{ $category->show_on_menu }}</td>
-                            <td>{{ $category->sub_catagory_order }}</td>
-                            <td>{{ $category->user->name }}</td>
+                            <td>{{ $row->category_id }}</td>
+                            <td>{{ $row->sub_category_name }}</td>
+                            <td>{{ $row->show_on_menu }}</td>
+                            <td>{{ $row->sub_catagory_order }}</td>
                             <td>
-                                @if($category->created_at == NULL)
-                                    <span class="text-danger">No Date Set</span>
-                                @else 
-                                    {{ $category->created_at->diffForHumans() }}
-                                @endif
+                                <a href="{{ url('/category/edit/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ url('/softdelete/category/'.$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
                             </td>
-
                             </tr>
                             @endforeach
                         </tbody>
@@ -58,6 +51,9 @@
                         <form action="{{ route('store.subcategory')}}" method="POST">
                             @csrf
                             <div class="my-2">
+                                <label for="addcategory" class="form-label">Category ID</label>
+                                @error('category_id')<p class="text-danger">{{ $message }}</p>@enderror    
+                                <input type="text" name="category_id" class="form-control rounded mb-2" id="addcategory" placeholder="Category ID">
                                 <label for="addcategory" class="form-label">Sub Category Name</label>
                                 @error('sub_category_name')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="sub_category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Sub Category Name">
@@ -78,6 +74,8 @@
             </div>
         </div>
         
-        <!-- SoftDelete Section -->
+                <!-- SoftDelete Section -->
+                
+
 
 @endsection
