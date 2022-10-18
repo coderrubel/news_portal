@@ -11,12 +11,12 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
-                    <div class="d-flex justify-content-between card-header"><span>All Category</span> <span>Total Catagory: </span></div>
+                    <div class="d-flex justify-content-between card-header"><span>All Sub Category</span> <span>Total Sub Catagory: {{ count($subcagagorys)}} </span></div>
                     <table class="table">
                         <thead>
                             <tr>
                             <th scope="col">Category ID</th>
-                            <th scope="col">Category Name</th>
+                            <th scope="col">Sub Category Name</th>
                             <th scope="col">Show on Menu</th>
                             <th scope="col">Menu Order</th>
                             <th scope="col">Action</th>
@@ -31,8 +31,8 @@
                             <td>{{ $row->show_on_menu }}</td>
                             <td>{{ $row->sub_catagory_order }}</td>
                             <td>
-                                <a href="{{ url('/category/edit/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ url('/softdelete/category/'.$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                                <a href="{{ url('/subcategory/edit/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
+                                <a href="{{ url('/softdelete/subcategory/'.$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
                             </td>
                             </tr>
                             @endforeach
@@ -59,7 +59,7 @@
                                 <input type="text" name="sub_category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Sub Category Name">
                                 <label for="addcategory" class="form-label">Sub Category Order</label>
                                 @error('sub_catagory_order')<p class="text-danger">{{ $message }}</p>@enderror
-                                <input type="text" name="sub_catagory_order" claSss="form-control rounded mb-2" id="order" placeholder="Sub Catagory Order">
+                                <input type="text" name="sub_catagory_order" class="form-control rounded mb-2" id="order" placeholder="Sub Catagory Order">
                                 <label for="addcategory" class="form-label d-block">Show on Menu
                                 <select name="show_on_menu" class="form-control rounded mt-2">
                                     <option value="Show">Show</option>
@@ -74,8 +74,7 @@
             </div>
         </div>
         
-                <!-- SoftDelete Section -->
-                
+        <!-- SoftDelete Section -->
 
 
 @endsection

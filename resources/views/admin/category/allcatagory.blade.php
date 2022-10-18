@@ -66,9 +66,9 @@
                                 <label for="addcategory" class="form-label">Category Name</label>
                                 @error('category_name')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Category Name">
-                                <label for="addcategory" class="form-label">Category Order</label>
+                                <label for="addcategory" class="form-label">Menu Order</label>
                                 @error('catagory_order')<p class="text-danger">{{ $message }}</p>@enderror
-                                <input type="text" name="catagory_order" claSss="form-control rounded mb-2" id="order" placeholder="Catagory Order">
+                                <input type="text" name="catagory_order" class="form-control rounded mb-2" id="order" placeholder="Menu Order">
                                 <label for="addcategory" class="form-label d-block">Show on Menu
                                 <select name="show_on_menu" class="form-control rounded mt-2">
                                     <option value="Show">Show</option>

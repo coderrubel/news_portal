@@ -20,6 +20,7 @@ class CreateSubCatagoriesTable extends Migration
             $table->string('show_on_menu')->nullable();
             $table->integer('sub_catagory_order')->nullable();
             $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

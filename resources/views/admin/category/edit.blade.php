@@ -17,7 +17,7 @@
                                     @enderror    
                                     <input type="text" name="category_name" value="{{ $categories->category_name }}" class="form-control rounded" id="addcategory" placeholder="Update Category Name">
                                     <input type="text" name="catagory_order" value="{{ $categories->catagory_order }}" class="form-control rounded mt-2" id="order" placeholder="Catagory Order">
-                                    <select name="show_on_menu" class="mt-2" value="{{ $categories->show_on_menu }}">
+                                    <select name="show_on_menu" class="form-control rounded mt-2" value="{{ $categories->show_on_menu }}">
                                         <option value="Show">Show</option>
                                         <option value="Hide">Hide</option>
                                     </select>
