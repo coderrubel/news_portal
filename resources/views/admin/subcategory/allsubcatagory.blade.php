@@ -75,6 +75,39 @@
         </div>
         
         <!-- SoftDelete Section -->
-
+        <div class="row justify-content-start mt-4">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card card-header">Trasht  Category</div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Category ID</th>
+                                <th scope="col">Sub Category Name</th>
+                                <th scope="col">Show on Menu</th>
+                                <th scope="col">Menu Order</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($trachCat as $row)
+                                <tr>
+                                <td>{{ $row->category_id }}</td>
+                                <td>{{ $row->sub_category_name }}</td>
+                                <td>{{ $row->show_on_menu }}</td>
+                                <td>{{ $row->sub_catagory_order }}</td>
+                                <td>
+                                    <a href="{{ url('subcategory/restore/'.$row->id) }}" class="btn btn-sm btn-info">Restore</a>
+                                    <a href="{{ url('subcategory/pdelete/'.$row->id) }}" class="btn btn-sm btn-danger">Permanently Delete</a>
+                                </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- {{$trachCat->appends(['trach' => $trachCat->currentPage()])->links()}} -->
+                    <div class="text-center mb-2 px-5">{{ $trachCat->links() }}</div>
+                </div>
+            </div>
+        </div>
 
 @endsection

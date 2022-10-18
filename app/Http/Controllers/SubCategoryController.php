@@ -17,8 +17,8 @@ class SubCategoryController extends Controller
     public function AallSubCategory(){
         // Eloquent ORM
         $subcagagorys = SubCatagory::latest()->get();
-
-        return view('admin.subcategory.allsubcatagory',compact('subcagagorys'));
+        $trachCat =  SubCatagory::onlyTrashed()->latest()->paginate(4);
+        return view('admin.subcategory.allsubcatagory',compact('subcagagorys','trachCat'));
        
     }
 
@@ -34,7 +34,7 @@ class SubCategoryController extends Controller
         [
             // custom error message
             'sub_category_name.required'=>'Please Input Sub Category Name',
-            // 'sub_category_name.unique'=>'Please Input Unique Sub Category Name',
+            'sub_category_name.unique'=>'Please Input Unique Sub Category Name',
             'sub_category_name.max'=>'Category Name Less Then 36 Character',
             'sub_category_name.min'=>'Category Name More Then 3 Character',
             // 'sub_catagory_order.unique'=>'Please Input Unique Integer Number Only',
@@ -60,21 +60,32 @@ class SubCategoryController extends Controller
     }
     // Update Category
     public function UpdateSubCategory(Request $request, $id){
-        // $validated = $request->validate([
-        //     'sub_category_name' => 'required|unique:subcagagorys|max:15|min:3',
-        // ]);
+        $validated = $request->validate([
+            'sub_category_name' => 'required|max:15|min:3',
+        ]);
         $update = SubCatagory::find($id)->update([
+            'category_id' => $request->category_id,
             'sub_category_name' => $request->sub_category_name,
             'sub_catagory_order' => $request->sub_catagory_order,
             'show_on_menu' => $request->show_on_menu,
         ]);
-        return Redirect()->route('all.subcategory')->with('success','Update Category Successfully');
+        return Redirect()->route('all.subcategory')->with('success','Update Sub Category Successfully');
     }
     // SoftDelete Category
     public function SoftDelete($id){
         $delete = SubCatagory::find($id)->delete();
-        return Redirect()->back()->with('success','Category Soft Delete Successfully');
+        return Redirect()->back()->with('success','Sub Category Soft Delete Successfully');
+    }
+    // Restore sub Category
+    public function Restore($id){
+        $delete = SubCatagory::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success','Sub Category Restore Successfully');
     }
 
+    // PDelete sub Category
+    public function PDelete($id){
+        $delete = SubCatagory::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success','Sub Category Permanently Deleted');
+    }
    
 }
