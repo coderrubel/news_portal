@@ -26,7 +26,7 @@
                             
                             @foreach($subcagagorys as $row)
                             <tr>
-                            <td>{{ $row->category_id }}</td>
+                            <td>{{ $row->category_name }}</td>
                             <td>{{ $row->sub_category_name }}</td>
                             <td>{{ $row->show_on_menu }}</td>
                             <td>{{ $row->sub_catagory_order }}</td>
@@ -51,10 +51,10 @@
                         <form action="{{ route('store.subcategory')}}" method="POST">
                             @csrf
                             <div class="my-2">
-                                <label for="addcategory" class="form-label">Category ID</label>
-                                @error('category_id')<p class="text-danger">{{ $message }}</p>@enderror    
-                                <input type="text" name="category_id" class="form-control rounded mb-2" id="addcategory" placeholder="Category ID">
-                                <label for="addcategory" class="form-label">Sub Category Name</label>
+                                <label for="addcategory" class="form-label">Category Name*</label>
+                                @error('category_name')<p class="text-danger">{{ $message }}</p>@enderror    
+                                <input type="text" name="category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Category Name">
+                                <label for="addcategory" class="form-label">Sub Category Name*</label>
                                 @error('sub_category_name')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="sub_category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Sub Category Name">
                                 <label for="addcategory" class="form-label">Sub Category Order</label>
@@ -82,7 +82,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th scope="col">Category ID</th>
+                                <th scope="col">Category Name</th>
                                 <th scope="col">Sub Category Name</th>
                                 <th scope="col">Show on Menu</th>
                                 <th scope="col">Menu Order</th>
@@ -92,7 +92,7 @@
                             <tbody>
                                 @foreach($trachCat as $row)
                                 <tr>
-                                <td>{{ $row->category_id }}</td>
+                                <td>{{ $row->category_name }}</td>
                                 <td>{{ $row->sub_category_name }}</td>
                                 <td>{{ $row->show_on_menu }}</td>
                                 <td>{{ $row->sub_catagory_order }}</td>

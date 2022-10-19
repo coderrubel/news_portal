@@ -43,16 +43,7 @@
                       <div class="sub-menu"> 
                         
                          
-                      <li  class="active" >
-                        <a class="sidenav-item-link" href="{{ route('home.about') }}">
-                          <span class="nav-text">About</span>
-                        </a>
-                      </li>
-                      <li  class="active" >
-                        <a class="sidenav-item-link" href="{{ route('home.slider')}}">
-                          <span class="nav-text">FAQ</span>
-                        </a>
-                      </li>  
+                      
 
                       <!-- <li  class="disabled" >
                         <a class="sidenav-item-link" href="#">
@@ -69,14 +60,46 @@
                       </div>
                     </ul>
                   </li>
+
+                  <!-- Pages -->
+                  <li  class="has-sub" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
+                      aria-expanded="false" aria-controls="pages">
+                      <i class="mdi mdi-image-filter-none"></i>
+                      <span class="nav-text">Pages</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="collapse"  id="pages"
+                      data-parent="#sidebar-menu">
+                      <div class="sub-menu">
+                        
+                        <li  class="active" >
+                          <a class="sidenav-item-link" href="{{ route('home.about') }}">
+                            <span class="nav-text">About</span>
+                          </a>
+                        </li>
+                        <li  class="active" >
+                          <a class="sidenav-item-link" href="{{ route('home.slider')}}">
+                            <span class="nav-text">FAQ</span>
+                          </a>
+                        </li>  
+                        
+                        <li  class="has-sub" >
+                          <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#others"
+                            aria-expanded="false" aria-controls="others">
+                            <span class="nav-text">Others</span> <b class="caret"></b>
+                          </a>
+                        </li>
+                        
+                      </div>
+                    </ul>
+                  </li>
                 
-                
-                  <!-- Post and catagory -->
+                  <!-- News -->
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
                       aria-expanded="false" aria-controls="charts">
-                      <i class="mdi mdi-chart-pie"></i>
-                      <span class="nav-text">Catagory</span> <b class="caret"></b>
+                      <i class="mdi mdi-book-open-page-variant"></i>
+                      <span class="nav-text">News</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="charts"
                       data-parent="#sidebar-menu">
@@ -106,7 +129,7 @@
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
                       aria-expanded="false" aria-controls="ui-elements">
-                      <i class="mdi mdi-folder-multiple-outline"></i>
+                      <i class="mdi mdi-email-outline"></i>
                       <span class="nav-text">Contact</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="ui-elements"
@@ -127,7 +150,8 @@
                     </ul>
                   </li>
 
-                  <li  class="has-sub" >
+
+                  <!-- <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
                       aria-expanded="false" aria-controls="pages">
                       <i class="mdi mdi-image-filter-none"></i>
@@ -197,16 +221,16 @@
                         
                       </div>
                     </ul>
-                  </li>
+                  </li> -->
                 
 
                 
 
-                
+                <!-- Documention -->
                   <li  class="has-sub" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#documentation"
                       aria-expanded="false" aria-controls="documentation">
-                      <i class="mdi mdi-book-open-page-variant"></i>
+                      <i class="mdi mdi-chart-pie"></i>
                       <span class="nav-text">Documentation</span> <b class="caret"></b>
                     </a>
                     <ul  class="collapse"  id="documentation"

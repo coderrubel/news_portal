@@ -12,10 +12,10 @@
                                 @csrf
                                 <div class="my-2">
                                     <label for="category" class="form-label mb-1">Update Category ID</label>
-                                    @error('category_id')
+                                    @error('category_name')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
-                                    <input type="text" name="category_id" value="{{ $subcagagorys->category_id }}" class="form-control rounded" id="addcategory" placeholder="Update Sub Category Name">
+                                    <input type="text" name="category_name" value="{{ $subcagagorys->category_name }}" class="form-control rounded" id="addcategory" placeholder="Update Sub Category Name">
                                     <label for="addcategory" class="form-label mt-2 mb-0">Update Category Name</label>
                                     @error('sub_category_name')
                                         <p class="text-danger">{{ $message }}</p>

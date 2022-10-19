@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\SubCatagory;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -26,9 +27,9 @@ class SubCategoryController extends Controller
     public function AddSubCategory(Request $request){
         // form validate
         $validated = $request->validate([
-            'category_id' => 'required',
-            'sub_category_name' => 'required|max:35|min:3',
-            'sub_catagory_order' => 'required',
+            'category_name' => 'required',
+            'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
+            // 'sub_catagory_order' => 'required|unique:sub_catagories',
             'show_on_menu' => 'required',
         ],
         [
@@ -37,11 +38,11 @@ class SubCategoryController extends Controller
             'sub_category_name.unique'=>'Please Input Unique Sub Category Name',
             'sub_category_name.max'=>'Category Name Less Then 36 Character',
             'sub_category_name.min'=>'Category Name More Then 3 Character',
-            // 'sub_catagory_order.unique'=>'Please Input Unique Integer Number Only',
+            'sub_catagory_order.unique'=>'Please Input Unique Integer Number Only',
         ]);
         // Data insert use Eloquent ORM & Models
         SubCatagory::insert([
-            'category_id'=> $request->category_id,
+            'category_name'=> $request->category_name,
             'sub_category_name' => $request->sub_category_name,
             'show_on_menu' => $request->show_on_menu,
             'sub_catagory_order' => $request->sub_catagory_order,
@@ -60,11 +61,23 @@ class SubCategoryController extends Controller
     }
     // Update Category
     public function UpdateSubCategory(Request $request, $id){
-        $validated = $request->validate([
-            'sub_category_name' => 'required|max:15|min:3',
-        ]);
+        // $validated = $request->validate([
+        //     'category_name' => 'required',
+        //     'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
+        //     'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
+        //     'sub_catagory_order' => 'required|unique:sub_catagories',
+        //     'show_on_menu' => 'required',
+        // ],
+        // [
+        //     // custom error message
+        //     'sub_category_name.required'=>'Please Input Sub Category Name',
+        //     'sub_category_name.unique'=>'Please Input Unique Sub Category Name',
+        //     'sub_category_name.max'=>'Category Name Less Then 36 Character',
+        //     'sub_category_name.min'=>'Category Name More Then 3 Character',
+        //     'sub_catagory_order.unique'=>'Please Input Unique Integer Number Only',
+        // ]);
         $update = SubCatagory::find($id)->update([
-            'category_id' => $request->category_id,
+            'category_name' => $request->category_name,
             'sub_category_name' => $request->sub_category_name,
             'sub_catagory_order' => $request->sub_catagory_order,
             'show_on_menu' => $request->show_on_menu,
