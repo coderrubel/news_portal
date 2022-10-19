@@ -60,12 +60,20 @@
                                 <label for="addcategory" class="form-label">Sub Category Order</label>
                                 @error('sub_catagory_order')<p class="text-danger">{{ $message }}</p>@enderror
                                 <input type="text" name="sub_catagory_order" class="form-control rounded mb-2" id="order" placeholder="Sub Catagory Order">
-                                <label for="addcategory" class="form-label d-block">Show on Menu
+                                
+                                <label for="addcategory" class="form-label d-block">Catagory Name</label>
+                                <select name="category_name" class="form-control rounded mt-2">
+                                    @foreach($catagory as $row)
+                                    <option value="{{ $row->catagory_name }}">{{ $row->catagory_name }}</option>
+                                    @endforeach
+                                </select>
+                                
+                                <label for="addcategory" class="form-label d-block">Show on Menu</label>
                                 <select name="show_on_menu" class="form-control rounded mt-2">
                                     <option value="Show">Show</option>
                                     <option value="Hide">Hide</option>
                                 </select>
-                                </label>
+                                
                                 <button type="submit" class="btn btn-primary mt-2">Add Sub Category</button>
                             </div>
                         </form>  

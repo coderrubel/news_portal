@@ -16,6 +16,9 @@ class SubCatagory extends Model
         'sub_catagory_order',
     ];
 
+    public function rCaregory(){
+        return $this->belongsTo(Category::class, 'category_name');
+    }
     public function user(){
         return $this->hasOne(User::class, 'id','category_name','sub_category_name','show_on_menu','sub_catagory_order');
     }

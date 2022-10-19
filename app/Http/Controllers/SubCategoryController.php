@@ -17,13 +17,14 @@ class SubCategoryController extends Controller
     }
     public function AallSubCategory(){
         // Eloquent ORM
-        $subcagagorys = SubCatagory::latest()->get();
+        $catagory = Category::orderBy('catagory_order','asc')->get();
+        $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
         $trachCat =  SubCatagory::onlyTrashed()->latest()->paginate(4);
-        return view('admin.subcategory.allsubcatagory',compact('subcagagorys','trachCat'));
+        return view('admin.subcategory.allsubcatagory',compact('catagory','subcagagorys','trachCat'));
        
     }
-
-    // Add Category
+   
+    // Add sub Category
     public function AddSubCategory(Request $request){
         // form validate
         $validated = $request->validate([
@@ -50,7 +51,7 @@ class SubCategoryController extends Controller
         return Redirect()->back()->with('success','Insert Category Successfully');
 
     }
-    // Edit Sub Category
+ // Edit Sub Category
     public function EditSubCategory($id){
         // Data update use Eloquent ORM & Models
         $subcagagorys = SubCatagory::find($id);

@@ -59,6 +59,7 @@ Route::get('/category/pdelete/{id}',[CategoryController::class,'PDelete']);
 
 // Sub Category Controller
 Route::get('/subcategory/all',[SubCategoryController::class,'AallSubCategory'])->name('all.subcategory');
+// Route::get('/subcategory/all',[SubCategoryController::class,'create']);
 Route::post('/subcategory/add',[SubCategoryController::class,'AddSubCategory'])->name('store.subcategory'); 
 Route::get('/subcategory/edit/{id}',[SubCategoryController::class,'EditSubCategory']);
 Route::post('/subcategory/update/{id}',[SubCategoryController::class,'UpdateSubCategory']);
