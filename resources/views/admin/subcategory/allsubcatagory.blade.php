@@ -26,7 +26,7 @@
                             
                             @foreach($subcagagorys as $row)
                             <tr>
-                            <td>{{ $row->category_name }}</td>
+                           
                             <td>{{ $row->sub_category_name }}</td>
                             <td>{{ $row->show_on_menu }}</td>
                             <td>{{ $row->sub_catagory_order }}</td>
@@ -51,9 +51,7 @@
                         <form action="{{ route('store.subcategory')}}" method="POST">
                             @csrf
                             <div class="my-2">
-                                <label for="addcategory" class="form-label">Category Name*</label>
-                                @error('category_name')<p class="text-danger">{{ $message }}</p>@enderror    
-                                <input type="text" name="category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Category Name">
+                                
                                 <label for="addcategory" class="form-label">Sub Category Name*</label>
                                 @error('sub_category_name')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="sub_category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Sub Category Name">
@@ -61,12 +59,7 @@
                                 @error('sub_catagory_order')<p class="text-danger">{{ $message }}</p>@enderror
                                 <input type="text" name="sub_catagory_order" class="form-control rounded mb-2" id="order" placeholder="Sub Catagory Order">
                                 
-                                <label for="addcategory" class="form-label d-block">Catagory Name</label>
-                                <select name="category_name" class="form-control rounded mt-2">
-                                    @foreach($catagory as $row)
-                                    <option value="{{ $row->catagory_name }}">{{ $row->catagory_name }}</option>
-                                    @endforeach
-                                </select>
+                                
                                 
                                 <label for="addcategory" class="form-label d-block">Show on Menu</label>
                                 <select name="show_on_menu" class="form-control rounded mt-2">

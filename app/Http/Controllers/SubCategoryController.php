@@ -28,7 +28,7 @@ class SubCategoryController extends Controller
     public function AddSubCategory(Request $request){
         // form validate
         $validated = $request->validate([
-            'category_name' => 'required',
+            // 'category_name' => 'required',
             'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
             // 'sub_catagory_order' => 'required|unique:sub_catagories',
             'show_on_menu' => 'required',
@@ -43,7 +43,7 @@ class SubCategoryController extends Controller
         ]);
         // Data insert use Eloquent ORM & Models
         SubCatagory::insert([
-            'category_name'=> $request->category_name,
+            // 'category_name'=> $request->category_name,
             'sub_category_name' => $request->sub_category_name,
             'show_on_menu' => $request->show_on_menu,
             'sub_catagory_order' => $request->sub_catagory_order,

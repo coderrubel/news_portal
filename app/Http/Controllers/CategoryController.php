@@ -77,12 +77,12 @@ class CategoryController extends Controller
         // $validated = $request->validate([
         //     'category_name' => 'required|unique:categories|max:15|min:3',
         // ]);
-        // $update = Category::find($id)->update([
-        //     'category_name' => $request->category_name,
-        //     'catagory_order' => $request->catagory_order,
-        //     'show_on_menu' => $request->show_on_menu,
-        //     'user_id' => Auth::user()->id
-        // ]);
+        $update = Category::find($id)->update([
+            'category_name' => $request->category_name,
+            'catagory_order' => $request->catagory_order,
+            'show_on_menu' => $request->show_on_menu,
+            'user_id' => Auth::user()->id
+        ]);
         return Redirect()->route('all.category')->with('success','Update Category Successfully');
     }
 
