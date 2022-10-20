@@ -15,7 +15,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">Category ID</th>
+                            <th scope="col">Category Name</th>
                             <th scope="col">Sub Category Name</th>
                             <th scope="col">Show on Menu</th>
                             <th scope="col">Menu Order</th>
@@ -26,7 +26,7 @@
                             
                             @foreach($subcagagorys as $row)
                             <tr>
-                           
+                            <td>{{ $row->rCaregory->category_name }}</td>
                             <td>{{ $row->sub_category_name }}</td>
                             <td>{{ $row->show_on_menu }}</td>
                             <td>{{ $row->sub_catagory_order }}</td>
@@ -51,7 +51,14 @@
                         <form action="{{ route('store.subcategory')}}" method="POST">
                             @csrf
                             <div class="my-2">
-                                
+
+                                <label for="addcategory" class="form-label d-block">Catagory Name</label>
+                                <select name="category_id" class="form-control rounded mt-2">
+                                    @foreach($catagory as $row)
+                                    <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                                    @endforeach
+                                </select>
+
                                 <label for="addcategory" class="form-label">Sub Category Name*</label>
                                 @error('sub_category_name')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="sub_category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Sub Category Name">

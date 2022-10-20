@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class SubCategoryController extends Controller
 {
-     // Login chack
+    // Login chack
      public function __construct(){
         $this->middleware('auth');
     }
@@ -20,8 +20,7 @@ class SubCategoryController extends Controller
         $catagory = Category::orderBy('catagory_order','asc')->get();
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
         $trachCat =  SubCatagory::onlyTrashed()->latest()->paginate(4);
-        return view('admin.subcategory.allsubcatagory',compact('catagory','subcagagorys','trachCat'));
-       
+        return view('admin.subcategory.allsubcatagory',compact('catagory','subcagagorys','trachCat'));    
     }
    
     // Add sub Category
@@ -43,7 +42,7 @@ class SubCategoryController extends Controller
         ]);
         // Data insert use Eloquent ORM & Models
         SubCatagory::insert([
-            // 'category_name'=> $request->category_name,
+            'category_id'=> $request->category_id,
             'sub_category_name' => $request->sub_category_name,
             'show_on_menu' => $request->show_on_menu,
             'sub_catagory_order' => $request->sub_catagory_order,
@@ -51,7 +50,7 @@ class SubCategoryController extends Controller
         return Redirect()->back()->with('success','Insert Category Successfully');
 
     }
- // Edit Sub Category
+    // Edit Sub Category
     public function EditSubCategory($id){
         // Data update use Eloquent ORM & Models
         $subcagagorys = SubCatagory::find($id);
