@@ -116,7 +116,7 @@
                               </a>
                             </li>
                             <li >
-                              <a class="sidenav-item-link" href="chartjs.html">
+                              <a class="sidenav-item-link" href="{{url('/post/all')}}">
                                 <span class="nav-text">Post</span>
                               </a>
                             </li>

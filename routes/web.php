@@ -9,6 +9,7 @@ use App\Http\Controllers\AuthControllar;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.index');
 })->name('dashboard');
 
+// Post Controller
+Route::get('/post/all',[PostController::class,'AllPost'])->name('all.post');
+Route::post('/post/add',[PostController::class,'AddPost'])->name('store.post'); 
+Route::get('/post/edit/{id}',[PostController::class,'EditCategory']);
+Route::post('/post/update/{id}',[PostController::class,'UpdateCategory']);
+Route::get('/softdelete/post/{id}',[PostController::class,'SoftDelete']);
+Route::get('/post/restore/{id}',[PostController::class,'Restore']);
+Route::get('/post/pdelete/{id}',[PostController::class,'PDelete']);
+
 // Category Controller
 Route::get('/category/all',[CategoryController::class,'AallCategory'])->name('all.category');
 Route::post('/category/add',[CategoryController::class,'AddCategory'])->name('store.category'); 
@@ -59,7 +69,6 @@ Route::get('/category/pdelete/{id}',[CategoryController::class,'PDelete']);
 
 // Sub Category Controller
 Route::get('/subcategory/all',[SubCategoryController::class,'AallSubCategory'])->name('all.subcategory');
-// Route::get('/subcategory/all',[SubCategoryController::class,'create']);
 Route::post('/subcategory/add',[SubCategoryController::class,'AddSubCategory'])->name('store.subcategory'); 
 Route::get('/subcategory/edit/{id}',[SubCategoryController::class,'EditSubCategory']);
 Route::post('/subcategory/update/{id}',[SubCategoryController::class,'UpdateSubCategory']);

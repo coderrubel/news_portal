@@ -29,7 +29,7 @@ class SubCategoryController extends Controller
         $validated = $request->validate([
             // 'category_name' => 'required',
             'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
-            // 'sub_catagory_order' => 'required|unique:sub_catagories',
+            'sub_catagory_order' => 'required|integer',
             'show_on_menu' => 'required',
         ],
         [
@@ -38,7 +38,7 @@ class SubCategoryController extends Controller
             'sub_category_name.unique'=>'Please Input Unique Sub Category Name',
             'sub_category_name.max'=>'Category Name Less Then 36 Character',
             'sub_category_name.min'=>'Category Name More Then 3 Character',
-            'sub_catagory_order.unique'=>'Please Input Unique Integer Number Only',
+            'sub_catagory_order.integer'=>'Please Input Integer Number Only',
         ]);
         // Data insert use Eloquent ORM & Models
         SubCatagory::insert([
@@ -54,30 +54,28 @@ class SubCategoryController extends Controller
     public function EditSubCategory($id){
         // Data update use Eloquent ORM & Models
         $subcagagorys = SubCatagory::find($id);
+        $catagory = Category::orderBy('catagory_order','asc')->get();
         // Data update use Query Builder
         // $categories = DB::table('categories')->where('id',$id)->first();
 
-        return view('admin.subcategory.edit',compact('subcagagorys'));
+        return view('admin.subcategory.edit',compact('subcagagorys','catagory'));
     }
     // Update Category
     public function UpdateSubCategory(Request $request, $id){
-        // $validated = $request->validate([
-        //     'category_name' => 'required',
-        //     'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
-        //     'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
-        //     'sub_catagory_order' => 'required|unique:sub_catagories',
-        //     'show_on_menu' => 'required',
-        // ],
-        // [
-        //     // custom error message
-        //     'sub_category_name.required'=>'Please Input Sub Category Name',
-        //     'sub_category_name.unique'=>'Please Input Unique Sub Category Name',
-        //     'sub_category_name.max'=>'Category Name Less Then 36 Character',
-        //     'sub_category_name.min'=>'Category Name More Then 3 Character',
-        //     'sub_catagory_order.unique'=>'Please Input Unique Integer Number Only',
-        // ]);
+        $validated = $request->validate([
+            'sub_category_name' => 'required|max:35|min:3',
+            'sub_catagory_order' => 'required|integer',
+            'show_on_menu' => 'required',
+        ],
+        [
+            // custom error message
+            'sub_category_name.required'=>'Please Input Sub Category Name',
+            'sub_category_name.max'=>'Category Name Less Then 36 Character',
+            'sub_category_name.min'=>'Category Name More Then 3 Character',
+            'sub_catagory_order.unique'=>'Please Input Integer Number Only',
+        ]);
         $update = SubCatagory::find($id)->update([
-            'category_name' => $request->category_name,
+            'category_id'=> $request->category_id,
             'sub_category_name' => $request->sub_category_name,
             'sub_catagory_order' => $request->sub_catagory_order,
             'show_on_menu' => $request->show_on_menu,

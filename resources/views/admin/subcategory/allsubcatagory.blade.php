@@ -26,13 +26,22 @@
                             
                             @foreach($subcagagorys as $row)
                             <tr>
-                            <td>{{ $row->rCaregory->category_name }}</td>
+                            <th scope="row">{{ $row->rCaregory->category_name }}</th>
                             <td>{{ $row->sub_category_name }}</td>
                             <td>{{ $row->show_on_menu }}</td>
                             <td>{{ $row->sub_catagory_order }}</td>
-                            <td>
-                                <a href="{{ url('/subcategory/edit/'.$row->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ url('/softdelete/subcategory/'.$row->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                            <td class="text-right">
+                              <div class="dropdown show d-inline-block widget-dropdown">
+                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                  <li class="dropdown-item">
+                                    <a href="{{ url('/subcategory/edit/'.$row->id) }}">Edit</a>
+                                  </li>
+                                  <li class="dropdown-item">
+                                    <a href="{{ url('/softdelete/subcategory/'.$row->id) }}">Remove</a>
+                                  </li>
+                                </ul>
+                              </div>
                             </td>
                             </tr>
                             @endforeach
@@ -100,13 +109,22 @@
                             <tbody>
                                 @foreach($trachCat as $row)
                                 <tr>
-                                <td>{{ $row->category_name }}</td>
+                                <th scope="row">{{ $row->rCaregory->category_name }}</th>    
                                 <td>{{ $row->sub_category_name }}</td>
                                 <td>{{ $row->show_on_menu }}</td>
                                 <td>{{ $row->sub_catagory_order }}</td>
-                                <td>
-                                    <a href="{{ url('subcategory/restore/'.$row->id) }}" class="btn btn-sm btn-info">Restore</a>
-                                    <a href="{{ url('subcategory/pdelete/'.$row->id) }}" class="btn btn-sm btn-danger">Permanently Delete</a>
+                                <td class="text-right">
+                                    <div class="dropdown show d-inline-block widget-dropdown">
+                                        <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('subcategory/restore/'.$row->id) }}">Restore</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('subcategory/pdelete/'.$row->id) }}">Delete</a>
+                                        </li>
+                                        </ul>
+                                    </div>
                                 </td>
                                 </tr>
                                 @endforeach
