@@ -20,8 +20,8 @@ class PostController extends Controller
         // Eloquent ORM
         $post = Post::latest()->paginate(15);
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
-       // $trachCat =  Post::onlyTrashed()->latest()->paginate(15);
-        return view('admin.post.allpost',compact('post','subcagagorys'));
+        $trachCat =  Post::onlyTrashed()->latest()->paginate(15);
+        return view('admin.post.allpost',compact('post','subcagagorys','trachCat'));
     }
 
     // Add Post
@@ -45,6 +45,7 @@ class PostController extends Controller
         Post::insert([
             'sub_category_id' => $request->sub_category_id,
             'post_title' => $request->post_title,
+            'user_name' => Auth::user()->name,
             'post_detail' => $request->post_detail,
             'visitors' => $request->visitors,
             'is_share' => $request->is_share,
@@ -53,5 +54,53 @@ class PostController extends Controller
 
         return Redirect()->back()->with('success','Insert Category Successfully');
 
+    }
+     // Edit Sub Category
+     public function EditPost($id){
+        // Data update use Eloquent ORM & Models
+        $post = Post::find($id);
+        $catagory = Category::orderBy('catagory_order','asc')->get();
+        $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
+        // Data update use Query Builder
+        // $categories = DB::table('categories')->where('id',$id)->first();
+
+        return view('admin.post.edit',compact('post','catagory','subcagagorys'));
+    }
+    // Update Post
+    public function UpdatePost(Request $request, $id){
+        // $validated = $request->validate([
+        //     'post_title' => 'required|min:4',
+        //     'post_detail' => 'required',
+        // ],
+        // [
+        //     // custom error message
+        //     // 'post_title.required'=>'Please Input Post Title',
+        //     // 'post_title.max'=>'Post Title Less Then 50 Character',
+        //     // 'post_title.min'=>'Post Title More Then 5 Character',
+        //     // 'post_detail.required'=>'Please Input Post Details',
+        // ]);
+        $update = Post::find($id)->update([
+            'sub_category_id'=> $request->sub_category_id,
+            'post_title' => $request->post_title,
+            'post_detail' => $request->post_detail,
+        ]);
+        return Redirect()->route('all.post')->with('success','Update Post Successfully');
+    }
+    
+     // SoftDelete Category
+     public function SoftDelete($id){
+        $delete = Post::find($id)->delete();
+        return Redirect()->back()->with('success','Post Removed Successfully');
+    }
+    // Restore sub Category
+    public function Restore($id){
+        $delete = Post::withTrashed()->find($id)->restore();
+        return Redirect()->back()->with('success','Sub Category Restore Successfully');
+    }
+
+    // PDelete sub Category
+    public function PDelete($id){
+        $delete = Post::onlyTrashed()->find($id)->forceDelete();
+        return Redirect()->back()->with('success','Sub Category Permanently Deleted');
     }
    }

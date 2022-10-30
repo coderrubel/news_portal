@@ -19,11 +19,12 @@ class CreatePostsTable extends Migration
             $table->string('post_title');
             $table->text('post_detail');
             $table->integer('visitors')->nullable();
-            $table->integer('author_id')->nullable();
+            $table->string('user_name')->nullable();
             $table->integer('admin_id')->nullable();
             $table->integer('is_share')->nullable();
             $table->integer('is_comment')->nullable();
             $table->timestamps();
+            $table->SoftDeletes();
         });
     }
 

@@ -55,7 +55,15 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     <label for="" class="form-label">Message</label>
-                                    <textarea class="form-control" rows="3" name="message"></textarea>
+                                    
+                                        <!-- Text editor -->
+                                        <script>
+                                        tinymce.init({
+                                            selector: '#mytextarea'
+                                        });
+                                        </script>
+
+                                    <textarea id="mytextarea1" class="form-control" rows="3" name="message"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <button type="submit" class="btn btn-primary bg-website">Send Message</button>
