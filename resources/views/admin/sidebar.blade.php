@@ -32,26 +32,18 @@
 
                 
                   <!-- <li  class="has-sub active expand" > -->
-                  <li  class="has-sub" >
+                  <li  class="{{ Request::is('brand/all') ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                       aria-expanded="false" aria-controls="dashboard">
                       <i class="mdi mdi-view-dashboard-outline"></i>
                       <span class="nav-text">Home</span> <b class="caret"></b>
                     </a>
                     <!-- <ul  class="collapse show"  id="dashboard" data-parent="#sidebar-menu"> -->
-                    <ul  class="collapse"  id="dashboard" data-parent="#sidebar-menu">
+                    <ul  class="{{ Request::is('brand/all') ? 'collapsec sow' : ''}}"  id="dashboard" data-parent="#sidebar-menu">
                       <div class="sub-menu"> 
-                        
-                         
-                      
+                  
 
-                      <!-- <li  class="disabled" >
-                        <a class="sidenav-item-link" href="#">
-                          <span class="nav-text">Portfolio</span>
-                        </a>
-                      </li> -->
-
-                      <li  class="active" >
+                      <li  class="{{ Request::is('brand/all') ? 'active' : ''}}">
                         <a class="sidenav-item-link" href="{{ route('all.brand')}}">
                           <span class="nav-text">Brand</span>
                         </a>
@@ -62,65 +54,56 @@
                   </li>
 
                   <!-- Pages -->
-                  <li  class="has-sub" >
+                  <li  class="{{ Request::is('home/about') || Request::is('home/slider')  ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
                       aria-expanded="false" aria-controls="pages">
                       <i class="mdi mdi-image-filter-none"></i>
                       <span class="nav-text">Pages</span> <b class="caret"></b>
                     </a>
-                    <ul  class="collapse"  id="pages"
+                    <ul  class="{{ Request::is('home/about') || Request::is('home/slider')  ? 'collapse show' : ''}}"  id="pages"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                         
-                        <li  class="active" >
+                        <li  class="{{ Request::is('home/about') ? 'active' : ''}}" >
                           <a class="sidenav-item-link" href="{{ route('home.about') }}">
                             <span class="nav-text">About</span>
                           </a>
                         </li>
-                        <li  class="active" >
+                        <li  class="{{ Request::is('home/slider') ? 'active' : ''}}" >
                           <a class="sidenav-item-link" href="{{ route('home.slider')}}">
                             <span class="nav-text">FAQ</span>
                           </a>
                         </li>  
-                        
-                        <li  class="has-sub" >
-                          <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#others"
-                            aria-expanded="false" aria-controls="others">
-                            <span class="nav-text">Others</span> <b class="caret"></b>
-                          </a>
-                        </li>
                         
                       </div>
                     </ul>
                   </li>
                 
                   <!-- News -->
-                  <li  class="has-sub" >
+                  <li  class="{{ Request::is('category/all') || Request::is('subcategory/all') || Request::is('post/all')  ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
                       aria-expanded="false" aria-controls="charts">
                       <i class="mdi mdi-book-open-page-variant"></i>
                       <span class="nav-text">News</span> <b class="caret"></b>
                     </a>
-                    <ul  class="collapse"  id="charts"
+                    <ul  class="{{ Request::is('category/all') || Request::is('subcategory/all') || Request::is('post/all') ? 'collapse show' : ''}}"  id="charts"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
-                          
-                            <li >
+                            <li class="{{ Request::is('category/all') ? 'active' : ''}}">
                               <a class="sidenav-item-link" href="{{url('/category/all')}}">
                                 <span class="nav-text">Catagory</span>
                               </a>
                             </li>
-                            <li >
+                            <li class="{{ Request::is('subcategory/all') ? 'active' : ''}}">
                               <a class="sidenav-item-link" href="{{url('/subcategory/all')}}">
                                 <span class="nav-text">Sub Catagory</span>
                               </a>
                             </li>
-                            <li >
+                            <li class="{{ Request::is('post/all') ? 'active' : ''}}">
                               <a class="sidenav-item-link" href="{{url('/post/all')}}">
                                 <span class="nav-text">Post</span>
                               </a>
                             </li>
-                        
                       </div>
                     </ul>
                   </li>
@@ -243,22 +226,12 @@
                               Getting Started
                             </li>
                           
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="introduction.html">
                                 <span class="nav-text">Introduction</span>
                                 
                               </a>
                             </li>
-                          
-                        
-
-                        
-                        
                           
                             <li >
                               <a class="sidenav-item-link" href="setup.html">
@@ -267,11 +240,6 @@
                               </a>
                             </li>
                           
-                        
-
-                        
-                        
-                          
                             <li >
                               <a class="sidenav-item-link" href="customization.html">
                                 <span class="nav-text">Customization</span>
@@ -279,19 +247,10 @@
                               </a>
                             </li>
                           
-                        
-
-                        
-                        
-                          
                             <li class="section-title">
                               Layouts
                             </li>
                           
-                        
-
-                        
-                        
                         <li  class="has-sub" >
                           <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#headers"
                             aria-expanded="false" aria-controls="headers">

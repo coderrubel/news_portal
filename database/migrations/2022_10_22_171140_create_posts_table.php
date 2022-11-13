@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('post_title');
             $table->text('post_detail');
             $table->integer('visitors')->nullable();
+            $table->string('post_photo')->nullable();
             $table->string('user_name')->nullable();
             $table->integer('admin_id')->nullable();
             $table->integer('is_share')->nullable();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Carbon;
 use App\Models\Category;
 use App\Models\SubCatagory;
 use Illuminate\Http\Request;
@@ -28,31 +29,41 @@ class PostController extends Controller
     public function AddPost(Request $request){
         // form validate
         $validated = $request->validate([
-            // 'post_title' => 'required|unique:posts|max:50|min:3',
-            // 'post_detail' => 'required|unique:posts',
-            // 'show_on_menu' => 'required',
+            'post_title' => 'required|unique:posts|max:150|min:3',
+            'post_detail' => 'required|min:10',
+            'image' => 'required',
         ],
         [
             // custom error message
-            // 'post_title.required'=>'Please Input Post Title',
-            // 'post_title.unique'=>'Please Input Unique Post Title',
-            // 'post_title.max'=>'Category Name Less Then 50 Character',
-            // 'post_title.min'=>'Category Name More Then 2 Character',
-            // 'post_detail.required'=>'Please Input Post Details',
+            'post_title.required'=>'Please Input Post Title',
+            'post_title.unique'=>'Please Input Unique Post Title',
+            'post_title.max'=>'Category Name Less Then 150 Character',
+            'post_title.min'=>'Category Name More Then 3 Character',
+            'post_detail.required'=>'Please Input Post Details',
+            'image.required'=>'Please Input Post Image',
         ]);
 
+        $post_photo = $request->file('post_photo');
+        $name_genarate = hexdec(uniqid());
+        $img_ext = strtolower($post_photo->getClientOriginalExtension());
+        $img_name = $name_genarate.'.'.$img_ext;
+        $up_location = 'image/post/';
+        $last_img = $up_location.$img_name;
+        $post_photo->move($up_location,$img_name);
         // Data insert use Eloquent ORM & Models
         Post::insert([
             'sub_category_id' => $request->sub_category_id,
             'post_title' => $request->post_title,
+            'post_photo' => $last_img,
             'user_name' => Auth::user()->name,
             'post_detail' => $request->post_detail,
             'visitors' => $request->visitors,
             'is_share' => $request->is_share,
             'is_comment' => $request->is_comment,
+            'created_at' => Carbon::now()
         ]);
 
-        return Redirect()->back()->with('success','Insert Category Successfully');
+        return Redirect()->back()->with('success','Create Post Successfully');
 
     }
      // Edit Sub Category
@@ -68,21 +79,36 @@ class PostController extends Controller
     }
     // Update Post
     public function UpdatePost(Request $request, $id){
-        // $validated = $request->validate([
-        //     'post_title' => 'required|min:4',
-        //     'post_detail' => 'required',
-        // ],
-        // [
-        //     // custom error message
-        //     // 'post_title.required'=>'Please Input Post Title',
-        //     // 'post_title.max'=>'Post Title Less Then 50 Character',
-        //     // 'post_title.min'=>'Post Title More Then 5 Character',
-        //     // 'post_detail.required'=>'Please Input Post Details',
-        // ]);
+        // form validate
+        $validated = $request->validate([
+            'post_title' => 'required|max:150|min:3',
+            'post_detail' => 'required|min:10',
+        ],
+        [
+            // custom error message
+            'post_title.required'=>'Please Input Post Title',
+            'post_title.unique'=>'Please Input Unique Post Title',
+            'post_title.max'=>'Post Title Less Then 150 Character',
+            'post_title.min'=>'Post Title More Then 3 Character',
+            'post_detail.required'=>'Please Input Post Details',
+            'post_detail.min'=>'Post Details More Then 10 Character',
+        ]);
+        $post_photo = $request->file('post_photo');
+        $name_genarate = hexdec(uniqid());
+        $img_ext = strtolower($post_photo->getClientOriginalExtension());
+        $img_name = $name_genarate.'.'.$img_ext;
+        $up_location = 'image/post/';
+        $last_img = $up_location.$img_name;
+        $post_photo->move($up_location,$img_name);
+        
         $update = Post::find($id)->update([
             'sub_category_id'=> $request->sub_category_id,
             'post_title' => $request->post_title,
             'post_detail' => $request->post_detail,
+            'post_photo' => $last_img,
+            'is_share' => $request->is_share,
+            'is_comment' => $request->is_comment,
+            'visitors' => $request->visitors,
         ]);
         return Redirect()->route('all.post')->with('success','Update Post Successfully');
     }

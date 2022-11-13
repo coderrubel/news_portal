@@ -13,7 +13,11 @@ class Post extends Model
         'user_name',
         'sub_category_id',
         'post_title',
-        'post_detail'
+        'post_photo',
+        'post_detail',
+        'is_comment',
+        'is_share',
+        'visitors'
     ];
 
 

@@ -16,28 +16,38 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">SL No</th>
-                            <th scope="col">Catagory</th>
-                            <th scope="col">Post Title</th>
-                            <th scope="col">Author</th>
-                            <!-- <th scope="col">Post Details</th> -->
-                            <th scope="col">Visitors</th>
-                            <th scope="col">Share</th>
-                            <th scope="col">Comment</th>
-                            <th scope="col">Action</th>
+                                <th scope="col">SL No</th>
+                                <th scope="col">Catagory</th>
+                                <th scope="col">Post Title</th>
+                                <th scope="col">Post Image</th>
+                                <th scope="col">Author</th>
+                                <!-- <th scope="col">Post Details</th> -->
+                                <th scope="col">Visitors</th>
+                                <!-- <th scope="col">Share</th> -->
+                                <!-- <th scope="col">Comment</th> -->
+                                <th scope="col">Create At</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
                             @foreach($post as $row)
                             <tr>
                                 <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
                                 <td>{{ $row->rCaregory->sub_category_name }}</td>
                                 <td>{{ $row->post_title }}</td>
+                                <!-- <td>{{ $row->post_detail }}</td> -->
+                                <td><img src="{{ asset($row->post_photo) }}" style="height:40px; width:70px;"></td>
                                 <td>{{ $row->user_name }}</td>
                                 <td>{{ $row->visitors }}</td>
-                                <td>{{ $row->is_share }}</td>
-                                <td>{{ $row->is_comment }}</td>
+                                <td>
+                                @if($row->created_at == NULL)
+                                    <span class="text-danger">No Date Set</span>
+                                @else 
+                                    {{ $row->created_at->diffForHumans() }}
+                                @endif
+                                </td>
+                                <!-- <td>@if($row->is_share == 1) Yes @else No @endif</td> -->
+                                <!-- <td> @if($row->is_comment == 1) Yes @else No @endif</td> -->
                                 <td class="text-right">
                                     <div class="dropdown show d-inline-block widget-dropdown">
                                         <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -62,7 +72,7 @@
                 <div class="card">
                     <div class="card card-header">Add Post </div>
                     <div class="card card-body">
-                        <form action="{{ route('store.post')}}" method="POST">
+                        <form action="{{ route('store.post')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="my-2">
                                 <!-- Sub catagory id -->
@@ -81,7 +91,11 @@
                                 <label for="postdetaile" class="form-label">Post Details</label>
                                 @error('post_detail')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <textarea name="post_detail" id="mytextarea1" class="form-control  mb-2" row="15"></textarea>
-                                <!-- visitors -->
+                                <!-- post image -->
+                                <label for="post_photo" class="form-label">Post Image</label>
+                                @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
+                                <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
+                                 <!-- visitors -->
                                 <label for="addcategory" class="form-label d-block">Post Visitors Show</label>
                                 <select name="visitors" class="form-control rounded mt-2">
                                     <option value="1">Yes</option>
@@ -122,15 +136,16 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                <th scope="col">SL No</th>
-                                <th scope="col">Catagory</th>
-                                <th scope="col">Post Title</th>
-                                <th scope="col">Author</th>
-                                <!-- <th scope="col">Post Details</th> -->
-                                <th scope="col">Visitors</th>
-                                <th scope="col">Share</th>
-                                <th scope="col">Comment</th>
-                                <th scope="col">Action</th>
+                                    <th scope="col">SL No</th>
+                                    <th scope="col">Catagory</th>
+                                    <th scope="col">Post Title</th>
+                                    <th scope="col">Author</th>
+                                    <!-- <th scope="col">Post Details</th> -->
+                                    <th scope="col">Visitors</th>
+                                    <!-- <th scope="col">Share</th> -->
+                                    <!-- <th scope="col">Comment</th> -->
+                                    <th scope="col">Create At</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,10 +154,17 @@
                                     <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
                                     <td>{{ $row->rCaregory->sub_category_name }}</td>
                                     <td>{{ $row->post_title }}</td>
-                                    <td></td>
+                                    <td>{{ $row->user_name }}</td>
                                     <td>{{ $row->visitors }}</td>
-                                    <td>{{ $row->is_share }}</td>
-                                    <td>{{ $row->is_comment }}</td>
+                                    <td>
+                                    @if($row->created_at == NULL)
+                                        <span class="text-danger">No Date Set</span>
+                                    @else 
+                                        {{ $row->created_at->diffForHumans() }}
+                                    @endif
+                                    </td>
+                                    <!-- <td>{{ $row->is_share }}</td> -->
+                                    <!-- <td>{{ $row->is_comment }}</td> -->
                                     <td class="text-right">
                                         <div class="dropdown show d-inline-block widget-dropdown">
                                             <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>

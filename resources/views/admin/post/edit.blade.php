@@ -18,19 +18,38 @@ tinymce.init({
                             <form action="{{ url('post/update/'.$post->id) }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="my-2">
-                                    <label for="addcategory" class="form-label d-block">Catagory Name</label>
-                                    <select name="sub_category_id" class="form-control rounded mt-2">
+                                    <label for="addcategory" class="form-label d-block mb-0">Catagory Name</label>
+                                    <select name="sub_category_id" class="form-control rounded">
                                     @foreach($subcagagorys as $item)
                                      <option value="{{ $item->id }}" @if( $post->sub_category_id == $item->id) Selected @endif >{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}})</option>
                                     @endforeach
                                     </select>  
-                                   
+                                    <label for="addcategory" class="form-label d-block mt-2 mb-0">Post View Show</label>
+                                    <select name="visitors" class="form-control rounded">
+                                     <option value="1" @if($post->visitors == 1) selected @endif>Yes</option>
+                                     <option value="0" @if($post->visitors == 0) selected @endif>No</option>
+                                    </select>
+                                    <label for="addcategory" class="form-label d-block mt-2 mb-0">Post Share</label>
+                                    <select name="is_share" class="form-control rounded" >
+                                     <option value="1" @if($post->is_share == 1) selected @endif>Yes</option>
+                                     <option value="0" @if($post->is_share == 0) selected @endif>No</option>
+                                    </select>
+                                    <label for="addcategory" class="form-label d-block mt-2 mb-0">Post Comment Show</label>
+                                    <select name="is_comment" class="form-control rounded">
+                                     <option value="1" @if($post->is_comment == 1) selected @endif>Yes</option>
+                                     <option value="0" @if($post->is_comment == 0) selected @endif>No</option>
+                                     </select>
                                     <label for="addcategory" class="form-label mt-2 mb-0">Post Title</label>
                                     @error('post_title')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
                                     <input type="text" name="post_title" value="{{ $post->post_title }}" class="form-control rounded" placeholder="Post Title">
-                                   
+                                    <!-- post image -->
+                                    <label for="post_photo" class="form-label">Post Image</label>
+                                    @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
+                                    <input type="file" name="post_photo" class="form-control rounded mb-3" id="addimg">
+                                    <img src="{{ asset($post->post_photo) }}" style="width:400px; height:200px;" alt="post_image"><br>
+                                    <!-- Post details -->
                                     <label for="addcategory" class="form-label mt-2 mb-0">Post Details</label>
                                     @error('post_detail')
                                         <p class="text-danger">{{ $message }}</p>
