@@ -48,6 +48,11 @@
                           <span class="nav-text">Brand</span>
                         </a>
                       </li>
+                      <li  class="{{ Request::is('/setting') ? 'active' : ''}}">
+                        <a class="sidenav-item-link" href="{{ route('setting')}}">
+                          <span class="nav-text">Latest News</span>
+                        </a>
+                      </li>
 
                       </div>
                     </ul>
