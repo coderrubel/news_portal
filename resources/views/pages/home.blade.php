@@ -1,6 +1,6 @@
 <x-header/>
-
         
+        @if($setting->news_ticker_status = "Hide")
         <div class="news-ticker-item">
             <div class="container">
                 <div class="row">
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        
+        @endif
         <div class="home-main">
             <div class="container">
                 <div class="row g-2">

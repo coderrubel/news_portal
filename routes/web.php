@@ -87,8 +87,8 @@ Route::get('/brand/delete/{id}',[BrandController::class,'Delete']);
 // Setting Controller
 Route::get('/setting',[SettingController::class,'Setting'])->name('setting');
 Route::post('/setting/add',[SettingController::class,'AddSetting'])->name('store.news'); 
-// Route::get('/setting/edit/{id}',[SettingController::class,'Edit']);
-// Route::post('/setting/update/{id}',[SettingController::class,'Update']);
+Route::get('/setting/edit/{id}',[SettingController::class,'EditSetting']);
+Route::post('/setting/update/{id}',[SettingController::class,'Update']);
 
 // Home Controller
 // Slider

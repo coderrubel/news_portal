@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
         // Home page
          public function homePage(){
-            return view('pages.home');
+         $setting = DB::table('settings')->first();
+            return view('pages.home',compact('setting'));
          }
 
         // FAQ page
@@ -19,7 +21,7 @@ class PageController extends Controller
     
         // About page
         public function aboutPage(){
-            $abouts = DB::table('abouts')->first();
+        $abouts = DB::table('abouts')->first();
         return view('pages.about',compact('abouts'));
         }
 }
