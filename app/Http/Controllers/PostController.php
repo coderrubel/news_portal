@@ -31,7 +31,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'post_title' => 'required|unique:posts|max:150|min:3',
             'post_detail' => 'required|min:10',
-            'image' => 'required',
+            // 'image' => 'required',
         ],
         [
             // custom error message
@@ -40,7 +40,7 @@ class PostController extends Controller
             'post_title.max'=>'Category Name Less Then 150 Character',
             'post_title.min'=>'Category Name More Then 3 Character',
             'post_detail.required'=>'Please Input Post Details',
-            'image.required'=>'Please Input Post Image',
+            // 'image.required'=>'Please Input Post Image',
         ]);
 
         $post_photo = $request->file('post_photo');

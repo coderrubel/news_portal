@@ -8,11 +8,14 @@
                             <div class="acme-news-ticker-label">Latest News</div>
                             <div class="acme-news-ticker-box">
                                 <ul class="my-news-ticker">
-                                    <li><a href="">Helicopter crashes into waves off crowded Miami beach</a></li>
-                                    <li><a href="">Canadian police appear to end protesters' siege of Ottawa</a></li>
-                                    <li><a href="">Speedskating champ chooses sportsmanship over Olympic medal</a></li>
-                                    <li><a href="">USDA head: US farmers to help if Ukraine exports threatened</a></li>
-                                    <li><a href="">Actor Lindsey Pearlman found dead after going missing in LA</a></li>
+                                    @php $i=0; @endphp
+                                    @foreach($post as $item)
+                                        @php $i++; @endphp
+                                        @if($i>$setting->news_ticker_total)
+                                        @break
+                                        @endif
+                                        <li><a href="">{{ $item->post_title}}</a></li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -922,7 +925,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href=""><img src="{{ asset($brands->brand_image) }}" alt="{{ $brands->brand_name }}"></a>
+                        <a href=""><img src="{{ asset($brands->brand_image ?? 'fontend/uploads/ad-1.png') }}" alt="{{ $brands->brand_name ?? '' }}"></a>
                     </div>
                 </div>
             </div>
