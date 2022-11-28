@@ -1,6 +1,5 @@
 <x-header/>
-        
-        @if($setting->news_ticker_status = "Hide")
+        @if($setting->news_ticker_status == 'Show')
         <div class="news-ticker-item">
             <div class="container">
                 <div class="row">
@@ -21,6 +20,8 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="mt-3"></div>
         @endif
         <div class="home-main">
             <div class="container">
@@ -921,7 +922,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href=""><img src="{{asset ('fontend/uploads/ad-1.png')}}" alt=""></a>
+                        <a href=""><img src="{{ asset($brands->brand_image) }}" alt="{{ $brands->brand_name }}"></a>
                     </div>
                 </div>
             </div>

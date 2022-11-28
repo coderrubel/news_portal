@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Models\Brand;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
@@ -11,7 +12,8 @@ class PageController extends Controller
         // Home page
          public function homePage(){
          $setting = DB::table('settings')->first();
-            return view('pages.home',compact('setting'));
+         $brands = Brand::latest()->first();
+            return view('pages.home',compact('setting','brands'));
          }
 
         // FAQ page

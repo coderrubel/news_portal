@@ -32,28 +32,25 @@
 
                 
                   <!-- <li  class="has-sub active expand" > -->
-                  <li  class="{{ Request::is('brand/all') ? 'active expand' : 'has-sub'}}" >
+                  <li  class="{{ Request::is('brand/all') || Request::is('setting') ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                       aria-expanded="false" aria-controls="dashboard">
                       <i class="mdi mdi-view-dashboard-outline"></i>
                       <span class="nav-text">Home</span> <b class="caret"></b>
                     </a>
                     <!-- <ul  class="collapse show"  id="dashboard" data-parent="#sidebar-menu"> -->
-                    <ul  class="{{ Request::is('brand/all') ? 'collapsec sow' : ''}}"  id="dashboard" data-parent="#sidebar-menu">
+                    <ul  class="{{ Request::is('brand/all') || Request::is('setting') ? 'collapsec sow' : 'collapse'}}"  id="dashboard" data-parent="#sidebar-menu">
                       <div class="sub-menu"> 
-                  
-
-                      <li  class="{{ Request::is('brand/all') ? 'active' : ''}}">
-                        <a class="sidenav-item-link" href="{{ route('all.brand')}}">
-                          <span class="nav-text">Brand</span>
-                        </a>
-                      </li>
-                      <li  class="{{ Request::is('/setting') ? 'active' : ''}}">
-                        <a class="sidenav-item-link" href="{{ route('setting')}}">
-                          <span class="nav-text">Latest News</span>
-                        </a>
-                      </li>
-
+                        <li  class="{{ Request::is('setting') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('setting')}}">
+                            <span class="nav-text">Latest News</span>
+                          </a>
+                        </li>
+                        <li  class="{{ Request::is('brand/all') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('all.brand')}}">
+                            <span class="nav-text">Footer Ads</span>
+                          </a>
+                        </li>
                       </div>
                     </ul>
                   </li>
@@ -65,7 +62,7 @@
                       <i class="mdi mdi-image-filter-none"></i>
                       <span class="nav-text">Pages</span> <b class="caret"></b>
                     </a>
-                    <ul  class="{{ Request::is('home/about') || Request::is('home/slider')  ? 'collapse show' : ''}}"  id="pages"
+                    <ul  class="{{ Request::is('home/about') || Request::is('home/slider')  ? 'collapse show' : 'collapse'}}"  id="pages"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                         
@@ -91,7 +88,7 @@
                       <i class="mdi mdi-book-open-page-variant"></i>
                       <span class="nav-text">News</span> <b class="caret"></b>
                     </a>
-                    <ul  class="{{ Request::is('category/all') || Request::is('subcategory/all') || Request::is('post/all') ? 'collapse show' : ''}}"  id="charts"
+                    <ul  class="{{ Request::is('category/all') || Request::is('subcategory/all') || Request::is('post/all') ? 'collapse show' : 'collapse'}}"  id="charts"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                             <li class="{{ Request::is('category/all') ? 'active' : ''}}">
@@ -114,22 +111,22 @@
                   </li>
 
                    <!-- Conatact page -->
-                  <li  class="has-sub" >
+                  <li  class="{{ Request::is('admin/contact') || Request::is('admin/message') ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ui-elements"
                       aria-expanded="false" aria-controls="ui-elements">
                       <i class="mdi mdi-email-outline"></i>
                       <span class="nav-text">Contact</span> <b class="caret"></b>
                     </a>
-                    <ul  class="collapse"  id="ui-elements"
+                    <ul  class="{{ Request::is('admin/contact') || Request::is('admin/message') ? 'collapse show' : 'collapse'}}"  id="ui-elements"
                       data-parent="#sidebar-menu">
                       <div class="sub-menu">
                         
-                        <li  class="active" >
+                        <li  class="{{ Request::is('admin/contact') ? 'active' : 'has-sub'}}" >
                           <a class="sidenav-item-link" href="{{ route('admin.contact')}}">
                             <span class="nav-text">Contact Profile</span> 
                           </a>
                         </li>
-                        <li  class="has-sub" >
+                        <li  class="{{ Request::is('admin/message') ? 'active' : 'has-sub'}}" >
                           <a class="sidenav-item-link" href="{{ route('admin.message')}}">
                             <span class="nav-text">Contact Message</span> 
                           </a>

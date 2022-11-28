@@ -12,13 +12,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                         @endif
-                        <div class="card card-header">All Brand</div>
+                        <div class="card card-header">All Footer Advertisement</div>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">SL No</th>
-                                    <th scope="col">Brand Name</th>
-                                    <th scope="col">Brand Image</th>
+                                    <th scope="col">Footer Advertisement Name</th>
+                                    <th scope="col">Footer Advertisement Image</th>
                                     <th scope="col">Created At</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -27,7 +27,7 @@
                                 <tr>
                                     <td>{{ $i++ }}</td>
                                     <td>{{$brand->brand_name }}</td>
-                                    <td><img src="{{ asset($brand->brand_image) }}" style="height:40px; widht:70px;"></td>
+                                    <td><img src="{{ asset($brand->brand_image) }}" style="height:50px; width:100px;"></td>
                                     <td>
                                         @if($brand->created_at == NULL)
                                         <span class="text-danger">No Date Set</span>
@@ -51,22 +51,22 @@
                 <!-- Add Brand -->
                 <div class="col-md-4">
                     <div class="card">
-                        <div class="card card-header">Add Brand </div>
+                        <div class="card card-header">Add Footer Advertisement </div>
                         <div class="card card-body">
                             <form action="{{ route('store.brand')}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="my-2">
-                                    <label for="addcategory" class="form-label">Brand Name</label>
+                                    <label for="addcategory" class="form-label">Footer Advertisement Name</label>
                                     @error('brand_name')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
-                                    <input type="text" name="brand_name" class="form-control rounded" id="addcategory" placeholder="Brand Name">
-                                    <label for="addimg" class="form-label">Brand Image</label>
+                                    <input type="text" name="brand_name" class="form-control rounded" id="addcategory" placeholder="Footer Advertisement Name">
+                                    <label for="addimg" class="form-label">Footer Advertisement Image</label>
                                     @error('brand_image')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror    
                                     <input type="file" name="brand_image" class="form-control rounded" id="addimg">
-                                    <button type="submit" class="btn btn-primary mt-2">Add Brand</button>
+                                    <button type="submit" class="btn btn-primary mt-2">Add Advertisement</button>
                                 </div>
                             </form>  
                         </div>
