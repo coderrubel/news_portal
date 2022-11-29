@@ -32,6 +32,9 @@ Route::get('/', function () {
 // Home page
 Route::get('/',[PageController::class,'homePage'])->name('home');
 
+// Post Details
+Route::get('/post_details/{id}',[PageController::class,'PostDetails'])->name('post_details');
+
 // FAQ Page
 Route::get('/faq',[PageController::class,'faqPage'])->name('faq');
 

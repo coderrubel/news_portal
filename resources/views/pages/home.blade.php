@@ -14,7 +14,7 @@
                                         @if($i>$setting->news_ticker_total)
                                         @break
                                         @endif
-                                        <li><a href="">{{ $item->post_title}}</a></li>
+                                        <li><a href="{{url('/post_details/'.$item->id)}}">{{ $item->post_title}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -39,7 +39,7 @@
                                         <div class="category">
                                             <span class="badge bg-success badge-sm">Politics</span>
                                         </div>
-                                        <h2><a href="">Top five ranked teams in world lined up to take part in competition</a></h2>
+                                        <h2><a href="{{ url('/'); }}">Top five ranked teams in world lined up to take part in competition</a></h2>
                                         <div class="date-user">
                                             <div class="user">
                                                 <a href="">Paul David</a>
@@ -381,7 +381,7 @@
                                                     <div class="category">
                                                         <span class="badge bg-success">International</span>
                                                     </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
+                                                    <h2><a href="{{ url('/post_details'); }}">Rubel Remote island nation in Pacific under lockdown for first time</a></h2>
                                                     <div class="date-user">
                                                         <div class="user">
                                                             <a href="">Paul David</a>

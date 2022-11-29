@@ -11,12 +11,18 @@ use Illuminate\Support\Facades\DB;
 class PageController extends Controller
 {
         // Home page
-         public function homePage(){
-         $setting = DB::table('settings')->first();
-         $brands = Brand::latest()->first();
-         $post = Post::latest()->get();
-            return view('pages.home',compact('setting','brands','post'));
-         }
+        public function homePage(){
+        $setting = DB::table('settings')->first();
+        $brands = Brand::latest()->first();
+        $post = Post::latest()->get();
+             return view('pages.home',compact('setting','brands','post'));
+        }
+
+        // Post Details
+        public function PostDetails($id){
+            $post_details = Post::where('id', $id)->first();
+            return view('pages.post_details',compact('post_details'));
+        }
 
         // FAQ page
         public function faqPage(){
