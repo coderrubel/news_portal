@@ -31,7 +31,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'post_title' => 'required|unique:posts|max:150|min:3',
             'post_detail' => 'required|min:10',
-            // 'image' => 'required',
+            'post_photo' => 'required|mimes:jpg,png,jpeg,webp|max:1024',
         ],
         [
             // custom error message
@@ -40,7 +40,7 @@ class PostController extends Controller
             'post_title.max'=>'Category Name Less Then 150 Character',
             'post_title.min'=>'Category Name More Then 3 Character',
             'post_detail.required'=>'Please Input Post Details',
-            // 'image.required'=>'Please Input Post Image',
+            'post_photo.required'=>'Please Input Post Image',
         ]);
 
         $post_photo = $request->file('post_photo');
@@ -93,27 +93,67 @@ class PostController extends Controller
             'post_detail.required'=>'Please Input Post Details',
             'post_detail.min'=>'Post Details More Then 10 Character',
         ]);
-        $post_photo = $request->file('post_photo');
-        $name_genarate = hexdec(uniqid());
-        $img_ext = strtolower($post_photo->getClientOriginalExtension());
-        $img_name = $name_genarate.'.'.$img_ext;
-        $up_location = 'image/post/';
-        $last_img = $up_location.$img_name;
-        $post_photo->move($up_location,$img_name);
-        
-        $update = Post::find($id)->update([
-            'sub_category_id'=> $request->sub_category_id,
-            'post_title' => $request->post_title,
-            'post_detail' => $request->post_detail,
-            'post_photo' => $last_img,
-            'is_share' => $request->is_share,
-            'is_comment' => $request->is_comment,
-            'visitors' => $request->visitors,
-        ]);
-        return Redirect()->route('all.post')->with('success','Update Post Successfully');
+            
+            $post_photo = $request->file('post_photo');
+            
+            if($post_photo){
+            $old_image = $request->old_image;
+
+            if(!$old_image == ""){
+            unlink($old_image);
+                
+            $name_genarate = hexdec(uniqid());
+            $img_ext = strtolower($post_photo->getClientOriginalExtension());
+            $img_name = $name_genarate.'.'.$img_ext;
+            $up_location = 'image/post/';
+            $last_img = $up_location.$img_name;
+            $post_photo->move($up_location,$img_name);
+ 
+            $update = Post::find($id)->update([
+                'sub_category_id'=> $request->sub_category_id,
+                'post_title' => $request->post_title,
+                'post_detail' => $request->post_detail,
+                'post_photo' => $last_img,
+                'is_share' => $request->is_share,
+                'is_comment' => $request->is_comment,
+                'visitors' => $request->visitors,
+            ]);
+            }
+            elseif($old_image == ""){
+                $name_genarate = hexdec(uniqid());
+                $img_ext = strtolower($post_photo->getClientOriginalExtension());
+                $img_name = $name_genarate.'.'.$img_ext;
+                $up_location = 'image/post/';
+                $last_img = $up_location.$img_name;
+                $post_photo->move($up_location,$img_name);
+      
+                $update = Post::find($id)->update([
+                    'sub_category_id'=> $request->sub_category_id,
+                    'post_title' => $request->post_title,
+                    'post_detail' => $request->post_detail,
+                    'post_photo' => $last_img,
+                    'is_share' => $request->is_share,
+                    'is_comment' => $request->is_comment,
+                    'visitors' => $request->visitors,
+                ]);
+            }
+
+            return Redirect()->route('all.post')->with('success','Update Post Successfully');
+        }
+        else{
+            $update = Post::find($id)->update([
+                'sub_category_id'=> $request->sub_category_id,
+                'post_title' => $request->post_title,
+                'post_detail' => $request->post_detail,
+                'is_share' => $request->is_share,
+                'is_comment' => $request->is_comment,
+                'visitors' => $request->visitors,
+            ]);
+            return Redirect()->route('all.post')->with('success','Update Post Successfully');
+        }    
     }
     
-     // SoftDelete Category
+    // SoftDelete Category
      public function SoftDelete($id){
         $delete = Post::find($id)->delete();
         return Redirect()->back()->with('success','Post Removed Successfully');

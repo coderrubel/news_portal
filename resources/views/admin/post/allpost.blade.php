@@ -2,6 +2,12 @@
 @extends('admin.admin_master')
 @section('admin')
 
+<!-- Text editor -->
+<script>
+tinymce.init({
+    selector: '#mytextarea'
+});
+</script>
         <!-- All Category Section -->
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -38,7 +44,7 @@
                                 <!-- <td>{{ $row->post_detail }}</td> -->
                                 <td><img src="{{ asset($row->post_photo) }}" style="height:40px; width:70px;"></td>
                                 <td>{{ $row->user_name }}</td>
-                                <td>{{ $row->visitors }}</td>
+                                <td>@if($row->visitors == NULL) 0 @else {{ $row->visitors }} @endif</td>
                                 <td>
                                 @if($row->created_at == NULL)
                                     <span class="text-danger">No Date Set</span>
@@ -90,17 +96,17 @@
                                  <!-- post deltils -->
                                 <label for="postdetaile" class="form-label">Post Details</label>
                                 @error('post_detail')<p class="text-danger">{{ $message }}</p>@enderror    
-                                <textarea name="post_detail" id="mytextarea1" class="form-control  mb-2" row="15"></textarea>
+                                <textarea name="post_detail" id="mytextarea" class="form-control  mb-2" row="15"></textarea>
                                 <!-- post image -->
                                 <label for="post_photo" class="form-label">Post Image</label>
                                 @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
                                  <!-- visitors -->
-                                <label for="addcategory" class="form-label d-block">Post Visitors Show</label>
+                                <!-- <label for="addcategory" class="form-label d-block">Post Visitors Show</label>
                                 <select name="visitors" class="form-control rounded mt-2">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
-                                </select>
+                                </select> -->
                                 <!-- Share -->
                                 <label for="addcategory" class="form-label d-block">Post Share Show</label>
                                 <select name="is_share" class="form-control rounded mt-2">

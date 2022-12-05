@@ -30,6 +30,7 @@
             <div class="container">
                 <div class="row g-2">
                     <div class="col-lg-8 col-md-12 left">
+                        @foreach($new_post_details as $item)
                         <div class="inner">
                             <div class="photo">
                                 <div class="bg"></div>
@@ -52,6 +53,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="col-lg-4 col-md-12">
                         <div class="inner inner-right">

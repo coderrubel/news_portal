@@ -15,12 +15,20 @@ class PageController extends Controller
         $setting = DB::table('settings')->first();
         $brands = Brand::latest()->first();
         $post = Post::latest()->get();
-             return view('pages.home',compact('setting','brands','post'));
+        $new_post_details = Post::latest('id', 'desc')->get();
+
+             return view('pages.home',compact('setting','brands','post','new_post_details'));
         }
 
         // Post Details
         public function PostDetails($id){
             $post_details = Post::where('id', $id)->first();
+
+            // Visitor 
+            $new_value = $post_details->visitors+1;
+            $post_details->visitors = $new_value;
+            $post_details->update();
+            
             return view('pages.post_details',compact('post_details'));
         }
 
