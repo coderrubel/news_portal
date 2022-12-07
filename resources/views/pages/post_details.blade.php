@@ -8,7 +8,7 @@
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/');}}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="category.html">Business</a></li>
+                                <li class="breadcrumb-item"><a href="{{url('/');}}">Business</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{!! $post_details->post_title !!}</li>
                             </ol>
                         </nav>
