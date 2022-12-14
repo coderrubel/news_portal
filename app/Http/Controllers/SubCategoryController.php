@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\SubCatagory;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -31,6 +32,7 @@ class SubCategoryController extends Controller
             'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
             'sub_catagory_order' => 'required|integer',
             'show_on_menu' => 'required',
+            'show_on_home' => 'required',
         ],
         [
             // custom error message
@@ -45,6 +47,7 @@ class SubCategoryController extends Controller
             'category_id'=> $request->category_id,
             'sub_category_name' => $request->sub_category_name,
             'show_on_menu' => $request->show_on_menu,
+            'show_on_home' => $request->show_on_home,
             'sub_catagory_order' => $request->sub_catagory_order,
         ]);
         return Redirect()->back()->with('success','Insert Category Successfully');
@@ -66,6 +69,7 @@ class SubCategoryController extends Controller
             'sub_category_name' => 'required|max:35|min:3',
             'sub_catagory_order' => 'required|integer',
             'show_on_menu' => 'required',
+            'show_on_home' => 'required',
         ],
         [
             // custom error message
@@ -79,6 +83,7 @@ class SubCategoryController extends Controller
             'sub_category_name' => $request->sub_category_name,
             'sub_catagory_order' => $request->sub_catagory_order,
             'show_on_menu' => $request->show_on_menu,
+            'show_on_home' => $request->show_on_home,
         ]);
         return Redirect()->route('all.subcategory')->with('success','Update Sub Category Successfully');
     }

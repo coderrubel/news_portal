@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\Post;
 use App\Models\Brand;
+use App\Models\SubCatagory;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
@@ -16,8 +18,11 @@ class PageController extends Controller
         $brands = Brand::latest()->first();
         $post = Post::latest()->get();
         $new_post_details = Post::latest('id', 'desc')->get();
+        // $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
+        $sub_catagory_data = SubCatagory::with('rPost')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
+        // $sub_catagory_data = SubCatagory::with('rCaregory')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
 
-             return view('pages.home',compact('setting','brands','post','new_post_details'));
+             return view('pages.home',compact('setting','brands','post','new_post_details','sub_catagory_data'));
         }
 
         // Post Details

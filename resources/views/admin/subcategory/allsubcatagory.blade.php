@@ -18,6 +18,7 @@
                             <th scope="col">Category Name</th>
                             <th scope="col">Sub Category Name</th>
                             <th scope="col">Show on Menu</th>
+                            <th scope="col">Show on Home</th>
                             <th scope="col">Menu Order</th>
                             <th scope="col">Action</th>
                             </tr>
@@ -29,6 +30,7 @@
                             <th scope="row">{{ $row->rCaregory->category_name }}</th>
                             <td>{{ $row->sub_category_name }}</td>
                             <td>{{ $row->show_on_menu }}</td>
+                            <td>{{ $row->show_on_home }}</td>
                             <td>{{ $row->sub_catagory_order }}</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
@@ -75,10 +77,14 @@
                                 @error('sub_catagory_order')<p class="text-danger">{{ $message }}</p>@enderror
                                 <input type="text" name="sub_catagory_order" class="form-control rounded mb-2" id="order" placeholder="Sub Catagory Order">
                                 
-                                
-                                
                                 <label for="addcategory" class="form-label d-block">Show on Menu</label>
-                                <select name="show_on_menu" class="form-control rounded mt-2">
+                                <select name="show_on_menu" class="form-control rounded mb-2">
+                                    <option value="Show">Show</option>
+                                    <option value="Hide">Hide</option>
+                                </select>
+                                
+                                <label for="addcategory" class="form-label d-block">Show on Home</label>
+                                <select name="show_on_home" class="form-control rounded mt-2">
                                     <option value="Show">Show</option>
                                     <option value="Hide">Hide</option>
                                 </select>

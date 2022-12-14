@@ -170,6 +170,15 @@
                                                 <img src="{{asset ('fontend/uploads/n6.jpg')}}" alt="">
                                             </div>
                                             <div class="category">
+                                                @foreach($sub_catagory_data as $item)
+                                                {{ $item->sub_category_name}}<br>
+
+                                                   @foreach($item->rPost as $rubel)
+                                                    {{ $rubel->post_title }}
+                                                   @endforeach 
+
+                                                @endforeach
+
                                                 <span class="badge bg-success">International</span>
                                             </div>
                                             <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>

@@ -27,13 +27,23 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror   
                                     <input type="text" name="sub_catagory_order" value="{{ $subcagagorys->sub_catagory_order }}" class="form-control rounded mt-2" id="order" placeholder="Sub Catagory Order">
-                                    <label for="addcategory" class="form-label mt-2 mb-0">Menu Show</label>
+                                    
+                                    <label for="addcategory" class="form-label mt-2 mb-0">Show On Menu</label>
                                     @error('show_on_menu')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror  
                                     <select name="show_on_menu" class="form-control rounded mt-2" value="{{ $subcagagorys->show_on_menu }}">
                                         <option value="Show" @if($subcagagorys->show_on_menu == 'Show') Selected @endif >Show</option>
                                         <option value="Hide" @if($subcagagorys->show_on_menu == 'Hide') Selected @endif >Hide</option>
+                                    </select>
+
+                                    <label for="addcategory" class="form-label mt-2 mb-0">Show On Home</label>
+                                    @error('show_on_home')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror  
+                                    <select name="show_on_home" class="form-control rounded mt-2" value="{{ $subcagagorys->show_on_home }}">
+                                        <option value="Show" @if($subcagagorys->show_on_home == 'Show') Selected @endif >Show</option>
+                                        <option value="Hide" @if($subcagagorys->show_on_home == 'Hide') Selected @endif >Hide</option>
                                     </select>
                                     <button type="submit" class="btn btn-primary mt-2">Update Sub Category</button>
                                 </div>
