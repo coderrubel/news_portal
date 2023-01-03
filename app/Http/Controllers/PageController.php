@@ -19,10 +19,11 @@ class PageController extends Controller
         $post = Post::latest()->get();
         $new_post_details = Post::latest('id', 'desc')->get();
         // $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
-        $sub_catagory_data = SubCatagory::with('rPost')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
+        // $sub_catagory_data = SubCatagory::with('rPost')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
         // $sub_catagory_data = SubCatagory::with('rCaregory')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
+        $catagory = Category::with('rrPost','rrCaregory')->get();
 
-             return view('pages.home',compact('setting','brands','post','new_post_details','sub_catagory_data'));
+        return view('pages.home',compact('setting','brands','post','new_post_details','catagory'));
         }
 
         // Post Details

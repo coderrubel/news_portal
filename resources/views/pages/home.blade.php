@@ -151,10 +151,11 @@
                         <div class="left">
         
                             <!-- News Of Category -->
+                            @foreach($catagory as $item)
                             <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
-                                        <h2>Sports</h2>
+                                        <h2>{{ $item->category_name }}</h2>
                                     </div>
                                     <div class="col-lg-6 col-md-12 see-all">
                                         <a href="" class="btn btn-primary btn-sm">See All News</a>
@@ -167,32 +168,21 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="left-side">
                                             <div class="photo">
-                                                <img src="{{asset ('fontend/uploads/n6.jpg')}}" alt="">
+                                            <img src="{{asset ($item->post_photo)}}" alt="">
                                             </div>
                                             <div class="category">
-                                                @foreach($sub_catagory_data as $item)
-                                                {{ $item->sub_category_name}}<br>
-
-                                                   @foreach($item->rPost as $rubel)
-                                                    {{ $rubel->post_title }}
-                                                   @endforeach 
-
-                                                @endforeach
-
-                                                <span class="badge bg-success">International</span>
+                                                <span class="badge bg-success">{{ $item->rrCaregory->sub_category_name }}</span>
                                             </div>
-                                            <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>
+                                            <h3><a href="">{{ $item->rrPost->post_title }}</a></h3>
                                             <div class="date-user">
                                                 <div class="user">
-                                                    <a href="">Paul David</a>
+                                                    <a href="">{{ $item->rrPost->user_name }}</a>
                                                 </div>
                                                 <div class="date">
-                                                    <a href="">10 Jan, 2022</a>
+                                                    <a href="">{{ $item->rrPost->created_at->format('d M Y') }}</a>
                                                 </div>
                                             </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, omnis signiferumque in mei, mei ex enim concludaturque. Senserit salutandi euripidis no per, modus maiestatis scribentur est an. Cum ei doctus oporteat contentiones, vix ...
-                                            </p>
+                                            <p>post_detail</p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12">
@@ -277,11 +267,12 @@
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                             <!-- // News Of Category -->
         
         
         
-                            <!-- News Of Category -->
+                            <!-- News Of Category 
                             <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
@@ -399,136 +390,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- // News Of Category -->
-        
-        
-        
-        
-        
-        
-                            <!-- News Of Category -->
-                            <div class="news-total-item">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12">
-                                        <h2>Sports</h2>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 see-all">
-                                        <a href="" class="btn btn-primary btn-sm">See All News</a>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="bar"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="left-side">
-                                            <div class="photo">
-                                                <img src="{{asset ('fontend/uploads/n6.jpg')}}" alt="">
-                                            </div>
-                                            <div class="category">
-                                                <span class="badge bg-success">International</span>
-                                            </div>
-                                            <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>
-                                            <div class="date-user">
-                                                <div class="user">
-                                                    <a href="">Paul David</a>
-                                                </div>
-                                                <div class="date">
-                                                    <a href="">10 Jan, 2022</a>
-                                                </div>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, omnis signiferumque in mei, mei ex enim concludaturque. Senserit salutandi euripidis no per, modus maiestatis scribentur est an. Cum ei doctus oporteat contentiones, vix ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="right-side">
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- // News Of Category -->
-        
-        
-        
-        
+                            -->
         
                         </div>
                     </div>
