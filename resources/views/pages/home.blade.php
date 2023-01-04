@@ -155,7 +155,7 @@
                             <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
-                                        <h2>{{ $item->category_name }}</h2>
+                                        <h2>{{ $item->category_name }} {{ $item->id }}</h2>
                                     </div>
                                     <div class="col-lg-6 col-md-12 see-all">
                                         <a href="" class="btn btn-primary btn-sm">See All News</a>
@@ -166,12 +166,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
+                                        
+                                        @foreach($subcagagorys as $item2)
+                                       
                                         <div class="left-side">
                                             <div class="photo">
-                                            <img src="{{asset ($item->post_photo)}}" alt="">
+                                            <img src="{{asset ($item->rrPost->post_photo)}}" alt="">
                                             </div>
                                             <div class="category">
-                                                <span class="badge bg-success">{{ $item->rrCaregory->sub_category_name }}</span>
+                                                <span class="badge bg-success">{{ $item2->sub_category_name }} {{ $item2->category_id }}</span>
                                             </div>
                                             <h3><a href="">{{ $item->rrPost->post_title }}</a></h3>
                                             <div class="date-user">
@@ -182,8 +185,9 @@
                                                     <a href="">{{ $item->rrPost->created_at->format('d M Y') }}</a>
                                                 </div>
                                             </div>
-                                            <p>post_detail</p>
+                                            <!-- <p>{!! $item->rrPost->post_detail !!}</p> -->
                                         </div>
+                                        @endforeach
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="right-side">
