@@ -17,8 +17,8 @@
                                     <input type="text" name="catagory_order" value="{{ $categories->catagory_order }}" class="form-control rounded mt-2" id="order" placeholder="Catagory Order">
                                     <label for="addcategory" class="form-label rounded mb-0 mt-2">Show on Menu</label>
                                     <select name="show_on_menu" class="form-control rounded mt-2" value="{{ $categories->show_on_menu }}">
-                                        <option value="Show">Show</option>
-                                        <option value="Hide">Hide</option>
+                                        <option value="Show" @if($categories->show_on_menu == 'Show') Selected @endif >Show</option>
+                                        <option value="Hide" @if($categories->show_on_menu == 'Hide') Selected @endif >Hide</option>
                                     </select>
                                     <button type="submit" class="btn btn-primary mt-2">Update Category</button>
                                 </div>

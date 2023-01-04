@@ -166,26 +166,33 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
-                                        
-                                       
-                                        <div class="left-side">
-                                            <div class="photo">
-                                            <img src="{{asset ($item->rrPost->post_photo)}}" alt="">
-                                            </div>
-                                            <div class="category">
-                                                <span class="badge bg-success">{{ $item->rrCaregory->sub_category_name }} {{ $item->rrCaregory->category_id }}</span>
-                                            </div>
-                                            <h3><a href="">{{ $item->rrPost->post_title }}</a></h3>
-                                            <div class="date-user">
-                                                <div class="user">
-                                                    <a href="">{{ $item->rrPost->user_name }}</a>
-                                                </div>
-                                                <div class="date">
-                                                    <a href="">{{ $item->rrPost->created_at->format('d M Y') }}</a>
-                                                </div>
-                                            </div>
-                                            <!-- <p>{!! $item->rrPost->post_detail !!}</p> -->
-                                        </div>
+                
+                                        @foreach($subcagagorys as $subcat)
+                                        @if($subcat->category_id == $item->id) 
+                                            
+                                                    @foreach($post as $postCat)
+                                                    <div class="left-side">
+                                                        <div class="photo">
+                                                        <img src="{{asset ($postCat->post_photo)}}" alt="">
+                                                        </div>
+                                                        <div class="category">
+                                                            <span class="badge bg-success">{{ $postCat->rCaregory->sub_category_name }} {{ $item->rrCaregory->category_id }}</span>
+                                                        </div>
+                                                        <h3><a href="">{{ $postCat->post_title }}</a></h3>
+                                                        <div class="date-user">
+                                                            <div class="user">
+                                                                <a href="">{{ $postCat->user_name }}</a>
+                                                            </div>
+                                                            <div class="date">
+                                                                <a href="">{{ $postCat->created_at->format('d M Y') }}</a>
+                                                            </div>
+                                                        </div>
+                                                        <!-- <p>{!! $postCat->post_detail !!}</p> -->
+                                                    </div>
+                                                    @endforeach
+                                                    @endif
+                                        @endforeach
+
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="right-side">
