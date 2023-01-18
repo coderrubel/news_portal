@@ -156,11 +156,8 @@
                             <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
-<<<<<<< HEAD
                                         <h2>{{ $category->category_name??'' }}</h2>
-=======
                                         <h2>{{ $item->category_name }} {{ $item->id }}</h2>
->>>>>>> 46188311d7a86c272a19f07afbb13f675ca47eec
                                     </div>
                                     <div class="col-lg-6 col-md-12 see-all">
                                         <a href="" class="btn btn-primary btn-sm">See All News</a>
@@ -170,7 +167,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-<<<<<<< HEAD
                                     @php
                                     $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
                                     $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(3)->get();
@@ -210,7 +206,6 @@
                                                     <div class="right">
                                                         <div class="category">
                                                             <span class="badge bg-success">{{ $subcatpost->sub_category_name??'' }}</span>
-=======
 
                                           
                                         <div class="col-lg-6 col-md-12">
@@ -257,12 +252,10 @@
                                                     <div class="right">
                                                         <div class="category">
                                                             <span class="badge bg-success">International</span>
->>>>>>> 46188311d7a86c272a19f07afbb13f675ca47eec
                                                         </div>
                                                         <h2><a href="">{{ $subcatposts->post_title ?? ''}}</a></h2>
                                                         <div class="date-user">
                                                             <div class="user">
-<<<<<<< HEAD
                                                                 <a href="">{{ $subcatposts->user_name ?? ''}}</a>
                                                             </div>
                                                             <div class="date">
@@ -273,9 +266,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        @endforeach
                                     </div>
-=======
                                                                 <a href="">Paul David</a>
                                                             </div>
                                                             <div class="date">
@@ -291,7 +282,6 @@
                                         </div>
 
 
->>>>>>> 46188311d7a86c272a19f07afbb13f675ca47eec
                                 </div>
                             </div>
                             @endforeach
