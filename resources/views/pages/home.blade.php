@@ -150,12 +150,13 @@
                     <div class="col-lg-8 col-md-6 left-col">
                         <div class="left">
         
-                            <!-- News Of Category -->
-                            @foreach($catagory as $item)     
+                            <!-- News Of Category  -->
+                            @if($categories)
+                            @foreach($categories as $category)
                             <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
-                                        <h2>{{ $item->category_name }}</h2>
+                                        <h2>{{ $category->category_name??'' }}</h2>
                                     </div>
                                     <div class="col-lg-6 col-md-12 see-all">
                                         <a href="" class="btn btn-primary btn-sm">See All News</a>
@@ -164,73 +165,70 @@
                                         <div class="bar"></div>
                                     </div>
                                 </div>
-                                @foreach($subcagagorys as $subcat)
-                                @if($subcat->category_id == $item->id)
                                 <div class="row">
+                                    @php
+                                    $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
+                                    $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(3)->get();
+                                    $subpost = DB::table('posts')->where('sub_category_id',$subcat->id)->first();
+                                    @endphp
                                     <div class="col-lg-6 col-md-12">
                                         <div class="left-side">
-                                        @foreach($post as $postCat)
-                                        @if($subcat->id == $postCat->sub_category_id )
                                             <div class="photo">
-                                            <img src="{{asset ($postCat->post_photo)}}" alt="">
+                                                <img src="{{ asset($subpost->post_photo??'') }}" alt="">
                                             </div>
                                             <div class="category">
-                                                <span class="badge bg-success">{{ $postCat->rCaregory->sub_category_name }}</span>
+                                                <span class="badge bg-success">{{ $subcat->sub_category_name??'' }}</span>
                                             </div>
-                                            <h3><a href="">{{ $postCat->post_title }}</a></h3>
+                                            <h3><a href="">{{ $subpost->post_title ?? ''}}</a></h3>
                                             <div class="date-user">
                                                 <div class="user">
-                                                    <a href="">{{ $postCat->user_name }}</a>
+                                                    <a href="">{{ $subpost->user_name ?? ''}}</a>
                                                 </div>
                                                 <div class="date">
-                                                    <a href="">{{ $postCat->created_at->format('d M Y') }}</a>
+                                                    <a href="">{{ $subpost->created_at ?? '' }}</a>
                                                 </div>
                                             </div>
-                                            <!-- <p>{!! $postCat->post_detail !!}</p> -->
-                                        @endif
-                                        @endforeach
-                                        </div>     
+                                            <!-- <p>{!! $subpost->post_detail ?? '' !!}</p> -->
+                                        </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12">
-                                        <div class="right-side">
-                                            @php $i=0 @endphp
-                                            @foreach($post as $postCat)
-                                            @php $i++ @endphp
-                                            @if($i==0) @continue @endif
-                                            @if($i>4) @break @endif
-                                                @if($subcat->id == $postCat->sub_category_id)  
+                                        @foreach($subcats as $subcatpost)
+                                        @php
+                                        $subposts = DB::table('posts')->where('sub_category_id',$subcatpost->id)->get();
+                                        @endphp
+                                        @foreach($subposts  as $subcatposts)
+                                            <div class="right-side">
                                                 <div class="right-side-item">
                                                     <div class="left">
-                                                        <img src="{{asset ($postCat->post_photo)}}" alt="">
+                                                        <img src="{{ asset($subcatposts->post_photo??'') }}" alt="">
                                                     </div>
                                                     <div class="right">
                                                         <div class="category">
-                                                            <span class="badge bg-success">{{ $postCat->rCaregory->sub_category_name }}</span>
+                                                            <span class="badge bg-success">{{ $subcatpost->sub_category_name??'' }}</span>
                                                         </div>
-                                                        <h2><a href="">{{ $postCat->post_title }}</a></h2>
+                                                        <h2><a href="">{{ $subcatposts->post_title ?? ''}}</a></h2>
                                                         <div class="date-user">
                                                             <div class="user">
-                                                                <a href="">{{ $postCat->user_name }}</a>
+                                                                <a href="">{{ $subcatposts->user_name ?? ''}}</a>
                                                             </div>
                                                             <div class="date">
-                                                                <a href="">{{ $postCat->created_at->format('d M Y') }}</a>
+                                                                <a href="">{{ $subcatposts->created_at ?? ''}}</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>  
-                                                    @endif
-                                            @endforeach
-                                        </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        @endforeach
                                     </div>
                                 </div>
-                                @endif
-                                @endforeach 
                             </div>
                             @endforeach
-                            <!-- // News Of Category -->
-    
-                            <!-- News Of Category 
-                            <div class="news-total-item">
+                            @endif
+                            <!-- News Of Category  -->
+
+                            <!-- News Of Category  -->
+                            <!-- <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
                                         <h2>Sports</h2>
@@ -346,9 +344,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            -->
-        
+                            </div> -->
+                            <!-- News Of Category  -->
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 sidebar-col">
