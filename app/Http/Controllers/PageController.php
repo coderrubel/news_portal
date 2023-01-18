@@ -21,9 +21,9 @@ class PageController extends Controller
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
         // $sub_catagory_data = SubCatagory::with('rPost')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
         // $sub_catagory_data = SubCatagory::with('rCaregory')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
-        $catagory = Category::with('rrPost','rrCaregory')->where('show_on_menu','Show')->get();
-
-        return view('pages.home',compact('setting','brands','post','new_post_details','subcagagorys','catagory'));
+        // $catagory = Category::with('rrPost','rrCaregory')->where('show_on_menu','Show')->get();
+        $categories  = Category::all();
+        return view('pages.home',compact('setting','brands','post','new_post_details','subcagagorys','categories'));
         }
 
         // Post Details
