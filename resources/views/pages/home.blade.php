@@ -150,9 +150,96 @@
                     <div class="col-lg-8 col-md-6 left-col">
                         <div class="left">
         
-                            
-                            @if($categories)
-                                    @foreach($categories as $category)
+                            <!-- News Of Category -->
+                            @foreach($catagory as $item)     
+                            <div class="news-total-item">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <h2>{{ $item->category_name }} {{ $item->id }}</h2>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 see-all">
+                                        <a href="" class="btn btn-primary btn-sm">See All News</a>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="bar"></div>
+                                    </div>
+                                </div>
+                                @foreach($subcagagorys as $subcat)
+                                @if($subcat->category_id == $item->id)
+                                <div class="row">
+
+                                          
+                                        <div class="col-lg-6 col-md-12">
+                                            @php $a=1 @endphp
+                                            @foreach($post as $postCat)
+                                            @if($subcat->id == $postCat->sub_category_id)
+                                            @php $a++ @endphp
+                                            @if($a=1) 
+                                                <div class="left-side">
+                                                    <div class="photo">
+                                                    <img src="{{asset ($postCat->post_photo)}}" alt="">
+                                                    </div>
+                                                    <div class="category">
+                                                        <span class="badge bg-success">{{ $postCat->rCaregory->sub_category_name }} {{ $subcat->category_id}}</span>
+                                                    </div>
+                                                    <h3><a href="">{{ $postCat->sub_category_id }}{{ $postCat->post_title }}</a></h3>
+                                                    <div class="date-user">
+                                                        <div class="user">
+                                                            <a href="">{{ $postCat->user_name }}</a>
+                                                        </div>
+                                                        <div class="date">
+                                                            <a href="">{{ $postCat->created_at->format('d M Y') }}</a>
+                                                        </div>
+                                                    </div>
+                                                    <p>{!! strlen(strip_tags($postCat->post_detail)) > 5 ? "...Read More" : "" !!}</p>
+                                                </div>     
+                                                @endif
+                                                @endif
+                                            @endforeach
+                                        </div>
+
+                                        <div class="col-lg-6 col-md-12">
+                                            <div class="right-side">
+                                            @php $i=0 @endphp
+                                            @foreach($post as $postCat)
+                                            @php $i++ @endphp
+                                            @if($i==1) @continue @endif
+                                            @if($i>4) @break @endif
+                                                @if($subcat->id == $postCat->sub_category_id)  
+                                                <div class="right-side-item">
+                                                    <div class="left">
+                                                        <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
+                                                    </div>
+                                                    <div class="right">
+                                                        <div class="category">
+                                                            <span class="badge bg-success">International</span>
+                                                        </div>
+                                                        <h2><a href="">{{ $postCat->post_title }}</a></h2>
+                                                        <div class="date-user">
+                                                            <div class="user">
+                                                                <a href="">Paul David</a>
+                                                            </div>
+                                                            <div class="date">
+                                                                <a href="">10 Jan, 2022</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                                 @endif
+                                            @endforeach
+
+                                            </div>
+                                        </div>
+
+
+                                </div>
+                                @endif
+                                @endforeach 
+                            </div>
+                            @endforeach
+                            <!-- // News Of Category -->
+    
+                            <!-- News Of Category 
                             <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
