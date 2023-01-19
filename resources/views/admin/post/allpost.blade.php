@@ -125,7 +125,7 @@ tinymce.init({
                                 <input type="text" name="post_tags" class="form-control rounded mb-2" id="postdetails" placeholder="Post Tags"> -->
                                 
                                 
-                                <button type="submit" class="btn btn-primary mt-2">Add Category</button>
+                                <button type="submit" class="btn btn-primary mt-2">Add Post</button>
                             </div>
                         </form>  
                     </div>

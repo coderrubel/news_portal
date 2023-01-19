@@ -149,15 +149,13 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-6 left-col">
                         <div class="left">
-        
                             <!-- News Of Category  -->
                             @if($categories)
                             @foreach($categories as $category)
                             <div class="news-total-item">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
-                                        <h2>{{ $category->category_name??'' }}</h2>
-                                        <h2>{{ $item->category_name }} {{ $item->id }}</h2>
+                                        <h2>{{ $category->category_name ?? '' }}</h2>
                                     </div>
                                     <div class="col-lg-6 col-md-12 see-all">
                                         <a href="" class="btn btn-primary btn-sm">See All News</a>
@@ -166,155 +164,19 @@
                                         <div class="bar"></div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    @php
-                                    $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
-                                    $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(3)->get();
-                                    $subpost = DB::table('posts')->where('sub_category_id',$subcat->id)->first();
-                                    @endphp
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="left-side">
-                                            <div class="photo">
-                                                <img src="{{ asset($subpost->post_photo??'') }}" alt="">
-                                            </div>
-                                            <div class="category">
-                                                <span class="badge bg-success">{{ $subcat->sub_category_name??'' }}</span>
-                                            </div>
-                                            <h3><a href="">{{ $subpost->post_title ?? ''}}</a></h3>
-                                            <div class="date-user">
-                                                <div class="user">
-                                                    <a href="">{{ $subpost->user_name ?? ''}}</a>
-                                                </div>
-                                                <div class="date">
-                                                    <a href="">{{ $subpost->created_at ?? '' }}</a>
-                                                </div>
-                                            </div>
-                                            <!-- <p>{!! $subpost->post_detail ?? '' !!}</p> -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        @foreach($subcats as $subcatpost)
-                                        @php
-                                        $subposts = DB::table('posts')->where('sub_category_id',$subcatpost->id)->get();
-                                        @endphp
-                                        @foreach($subposts  as $subcatposts)
-                                            <div class="right-side">
-                                                <div class="right-side-item">
-                                                    <div class="left">
-                                                        <img src="{{ asset($subcatposts->post_photo??'') }}" alt="">
-                                                    </div>
-                                                    <div class="right">
-                                                        <div class="category">
-                                                            <span class="badge bg-success">{{ $subcatpost->sub_category_name??'' }}</span>
-
-                                          
-                                        <div class="col-lg-6 col-md-12">
-                                            @php $a=1 @endphp
-                                            @foreach($post as $postCat)
-                                            @if($subcat->id == $postCat->sub_category_id)
-                                            @php $a++ @endphp
-                                            @if($a=1) 
-                                                <div class="left-side">
-                                                    <div class="photo">
-                                                    <img src="{{asset ($postCat->post_photo)}}" alt="">
-                                                    </div>
-                                                    <div class="category">
-                                                        <span class="badge bg-success">{{ $postCat->rCaregory->sub_category_name }} {{ $subcat->category_id}}</span>
-                                                    </div>
-                                                    <h3><a href="">{{ $postCat->sub_category_id }}{{ $postCat->post_title }}</a></h3>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">{{ $postCat->user_name }}</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">{{ $postCat->created_at->format('d M Y') }}</a>
-                                                        </div>
-                                                    </div>
-                                                    <p>{!! strlen(strip_tags($postCat->post_detail)) > 5 ? "...Read More" : "" !!}</p>
-                                                </div>     
-                                                @endif
-                                                @endif
-                                            @endforeach
-                                        </div>
-
-                                        <div class="col-lg-6 col-md-12">
-                                            <div class="right-side">
-                                            @php $i=0 @endphp
-                                            @foreach($post as $postCat)
-                                            @php $i++ @endphp
-                                            @if($i==1) @continue @endif
-                                            @if($i>4) @break @endif
-                                                @if($subcat->id == $postCat->sub_category_id)  
-                                                <div class="right-side-item">
-                                                    <div class="left">
-                                                        <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                    </div>
-                                                    <div class="right">
-                                                        <div class="category">
-                                                            <span class="badge bg-success">International</span>
-                                                        </div>
-                                                        <h2><a href="">{{ $subcatposts->post_title ?? ''}}</a></h2>
-                                                        <div class="date-user">
-                                                            <div class="user">
-                                                                <a href="">{{ $subcatposts->user_name ?? ''}}</a>
-                                                            </div>
-                                                            <div class="date">
-                                                                <a href="">{{ $subcatposts->created_at ?? ''}}</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                    </div>
-                                                                <a href="">Paul David</a>
-                                                            </div>
-                                                            <div class="date">
-                                                                <a href="">10 Jan, 2022</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>  
-                                                 @endif
-                                            @endforeach
-
-                                            </div>
-                                        </div>
-
-
-                                </div>
-                            </div>
-                            @endforeach
-                            @endif
-                            <!-- News Of Category  -->
-
-                            <!-- News Of Category  -->
-                            <!-- <div class="news-total-item">
+                                @php
+                                $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
+                                $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(3)->get();
+                                $subpost = DB::table('posts')->where('sub_category_id',$subcat->id)->first();
+                                @endphp
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
-                                        <h2>{{ $cat->category_name ?? '' }}</h2>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 see-all">
-                                        <a href="" class="btn btn-primary btn-sm">See All News</a>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="bar"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12">
-                                        
-                                    @php
-                                    $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
-                                    $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','ASC')->get();
-                                    $subpost = DB::table('posts')->where('sub_category_id',$subcat->id)->orderBy('id','DESC')->first();
-                                    @endphp
                                         <div class="left-side">
                                             <div class="photo">
                                                 <img src="{{asset($subpost->post_photo)}}" alt="">
                                             </div>
                                             <div class="category">
-                                                <span class="badge bg-success">{{ $subcat->sub_category_name??''}}</span>
+                                                <span class="badge bg-success">{{$subcat->sub_category_name }}</span>
                                             </div>
                                             <h3><a href="">{{ $subpost->post_title ?? ''}}</a></h3>
                                             <div class="date-user">
@@ -329,8 +191,6 @@
                                                 Lorem ipsum dolor sit amet, omnis signiferumque in mei, mei ex enim concludaturque. Senserit salutandi euripidis no per, modus maiestatis scribentur est an. Cum ei doctus oporteat contentiones, vix ...
                                             </p>
                                         </div>
-
-
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="right-side">
@@ -338,29 +198,92 @@
                                             @php
                                             $subposts = DB::table('posts')->where('sub_category_id',$ss->id)->get();
                                             @endphp
-                                            @foreach($subposts  as $sss)                                      
-                                                <div class="right-side-item">
-                                                    <div class="left">
-                                                        <img src="{{asset($sss->post_photo??'')}}" alt="">
+                                            @foreach($subposts  as $sss)
+                                            <div class="right-side-item">
+                                                <div class="left">
+                                                    <img src="{{ asset($sss->post_photo??'') }}" alt="">
+                                                </div>
+                                                <div class="right">
+                                                    <div class="category">
+                                                        <span class="badge bg-success">{{ $ss->sub_category_name??'' }}</span>
                                                     </div>
-                                                    <div class="right">
-                                                        <div class="category">
-                                                            <span class="badge bg-success">{{$ss->sub_category_name }}</span>
+                                                    <h2><a href="">{{ $sss->post_title??'' }}</a></h2>
+                                                    <div class="date-user">
+                                                        <div class="user">
+                                                            <a href="">Paul David</a>
                                                         </div>
-                                                        <h2><a href="">{{ $sss->post_title??''}}</a></h2>
-                                                        <div class="date-user">
-                                                            <div class="user">
-                                                                <a href="">{{ $sss->user_name ?? ''}}</a>
-                                                            </div>
-                                                            <div class="date">
-                                                                <a href="">10 Jan, 2022</a>
-                                                            </div>
+                                                        <div class="date">
+                                                            <a href="">10 Jan, 2022</a>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                             @endforeach
                                             @endforeach
-                                            <!-- <div class="right-side-item">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            @endif
+                            <!-- backup 
+                                <div class="news-total-item">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <h2>Sports</h2>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 see-all">
+                                        <a href="" class="btn btn-primary btn-sm">See All News</a>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="bar"></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="left-side">
+                                            <div class="photo">
+                                                <img src="{{asset ('fontend/uploads/n6.jpg')}}" alt="">
+                                            </div>
+                                            <div class="category">
+                                                <span class="badge bg-success">International</span>
+                                            </div>
+                                            <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>
+                                            <div class="date-user">
+                                                <div class="user">
+                                                    <a href="">Paul David</a>
+                                                </div>
+                                                <div class="date">
+                                                    <a href="">10 Jan, 2022</a>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, omnis signiferumque in mei, mei ex enim concludaturque. Senserit salutandi euripidis no per, modus maiestatis scribentur est an. Cum ei doctus oporteat contentiones, vix ...
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <div class="right-side">
+                                            <div class="right-side-item">
+                                                <div class="left">
+                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
+                                                </div>
+                                                <div class="right">
+                                                    <div class="category">
+                                                        <span class="badge bg-success">International</span>
+                                                    </div>
+                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
+                                                    <div class="date-user">
+                                                        <div class="user">
+                                                            <a href="">Paul David</a>
+                                                        </div>
+                                                        <div class="date">
+                                                            <a href="">10 Jan, 2022</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="right-side-item">
                                                 <div class="left">
                                                     <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
                                                 </div>
@@ -416,18 +339,13 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> -->
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-<<<<<<< HEAD
-                            </div> -->
-                            <!-- News Of Category  -->
-=======
                             </div>
-                           @endforeach
-                            @endif
->>>>>>> 46188311d7a86c272a19f07afbb13f675ca47eec
+                            -->
+                            <!-- End News Of Category  -->
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 sidebar-col">
