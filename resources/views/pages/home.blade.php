@@ -173,7 +173,7 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="left-side">
                                             <div class="photo">
-                                                <img src="{{asset($subpost->post_photo)}}" alt="">
+                                                <img src="{{asset($subpost->post_photo??'')}}" alt="">
                                             </div>
                                             <div class="category">
                                                 <span class="badge bg-success">{{$subcat->sub_category_name }}</span>

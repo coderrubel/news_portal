@@ -28,11 +28,8 @@ class SubCategoryController extends Controller
     public function AddSubCategory(Request $request){
         // form validate
         $validated = $request->validate([
-            // 'category_name' => 'required',
             'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
             'sub_catagory_order' => 'required|integer',
-            'show_on_menu' => 'required',
-            'show_on_home' => 'required',
         ],
         [
             // custom error message

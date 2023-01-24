@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Support\Carbon;
+use App\Models\Post;
 use App\Models\Category;
 use App\Models\SubCatagory;
 use Illuminate\Http\Request;
@@ -19,10 +19,11 @@ class PostController extends Controller
 
     public function AllPost(){
         // Eloquent ORM
-        $post = Post::latest()->paginate(15);
+        $post = Post::with('rPost')->latest()->paginate(15);
+        $catagory = Category::orderBy('catagory_order','asc')->get();
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
         $trachCat =  Post::onlyTrashed()->latest()->paginate(15);
-        return view('admin.post.allpost',compact('post','subcagagorys','trachCat'));
+        return view('admin.post.allpost',compact('post','catagory','subcagagorys','trachCat'));
     }
 
     // Add Post
@@ -52,6 +53,7 @@ class PostController extends Controller
         $post_photo->move($up_location,$img_name);
         // Data insert use Eloquent ORM & Models
         Post::insert([
+            'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
             'post_title' => $request->post_title,
             'post_photo' => $last_img,
@@ -110,6 +112,7 @@ class PostController extends Controller
             $post_photo->move($up_location,$img_name);
  
             $update = Post::find($id)->update([
+                'category_id' => $request->category_id,
                 'sub_category_id'=> $request->sub_category_id,
                 'post_title' => $request->post_title,
                 'post_detail' => $request->post_detail,
@@ -128,6 +131,7 @@ class PostController extends Controller
                 $post_photo->move($up_location,$img_name);
       
                 $update = Post::find($id)->update([
+                    'category_id' => $request->category_id,
                     'sub_category_id'=> $request->sub_category_id,
                     'post_title' => $request->post_title,
                     'post_detail' => $request->post_detail,
@@ -142,6 +146,7 @@ class PostController extends Controller
         }
         else{
             $update = Post::find($id)->update([
+                'category_id' => $request->category_id,
                 'sub_category_id'=> $request->sub_category_id,
                 'post_title' => $request->post_title,
                 'post_detail' => $request->post_detail,
