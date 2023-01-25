@@ -19,7 +19,7 @@ class PostController extends Controller
 
     public function AllPost(){
         // Eloquent ORM
-        $post = Post::with('rPost')->latest()->paginate(15);
+        $post = Post::latest()->paginate(15);
         $catagory = Category::orderBy('catagory_order','asc')->get();
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
         $trachCat =  Post::onlyTrashed()->latest()->paginate(15);
@@ -38,8 +38,8 @@ class PostController extends Controller
             // custom error message
             'post_title.required'=>'Please Input Post Title',
             'post_title.unique'=>'Please Input Unique Post Title',
-            'post_title.max'=>'Category Name Less Then 150 Character',
-            'post_title.min'=>'Category Name More Then 3 Character',
+            'post_title.max'=>'Post Title Less Then 150 Character',
+            'post_title.min'=>'Post Title More Then 3 Character',
             'post_detail.required'=>'Please Input Post Details',
             'post_photo.required'=>'Please Input Post Image',
         ]);

@@ -29,6 +29,7 @@ tinymce.init({
                                     <select name="sub_category_id" class="form-control rounded">
                                     @foreach($subcagagorys as $item)
                                      <option value="{{ $item->id }}" @if( $post->sub_category_id == $item->id) Selected @endif >{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}})</option>
+                                     <input type="hidden" name="category_id" value="{{ $item->rCaregory->id }}">
                                     @endforeach
                                     </select>  
                                     <!-- Post Visitors -->
