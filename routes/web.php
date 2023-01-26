@@ -71,6 +71,7 @@ Route::get('/softdelete/category/{id}',[CategoryController::class,'SoftDelete'])
 Route::get('/category/restore/{id}',[CategoryController::class,'Restore']);
 Route::get('/category/pdelete/{id}',[CategoryController::class,'PDelete']);
 Route::get('get-category',[CategoryController::class,'gCategory']);
+Route::get('get-editcategory',[CategoryController::class,'gEditCategory']);
 
 // Sub Category Controller
 Route::get('/subcategory/all',[SubCategoryController::class,'AallSubCategory'])->name('all.subcategory');

@@ -103,11 +103,18 @@ class CategoryController extends Controller
         $delete = Category::onlyTrashed()->find($id)->forceDelete();
         return Redirect()->back()->with('success','Category Permanently Deleted');
     }
+
+    // Category add on Post page
     public function gCategory(Request $request){
         $id = $request->id ;
         $cc = SubCatagory::where('id', $id)->first();
         echo $cc->category_id;
 
+    }
+    public function gEditCategory(Request $request){
+        $id = $request->id ;
+        $editcat = SubCatagory::where('id', $id)->first();
+        echo $editcat->category_id;
     }
 
 }

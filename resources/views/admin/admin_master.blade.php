@@ -242,10 +242,22 @@
       success :function(data){
         $("#category_id").val(data);
       }
-
     });
-    
   }
+  
+  function gEditCategory(){
+    var subCategory = $("#sub_category").val();
+    $.ajax({
+      url : "{{url('get-editcategory')}}",
+      type: "get",
+      data: {id : subCategory},
+      cache : false,
+      success :function(data){
+        $("#category_id").val(data);
+      }
+    });
+  }
+ 
 </script>
 
 

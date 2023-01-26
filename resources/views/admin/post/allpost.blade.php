@@ -5,7 +5,7 @@
 <!-- Text editor -->
 <script>
 tinymce.init({
-    selector: '#mytextarea11'
+    selector: '#mytextarea'
 });
 </script>
         <!-- All Category Section -->
