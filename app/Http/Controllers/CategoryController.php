@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\SubCatagory;
 class CategoryController extends Controller
 {
     // Login chack
@@ -102,6 +102,12 @@ class CategoryController extends Controller
     public function PDelete($id){
         $delete = Category::onlyTrashed()->find($id)->forceDelete();
         return Redirect()->back()->with('success','Category Permanently Deleted');
+    }
+    public function gCategory(Request $request){
+        $id = $request->id ;
+        $cc = SubCatagory::where('id', $id)->first();
+        echo $cc->category_id;
+
     }
 
 }

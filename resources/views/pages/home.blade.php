@@ -167,7 +167,7 @@
                                 @php
                                 $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
                                 $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(3)->get();
-                                $subpost = DB::table('posts')->where('sub_category_id',$subcat->id)->first();
+                                $subpost = DB::table('posts')->where('sub_category_id')->first();
                                 @endphp
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
@@ -176,7 +176,7 @@
                                                 <img src="{{asset($subpost->post_photo??'')}}" alt="">
                                             </div>
                                             <div class="category">
-                                                <span class="badge bg-success">{{$subcat->sub_category_name }}</span>
+                                                <span class="badge bg-success">{{ $subcat->sub_category_name??'' }}</span>
                                             </div>
                                             <h3><a href="">{{ $subpost->post_title ?? ''}}</a></h3>
                                             <div class="date-user">

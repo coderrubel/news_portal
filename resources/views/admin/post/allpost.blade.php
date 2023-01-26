@@ -84,12 +84,13 @@ tinymce.init({
                                 <!-- Sub catagory id -->
                                 <label for="addcategory" class="form-label d-block">Select Catagory</label>
                                 @error('sub_category_id')<p class="text-danger">{{ $message }}</p>@enderror  
-                                <select name="sub_category_id" class="form-control rounded mt-2">
+                                <select name="sub_category_id" class="form-control rounded mt-2" id="sub_category" onchange="getCategory()">
                                     @foreach($subcagagorys as $item)
-                                    <option value="{{ $item->id }}">{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}})</option>
+                                    <option value="{{ $item->id }}">{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}} {{ $item->rCaregory->id }})</option>
                                     @endforeach
-                                    <input type="hidden" name="category_id" value="{{ $item->rCaregory->id }}">
+                                    <input type="hidden" id="category_id" name="category_id" value="">
                                 </select> 
+                                
                                 <!-- Post title -->
                                 <label for="post" class="form-label mt-2 mb-1">Post Title</label>
                                 @error('post_title')<p class="text-danger">{{ $message }}</p>@enderror    

@@ -230,7 +230,23 @@
 <script src="{{ asset('backend/assets/js/date-range.js')}}"></script>
 <script src="{{ asset('backend/assets/js/map.js')}}"></script>
 <script src="{{ asset('backend/assets/js/custom.js')}}"></script>
+<script>
 
+  function getCategory(){
+    var subCategory = $("#sub_category").val();
+    $.ajax({
+      url : "{{url('get-category')}}",
+      type: "get",
+      data: {id : subCategory},
+      cache : false,
+      success :function(data){
+        $("#category_id").val(data);
+      }
+
+    });
+    
+  }
+</script>
 
 
 
