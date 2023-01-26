@@ -11,6 +11,7 @@ class Post extends Model
     use HasFactory;
     protected $fillable = [
         'user_name',
+        'category_id',
         'sub_category_id',
         'post_title',
         'post_photo',
@@ -23,5 +24,8 @@ class Post extends Model
 
     public function rCaregory(){
         return $this->belongsTo(SubCatagory::class, 'sub_category_id');
+    }
+    public function rPost(){
+        return $this->hasMany(Post::class);
     }
 }

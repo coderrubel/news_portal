@@ -5,7 +5,7 @@
 <!-- Text editor -->
 <script>
 tinymce.init({
-    selector: '#mytextarea'
+    selector: '#mytextarea11'
 });
 </script>
         <!-- All Category Section -->
@@ -88,7 +88,8 @@ tinymce.init({
                                     @foreach($subcagagorys as $item)
                                     <option value="{{ $item->id }}">{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}})</option>
                                     @endforeach
-                                </select>   
+                                    <input type="hidden" name="category_id" value="{{ $item->rCaregory->id }}">
+                                </select> 
                                 <!-- Post title -->
                                 <label for="post" class="form-label mt-2 mb-1">Post Title</label>
                                 @error('post_title')<p class="text-danger">{{ $message }}</p>@enderror    

@@ -16,7 +16,7 @@ class CreateSettingsTable extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->integer('news_ticker_total');
-            $table->string('news_ticker_status');
+            $table->string('news_ticker_status')->nullable();
             $table->timestamps();
         });
     }
