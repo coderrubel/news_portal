@@ -26,11 +26,11 @@ tinymce.init({
                                     <input type="text" name="post_title" value="{{ $post->post_title }}" class="form-control rounded" placeholder="Post Title">
                                     <!-- Catagory name -->
                                     <label for="addcategory" class="form-label d-block mt-2 mb-0">Catagory Name</label>
-                                    <select name="sub_category_id" class="form-control rounded">
+                                    <select name="sub_category_id" class="form-control rounded" id="sub_category" onchange="getCategory()">
                                     @foreach($subcagagorys as $item)
                                      <option value="{{ $item->id }}" @if( $post->sub_category_id == $item->id) Selected @endif > {{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}})</option>
                                      @endforeach
-                                     <input type="text" id="category_id" name="category_id" value="">
+                                     <input type="hidden" id="category_id" name="category_id" value="">
                                     </select>  
                                     <!-- Post Visitors -->
                                     <!-- <label for="addcategory" class="form-label d-block mt-2 mb-0">Post View Show</label>

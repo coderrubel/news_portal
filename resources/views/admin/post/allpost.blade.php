@@ -96,11 +96,11 @@ tinymce.init({
                                 @error('post_title')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="post_title" class="form-control rounded mb-2" id="post" placeholder="Post Title">
                                  <!-- post deltils -->
-                                <label for="postdetaile" class="form-label">Post Details</label>
+                                <label for="postdetaile" class="form-label mt-2 mb-1">Post Details</label>
                                 @error('post_detail')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <textarea name="post_detail" id="mytextarea" class="form-control  mb-2" row="15"></textarea>
                                 <!-- post image -->
-                                <label for="post_photo" class="form-label">Post Image</label>
+                                <label for="post_photo" class="form-label mt-2 mb-1">Post Image</label>
                                 @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
                                  <!-- visitors -->
@@ -116,7 +116,7 @@ tinymce.init({
                                     <option value="0">No</option>
                                 </select>
                                 <!-- comment -->
-                                <label for="addcategory" class="form-label d-block">Post Comment Show</label>
+                                <label for="addcategory" class="form-label d-block mt-2 mb-1">Post Comment Show</label>
                                 <select name="is_comment" class="form-control rounded mt-2">
                                     <option value="1">Yes</option>
                                     <option value="0">No</option>
