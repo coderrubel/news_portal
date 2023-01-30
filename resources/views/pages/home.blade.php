@@ -181,10 +181,10 @@
                                             <h3><a href="">{{ $subpost->post_title??''}}</a></h3>
                                             <div class="date-user">
                                                 <div class="user">
-                                                    <a href="">Paul David</a>
+                                                    <a href="">{{ $item->user_name }}</a>
                                                 </div>
                                                 <div class="date">
-                                                    <a href="">10 Jan, 2022</a>
+                                                    <a href="">{{ $item->created_at->format('d M Y')}}</a>
                                                 </div>
                                             </div>
                                             <p>
@@ -195,6 +195,7 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="right-side">
                                             @php
+                                            // ->join('sub_catagories','sub_catagories.id',"=",'posts.sub_category_id') 
                                             $subposts = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(4)->get();
                                             @endphp
                                             @foreach($subposts  as $post)
@@ -204,15 +205,15 @@
                                                 </div>
                                                 <div class="right">
                                                     <div class="category">
-                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
+                                                        <span class="badge bg-success">{{ $post->sub_category_name??'' }}</span>
                                                     </div>
                                                     <h2><a href="">{{ $post->post_title??'' }}</a></h2>
                                                     <div class="date-user">
                                                         <div class="user">
-                                                            <a href="">Paul David</a>
+                                                            <a href="">{{ $post->user_name }}</a>
                                                         </div>
                                                         <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
+                                                            <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
                                                         </div>
                                                     </div>
                                                 </div>

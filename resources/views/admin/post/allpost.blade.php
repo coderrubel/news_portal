@@ -82,25 +82,26 @@ tinymce.init({
                             @csrf
                             <div class="my-2">
                                 <!-- Sub catagory id -->
-                                <label for="addcategory" class="form-label d-block">Select Catagory</label>
+                                <label for="addcategory" class="form-label d-block">Select Catagory *</label>
                                 @error('sub_category_id')<p class="text-danger">{{ $message }}</p>@enderror  
                                 <select name="sub_category_id" class="form-control rounded mt-2" id="sub_category" onchange="getCategory()">
+                                    <option>Select one</option>
                                     @foreach($subcagagorys as $item)
-                                    <option value="{{ $item->id }}">{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}} {{ $item->rCaregory->id }})</option>
+                                    <option value="{{ $item->id }}">{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}})</option>
                                     @endforeach
                                     <input type="hidden" id="category_id" name="category_id" value="">
                                 </select> 
                                 
                                 <!-- Post title -->
-                                <label for="post" class="form-label mt-2 mb-1">Post Title</label>
+                                <label for="post" class="form-label mt-2 mb-1">Post Title *</label>
                                 @error('post_title')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="post_title" class="form-control rounded mb-2" id="post" placeholder="Post Title">
                                  <!-- post deltils -->
-                                <label for="postdetaile" class="form-label mt-2 mb-1">Post Details</label>
+                                <label for="postdetaile" class="form-label mt-2 mb-1">Post Details *</label>
                                 @error('post_detail')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <textarea name="post_detail" id="mytextarea" class="form-control  mb-2" row="15"></textarea>
                                 <!-- post image -->
-                                <label for="post_photo" class="form-label mt-2 mb-1">Post Image</label>
+                                <label for="post_photo" class="form-label mt-2 mb-1">Post Image *</label>
                                 @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
                                  <!-- visitors -->
