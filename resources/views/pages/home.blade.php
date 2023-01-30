@@ -166,8 +166,8 @@
                                 </div>
                                 @php
                                 $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
-                                $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(3)->get();
-                                $subpost = DB::table('posts')->where('sub_category_id')->first();
+                                $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->get();
+                                $subpost = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->first();
                                 @endphp
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
@@ -178,7 +178,7 @@
                                             <div class="category">
                                                 <span class="badge bg-success">{{ $subcat->sub_category_name??'' }}</span>
                                             </div>
-                                            <h3><a href="">{{ $subpost->post_title ?? ''}}</a></h3>
+                                            <h3><a href="">{{ $subpost->post_title??''}}</a></h3>
                                             <div class="date-user">
                                                 <div class="user">
                                                     <a href="">Paul David</a>
@@ -194,20 +194,19 @@
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="right-side">
-                                            @foreach($subcats as $ss)
                                             @php
-                                            $subposts = DB::table('posts')->where('sub_category_id',$ss->id)->get();
+                                            $subposts = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(4)->get();
                                             @endphp
-                                            @foreach($subposts  as $sss)
+                                            @foreach($subposts  as $post)
                                             <div class="right-side-item">
                                                 <div class="left">
-                                                    <img src="{{ asset($sss->post_photo??'') }}" alt="">
+                                                    <img src="{{ asset($post->post_photo??'') }}" alt="">
                                                 </div>
                                                 <div class="right">
                                                     <div class="category">
-                                                        <span class="badge bg-success">{{ $ss->sub_category_name??'' }}</span>
+                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
                                                     </div>
-                                                    <h2><a href="">{{ $sss->post_title??'' }}</a></h2>
+                                                    <h2><a href="">{{ $post->post_title??'' }}</a></h2>
                                                     <div class="date-user">
                                                         <div class="user">
                                                             <a href="">Paul David</a>
@@ -218,7 +217,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @endforeach
                                             @endforeach
                                         </div>
                                     </div>
