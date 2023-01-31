@@ -167,35 +167,42 @@
                                 @php
                                 $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
                                 $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->get();
-                                $subpost = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->first();
+                                $subpost = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->get();
                                 @endphp
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
+                                        @php $i=0; @endphp 
+                                        @foreach($subpost  as $post)
+                                        @php $i++; @endphp
+                                        @if($i == 1)
                                         <div class="left-side">
                                             <div class="photo">
-                                                <img src="{{asset($subpost->post_photo??'')}}" alt="">
+                                                <img src="{{asset($post->post_photo??'')}}" alt="">
                                             </div>
                                             <div class="category">
-                                                <span class="badge bg-success">{{ $subcat->sub_category_name??'' }}</span>
+                                                <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
                                             </div>
-                                            <h3><a href="">{{ $subpost->post_title??''}}</a></h3>
+                                            <h3><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??''}}</a></h3>
                                             <div class="date-user">
                                                 <div class="user">
-                                                    <a href="">{{ $item->user_name }}</a>
+                                                    <a href="">{{ $post->user_name??'' }}</a>
                                                 </div>
+                                                <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
+                                                     {{ $post->visitors??'0' }}
+                                                </div>
+                                                
                                                 <div class="date">
-                                                    <a href="">{{ $item->created_at->format('d M Y')}}</a>
+                                                    <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
                                                 </div>
                                             </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, omnis signiferumque in mei, mei ex enim concludaturque. Senserit salutandi euripidis no per, modus maiestatis scribentur est an. Cum ei doctus oporteat contentiones, vix ...
-                                            </p>
+                                            <p>{!! $post->post_detail??'' !!}</p>
                                         </div>
+                                        @endif
+                                        @endforeach
                                     </div>
                                     <div class="col-lg-6 col-md-12">
                                         <div class="right-side">
                                             @php
-                                            // ->join('sub_catagories','sub_catagories.id',"=",'posts.sub_category_id') 
                                             $subposts = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(4)->get();
                                             @endphp
                                             @foreach($subposts  as $post)
@@ -205,12 +212,15 @@
                                                 </div>
                                                 <div class="right">
                                                     <div class="category">
-                                                        <span class="badge bg-success">{{ $post->sub_category_name??'' }}</span>
+                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
                                                     </div>
-                                                    <h2><a href="">{{ $post->post_title??'' }}</a></h2>
+                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
                                                     <div class="date-user">
                                                         <div class="user">
-                                                            <a href="">{{ $post->user_name }}</a>
+                                                            <a href="">{{ $post->user_name??'' }}</a>
+                                                        </div>
+                                                        <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
+                                                            {{ $post->visitors??'0' }}
                                                         </div>
                                                         <div class="date">
                                                             <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
@@ -225,125 +235,6 @@
                             </div>
                             @endforeach
                             @endif
-                            <!-- backup 
-                                <div class="news-total-item">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12">
-                                        <h2>Sports</h2>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12 see-all">
-                                        <a href="" class="btn btn-primary btn-sm">See All News</a>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="bar"></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="left-side">
-                                            <div class="photo">
-                                                <img src="{{asset ('fontend/uploads/n6.jpg')}}" alt="">
-                                            </div>
-                                            <div class="category">
-                                                <span class="badge bg-success">International</span>
-                                            </div>
-                                            <h3><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h3>
-                                            <div class="date-user">
-                                                <div class="user">
-                                                    <a href="">Paul David</a>
-                                                </div>
-                                                <div class="date">
-                                                    <a href="">10 Jan, 2022</a>
-                                                </div>
-                                            </div>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, omnis signiferumque in mei, mei ex enim concludaturque. Senserit salutandi euripidis no per, modus maiestatis scribentur est an. Cum ei doctus oporteat contentiones, vix ...
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-                                        <div class="right-side">
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="right-side-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="{{ url('/post_details'); }}">Rubel Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            -->
                             <!-- End News Of Category  -->
                         </div>
                     </div>
@@ -440,160 +331,68 @@
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
                                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                            @php $i=0 @endphp
+                                            @foreach($new_post_details as $post)
+                                            @php $i++ @endphp
+                                            @if($i==0) @continue @endif
+                                            @if($i>4)
+                                            @break
+                                            @endif
                                             <div class="news-item">
                                                 <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
+                                                    <img src="{{asset ($post->post_photo??'')}}" alt="">
                                                 </div>
                                                 <div class="right">
                                                     <div class="category">
-                                                        <span class="badge bg-success">International</span>
+                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
                                                     </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
+                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
                                                     <div class="date-user">
                                                         <div class="user">
-                                                            <a href="">Paul David</a>
+                                                            <a href="">{{ $post->user_name??'' }}</a>
+                                                        </div>
+                                                        <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
+                                                            {{ $post->visitors??'0' }}
                                                         </div>
                                                         <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
+                                                            <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n6.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">Business</span>
-                                                    </div>
-                                                    <h2><a href="">Serbia revokes Rio Tinto lithium mine permits following protests</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n7.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">Business</span>
-                                                    </div>
-                                                    <h2><a href="">Toyota Land Cruiser customers in Japan face four-year wait</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n8.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">Sports</span>
-                                                    </div>
-                                                    <h2><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                         <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                        <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n5.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">International</span>
-                                                    </div>
-                                                    <h2><a href="">Remote island nation in Pacific under lockdown for first time</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @php $i=0 @endphp
+                                            @foreach($popular_post as $post)
+                                            @php $i++ @endphp
+                                            @if($i==0) @continue @endif
+                                            @if($i>4)
+                                            @break
+                                            @endif
                                             <div class="news-item">
                                                 <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n6.jpg')}}" alt="">
+                                                    <img src="{{asset ($post->post_photo??'')}}" alt="">
                                                 </div>
                                                 <div class="right">
                                                     <div class="category">
-                                                        <span class="badge bg-success">Business</span>
+                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
                                                     </div>
-                                                    <h2><a href="">Serbia revokes Rio Tinto lithium mine permits following protests</a></h2>
+                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
                                                     <div class="date-user">
                                                         <div class="user">
-                                                            <a href="">Paul David</a>
+                                                            <a href="">{{ $post->user_name??'' }}</a>
+                                                        </div>
+                                                        <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
+                                                            {{ $post->visitors??'0' }}
                                                         </div>
                                                         <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
+                                                            <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n7.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">Business</span>
-                                                    </div>
-                                                    <h2><a href="">Toyota Land Cruiser customers in Japan face four-year wait</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ('fontend/uploads/n8.jpg')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">Sports</span>
-                                                    </div>
-                                                    <h2><a href="">Haaland scores before going off injured in Dortmund win and it is very real</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">Paul David</a>
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">10 Jan, 2022</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
