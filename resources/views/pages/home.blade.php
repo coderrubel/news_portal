@@ -167,7 +167,9 @@
                                 @php
                                 $subcat = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->first();
                                 $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->get();
-                                $subpost = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->get();
+                                $subpost = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
+                                            ->join('categories','categories.id','=','posts.category_id')
+                                            ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')->get();
                                 @endphp
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
@@ -180,7 +182,7 @@
                                                 <img src="{{asset($post->post_photo??'')}}" alt="">
                                             </div>
                                             <div class="category">
-                                                <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
+                                                <span class="badge bg-success">{{ $post->sub_category_name??'' }}</span>
                                             </div>
                                             <h3><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??''}}</a></h3>
                                             <div class="date-user">
@@ -203,7 +205,9 @@
                                     <div class="col-lg-6 col-md-12">
                                         <div class="right-side">
                                             @php
-                                            $subposts = DB::table('posts')->where('category_id',$category->id)->orderBy('id','DESC')->skip(1)->take(4)->get();
+                                            $subposts = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
+                                                        ->join('categories','categories.id','=','posts.category_id')
+                                                        ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')->skip(1)->take(4)->get();
                                             @endphp
                                             @foreach($subposts  as $post)
                                             <div class="right-side-item">
@@ -212,7 +216,7 @@
                                                 </div>
                                                 <div class="right">
                                                     <div class="category">
-                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
+                                                        <span class="badge bg-success">{{ $post->sub_category_name??'' }}</span>
                                                     </div>
                                                     <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
                                                     <div class="date-user">
