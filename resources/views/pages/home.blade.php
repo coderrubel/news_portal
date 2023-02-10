@@ -158,7 +158,7 @@
                                         <h2>{{ $category->category_name ?? '' }}</h2>
                                     </div>
                                     <div class="col-lg-6 col-md-12 see-all">
-                                        <a href="" class="btn btn-primary btn-sm">See All News</a>
+                                        <a href="{{url('/category/'.$category->id)}}" class="btn btn-primary btn-sm">See All News</a>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="bar"></div>
@@ -169,7 +169,9 @@
                                 $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->get();
                                 $subpost = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
                                             ->join('categories','categories.id','=','posts.category_id')
-                                            ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')->get();
+                                            ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
+                                            ->select('posts.id','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                            ->get();
                                 @endphp
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12">
@@ -184,7 +186,7 @@
                                             <div class="category">
                                                 <span class="badge bg-success">{{ $post->sub_category_name??'' }}</span>
                                             </div>
-                                            <h3><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??''}}</a></h3>
+                                            <h3><a href="{{url('/post_details/'.$post->id)}}">{{ $post->post_title??''}}</a></h3>
                                             <div class="date-user">
                                                 <div class="user">
                                                     <a href="">{{ $post->user_name??'' }}</a>
@@ -207,7 +209,9 @@
                                             @php
                                             $subposts = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
                                                         ->join('categories','categories.id','=','posts.category_id')
-                                                        ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')->skip(1)->take(4)->get();
+                                                        ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
+                                                        ->select('posts.id','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                                        ->skip(1)->take(4)->get();
                                             @endphp
                                             @foreach($subposts  as $post)
                                             <div class="right-side-item">
@@ -218,7 +222,7 @@
                                                     <div class="category">
                                                         <span class="badge bg-success">{{ $post->sub_category_name??'' }}</span>
                                                     </div>
-                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
+                                                    <h2><a href="{{url('/post_details/'.$post->id)}}"> {{ $post->post_title??'' }} </a></h2>
                                                     <div class="date-user">
                                                         <div class="user">
                                                             <a href="">{{ $post->user_name??'' }}</a>
@@ -246,11 +250,94 @@
                         <div class="sidebar">
 
                             <div class="widget">
+                                <div class="news">
+                                    <div class="news-heading">
+                                        <h2>Popular News</h2>
+                                    </div>           
+                        
+                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Recent News</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Popular News</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="pills-tabContent">
+                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                            @php $i=0 @endphp
+                                            @foreach($new_post_details as $post)
+                                            @php $i++ @endphp
+                                            @if($i==0) @continue @endif
+                                            @if($i>5)
+                                            @break
+                                            @endif
+                                            <div class="news-item">
+                                                <div class="left">
+                                                    <img src="{{asset ($post->post_photo??'')}}" alt="">
+                                                </div>
+                                                <div class="right">
+                                                    <div class="category">
+                                                        <span class="badge bg-success">{{ $post->rCaregory->sub_category_name??'' }}</span>
+                                                    </div>
+                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
+                                                    <div class="date-user">
+                                                        <div class="user">
+                                                            <a href="">{{ $post->user_name??'' }}</a>
+                                                        </div>
+                                                        <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
+                                                            {{ $post->visitors??'0' }}
+                                                        </div>
+                                                        <div class="date">
+                                                            <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                            @php $i=0 @endphp
+                                            @foreach($popular_post as $post)
+                                            @php $i++ @endphp
+                                            @if($i==0) @continue @endif
+                                            @if($i>5)
+                                            @break
+                                            @endif
+                                            <div class="news-item">
+                                                <div class="left">
+                                                    <img src="{{asset ($post->post_photo??'')}}" alt="">
+                                                </div>
+                                                <div class="right">
+                                                    <div class="category">
+                                                        <span class="badge bg-success">{{ $post->rCaregory->sub_category_name??'' }}</span>
+                                                    </div>
+                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
+                                                    <div class="date-user">
+                                                        <div class="user">
+                                                            <a href="">{{ $post->user_name??'' }}</a>
+                                                        </div>
+                                                        <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
+                                                            {{ $post->visitors??'0' }}
+                                                        </div>
+                                                        <div class="date">
+                                                            <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget">
                                 <div class="ad-sidebar">
                                     <a href=""><img src="{{asset ('fontend/uploads/ad-3.png')}}" alt=""></a>
                                 </div>
                             </div>
-                        
+                        <!--  
                             <div class="widget">
                                 <div class="tag-heading">
                                     <h2>Tags</h2>
@@ -320,89 +407,6 @@
                             </div>
                             
                             <div class="widget">
-                                <div class="news">
-                                    <div class="news-heading">
-                                        <h2>Popular News</h2>
-                                    </div>           
-                        
-                                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Recent News</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Popular News</button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                            @php $i=0 @endphp
-                                            @foreach($new_post_details as $post)
-                                            @php $i++ @endphp
-                                            @if($i==0) @continue @endif
-                                            @if($i>4)
-                                            @break
-                                            @endif
-                                            <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ($post->post_photo??'')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
-                                                    </div>
-                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">{{ $post->user_name??'' }}</a>
-                                                        </div>
-                                                        <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
-                                                            {{ $post->visitors??'0' }}
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                            @php $i=0 @endphp
-                                            @foreach($popular_post as $post)
-                                            @php $i++ @endphp
-                                            @if($i==0) @continue @endif
-                                            @if($i>4)
-                                            @break
-                                            @endif
-                                            <div class="news-item">
-                                                <div class="left">
-                                                    <img src="{{asset ($post->post_photo??'')}}" alt="">
-                                                </div>
-                                                <div class="right">
-                                                    <div class="category">
-                                                        <span class="badge bg-success">{{ $post->sub_category_id??'' }}</span>
-                                                    </div>
-                                                    <h2><a href="{{ url('/post_details/'.$post->id )}}">{{ $post->post_title??'' }}</a></h2>
-                                                    <div class="date-user">
-                                                        <div class="user">
-                                                            <a href="">{{ $post->user_name??'' }}</a>
-                                                        </div>
-                                                        <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
-                                                            {{ $post->visitors??'0' }}
-                                                        </div>
-                                                        <div class="date">
-                                                            <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="widget">
                                 <div class="ad-sidebar">
                                     <a href=""><img src="{{asset ('fontend/uploads/ad-3.png')}}" alt=""></a>
                                 </div>
@@ -438,7 +442,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+                        -->
                         </div>
                     </div>
                 </div>

@@ -30,13 +30,15 @@ class PageController extends Controller
         // Post Details
         public function PostDetails($id){
             $post_details = Post::where('id', $id)->first();
-
+            $recent_post = Post::latest('id', 'desc')->get();
+            $popular_post = Post::latest('visitors', 'desc')->get();
+            $category = Category::get();
             // Visitor 
             $new_value = $post_details->visitors+1;
             $post_details->visitors = $new_value;
             $post_details->update();
             
-            return view('pages.post_details',compact('post_details'));
+            return view('pages.post_details',compact('post_details','recent_post','popular_post','category'));
         }
 
         // FAQ page
@@ -46,7 +48,15 @@ class PageController extends Controller
     
         // About page
         public function aboutPage(){
-        $abouts = DB::table('abouts')->first();
-        return view('pages.about',compact('abouts'));
+            $abouts = DB::table('abouts')->first();
+            return view('pages.about',compact('abouts'));
+        }
+
+        // Category Page
+        public function Category($id){
+            $category = Category::where('id', $id)->first();
+            $recent_post = Post::latest('id', 'desc')->get();
+            $popular_post = Post::latest('visitors', 'desc')->get();
+            return view('pages.category',compact('category','recent_post','popular_post'));
         }
 }

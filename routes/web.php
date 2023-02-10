@@ -35,6 +35,9 @@ Route::get('/',[PageController::class,'homePage'])->name('home');
 // Post Details
 Route::get('/post_details/{id}',[PageController::class,'PostDetails'])->name('post_details');
 
+// Category page
+Route::get('/category/{id}',[PageController::class,'Category'])->name('category');
+
 // FAQ Page
 Route::get('/faq',[PageController::class,'faqPage'])->name('faq');
 
