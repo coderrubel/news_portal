@@ -20,12 +20,12 @@ class BrandController extends Controller
 
     public function StoreBrand(Request $request){
         $validateDate = $request->validate([
-            'brand_name' => 'required|unique:brands|max:15|min:4',
-            'brand_image' => 'required|mimes:jpg,jpeg,png',
+            'brand_name' => 'required|unique:brands',
+            'brand_image' => 'required|mimes:jpg,jpeg,png,gif',
         ],
         [
-            'brand_name.required' => 'Please Input Brand Name',
-            'brand_image.min' => 'Brand Longer Then 4 Characters',
+            'brand_name.required' => 'Please Input Advertisement Name',
+            'brand_name.unique' => 'Please Input Unique Advertisement Name',
         ]);
 
         $brand_image = $request->file('brand_image');
@@ -39,11 +39,12 @@ class BrandController extends Controller
 
         Brand::insert([
             'brand_name' => $request->brand_name,
+            'brand_url' => $request->brand_url,
             'brand_image' => $last_img,
             'created_at' => Carbon::now()
         ]);
 
-        return Redirect()->back()->with('success','Brand Inserted Successfully');
+        return Redirect()->back()->with('success','Advertisement Add Successfully');
     }
 
     // Edit
@@ -55,13 +56,12 @@ class BrandController extends Controller
     // Update
     public function Update(Request $request, $id){
         $validateDate = $request->validate([
-            'brand_name' => 'required|min:4',
+            'brand_name' => 'required',
         ],
         [
-            'brand_name.required' => 'Please Input Brand Name',
-            'brand_image.min' => 'Brand Longer Then 4 Characters',
+            'brand_name.required' => 'Please Input Advertisement Name',
         ]);
-        
+
         $old_image = $request->old_image;
         $brand_image = $request->file('brand_image');
         if($brand_image){
@@ -75,19 +75,21 @@ class BrandController extends Controller
             unlink($old_image);
             Brand::find($id)->update([
                 'brand_name' => $request->brand_name,
+                'brand_url' => $request->brand_url,
                 'brand_image' => $last_img,
                 'created_at' => Carbon::now()
             ]);
     
-            return Redirect()->back()->with('success','Brand Updated Successfully');
+            return Redirect()->route('all.brand')->with('success','Advertisement Update Successfully');
         } 
         else{
             Brand::find($id)->update([
                 'brand_name' => $request->brand_name,
+                'brand_url' => $request->brand_url,
                 'created_at' => Carbon::now()
             ]);
 
-            return Redirect()->route('all.brand')->with('success','Brand Update Successfully');
+            return Redirect()->route('all.brand')->with('success','Advertisement Update Successfully');
         }
         
     }
@@ -98,6 +100,6 @@ class BrandController extends Controller
         $old_image = $image->brand_image;
         unlink($old_image);
         Brand::find($id)->delete();
-        return Redirect()->back()->with('success','Brand Delete Successfully');
+        return Redirect()->back()->with('success','Advertisement Delete Successfully');
     }
 }

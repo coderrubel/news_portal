@@ -17,11 +17,11 @@
                         <thead>
                             <tr>
                             <th scope="col">SL No</th>
-                            <th scope="col">Category Name</th>
-                            <th scope="col">Show on Menu</th>
-                            <th scope="col">Menu Order</th>
-                            <th scope="col">Created By</th>
-                            <th scope="col">Created At</th>
+                            <th scope="col" class="text-center">Category Name</th>
+                            <th scope="col" class="text-center">Show on Menu</th>
+                            <th scope="col" class="text-center">Menu Order</th>
+                            <th scope="col" class="text-center">Created By</th>
+                            <th scope="col" class="text-center">Created At</th>
                             <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -41,9 +41,18 @@
                                     {{ $category->created_at->diffForHumans() }}
                                 @endif
                             </td>
-                            <td>
-                                <a href="{{ url('/category/edit/'.$category->id) }}" class="btn btn-sm btn-info">Edit</a>
-                                <a href="{{ url('/softdelete/category/'.$category->id) }}" class="btn btn-sm btn-danger">Delete</a>
+                            <td class="text-right">
+                                <div class="dropdown show d-inline-block widget-dropdown">
+                                    <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                    <li class="dropdown-item">
+                                        <a href="{{ url('/category/edit/'.$category->id) }}">Edit</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ url('/softdelete/category/'.$category->id) }}">Delete</a>
+                                    </li>
+                                    </ul>
+                                </div>
                             </td>
                             </tr>
                             @endforeach
@@ -92,10 +101,10 @@
                             <thead>
                                 <tr>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">Show on Menu</th>
-                                <th scope="col">Menu Order</th>
-                                <th scope="col">Created By</th>
-                                <th scope="col">Created At</th>
+                                <th scope="col" class="text-center">Show on Menu</th>
+                                <th scope="col" class="text-center">Menu Order</th>
+                                <th scope="col" class="text-center">Created By</th>
+                                <th scope="col" class="text-center">Created At</th>
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -103,21 +112,30 @@
                             
                                 @foreach($trachCat as $trach)
                                 <tr>
-                                <td>{{ $trach->category_name }}</td>
-                                <td>{{ $trach->show_on_menu }}</td>
-                                <td>{{ $trach->catagory_order }}</td>
-                                <td>{{ $trach->user->name }}</td>
-                                <td>
-                                    @if($trach->created_at == NULL)
-                                        <span class="text-danger">No Date Set</span>
-                                    @else 
-                                        {{ $trach->created_at->diffForHumans() }}
-                                    @endif
-                                </td>
-                                <td>
-                                    <a href="{{ url('category/restore/'.$trach->id) }}" class="btn btn-sm btn-info">Restore</a>
-                                    <a href="{{ url('category/pdelete/'.$trach->id) }}" class="btn btn-sm btn-danger">Permanently Delete</a>
-                                </td>
+                                    <td>{{ $trach->category_name }}</td>
+                                    <td>{{ $trach->show_on_menu }}</td>
+                                    <td>{{ $trach->catagory_order }}</td>
+                                    <td>{{ $trach->user->name }}</td>
+                                    <td>
+                                        @if($trach->created_at == NULL)
+                                            <span class="text-danger">No Date Set</span>
+                                        @else 
+                                            {{ $trach->created_at->diffForHumans() }}
+                                        @endif
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown show d-inline-block widget-dropdown">
+                                            <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                            <li class="dropdown-item">
+                                                <a href="{{ url('category/restore/'.$trach->id) }}">Restore</a>
+                                            </li>
+                                            <li class="dropdown-item">
+                                                <a href="{{ url('category/pdelete/'.$trach->id) }}">Permanently Delete</a>
+                                            </li>
+                                            </ul>
+                                        </div>
+                                    </td>
                                 </tr>
                                 @endforeach
 

@@ -87,7 +87,7 @@
                 <ul class="nav navbar-nav">
                   <!-- Github Link Button -->
                   <li class="github-link mr-3">
-                    <a class="btn btn-outline-secondary btn-sm" href="https://github.com/tafcoder/sleek-dashboard" target="_blank">
+                    <a class="btn btn-outline-secondary btn-sm" href="https://github.com/coderrubel/news_portal" target="_blank">
                       <span class="d-none d-md-inline-block mr-2">Source Code</span>
                       <i class="mdi mdi-github-circle"></i>
                     </a>
@@ -190,12 +190,12 @@
                   <footer class="footer mt-auto">
             <div class="copyright bg-white">
               <p>
-                &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
+                &copy; <span id="copy-year">2022</span> Copyright by
                 <a
                   class="text-primary"
-                  href="http://www.iamabdus.com/"
+                  href="https://github.com/coderrubel/news_portal"
                   target="_blank"
-                  >Abdus</a
+                  >CoderRubel</a
                 >.
               </p>
             </div>

@@ -16,10 +16,10 @@
                         <thead>
                             <tr>
                             <th scope="col">Category Name</th>
-                            <th scope="col">Sub Category Name</th>
-                            <th scope="col">Show on Menu</th>
-                            <th scope="col">Show on Home</th>
-                            <th scope="col">Menu Order</th>
+                            <th scope="col" class="text-center">Sub Category Name</th>
+                            <th scope="col" class="text-center">Show on Menu</th>
+                            <th scope="col" class="text-center">Show on Home</th>
+                            <th scope="col" class="text-center">Menu Order</th>
                             <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -106,9 +106,9 @@
                             <thead>
                                 <tr>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">Sub Category Name</th>
-                                <th scope="col">Show on Menu</th>
-                                <th scope="col">Menu Order</th>
+                                <th scope="col" class="text-center">Sub Category Name</th>
+                                <th scope="col" class="text-center">Show on Menu</th>
+                                <th scope="col" class="text-center">Menu Order</th>
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>

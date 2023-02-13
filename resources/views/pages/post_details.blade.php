@@ -75,7 +75,7 @@
                         -->
                         <div class="related-news">
                             <div class="related-news-heading">
-                                <h2>Related News</h2>
+                                <h2>Related Posts</h2>
                             </div>
                             <div class="related-post-carousel owl-carousel owl-theme">
                                 @foreach($popular_post as $post)
@@ -108,15 +108,15 @@
                             <div class="widget">
                                 <div class="news">
                                     <div class="news-heading">
-                                        <h2>Popular News</h2>
+                                        <h2>Recent/Popular Post</h2>
                                     </div>           
                         
                                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Recent News</button>
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Recent Post</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Popular News</button>
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Popular Post</button>
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">

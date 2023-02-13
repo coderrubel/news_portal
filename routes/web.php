@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User; 
 use App\Http\Controllers\CategoryController; 
 use App\Http\Controllers\SubCategoryController; 
+use App\Http\Controllers\HeaderAdsController; 
+use App\Http\Controllers\HeaderAds1Controller; 
+use App\Http\Controllers\SidebarAdsController; 
+use App\Http\Controllers\SidebarAds1Controller; 
 use App\Http\Controllers\BrandController; 
 use App\Http\Controllers\AuthControllar; 
 use App\Http\Controllers\HomeController;
@@ -36,7 +40,7 @@ Route::get('/',[PageController::class,'homePage'])->name('home');
 Route::get('/post_details/{id}',[PageController::class,'PostDetails'])->name('post_details');
 
 // Category page
-Route::get('/category/{id}',[PageController::class,'Category'])->name('category');
+Route::get('/allpost/{id}',[PageController::class,'Category'])->name('allpost');
 
 // FAQ Page
 Route::get('/faq',[PageController::class,'faqPage'])->name('faq');
@@ -85,7 +89,31 @@ Route::get('/softdelete/subcategory/{id}',[SubCategoryController::class,'SoftDel
 Route::get('/subcategory/restore/{id}',[SubCategoryController::class,'Restore']);
 Route::get('/subcategory/pdelete/{id}',[SubCategoryController::class,'PDelete']);
 
-// Brand Controller
+// Header ads 1
+Route::get('/header1/all',[HeaderAdsController::class,'show'])->name('all.header1');
+Route::post('/header1/add',[HeaderAdsController::class,'Store'])->name('store.header1'); 
+Route::get('/header1/edit/{id}',[HeaderAdsController::class,'Edit']);
+Route::post('/header1/update/{id}',[HeaderAdsController::class,'Update']);
+Route::get('/header1/delete/{id}',[HeaderAdsController::class,'Delete']);
+// Header ads 2
+Route::get('/header2/all',[HeaderAds1Controller::class,'show'])->name('all.header2');
+Route::post('/header2/add',[HeaderAds1Controller::class,'Store'])->name('store.header2'); 
+Route::get('/header2/edit/{id}',[HeaderAds1Controller::class,'Edit']);
+Route::post('/header2/update/{id}',[HeaderAds1Controller::class,'Update']);
+Route::get('/header2/delete/{id}',[HeaderAds1Controller::class,'Delete']);
+// Sidebar ads 1
+Route::get('/sidebar1/all',[SidebarAdsController::class,'show'])->name('all.sidebar1');
+Route::post('/sidebar1/add',[SidebarAdsController::class,'Store'])->name('store.sidebar1'); 
+Route::get('/sidebar1/edit/{id}',[SidebarAdsController::class,'Edit']);
+Route::post('/sidebar1/update/{id}',[SidebarAdsController::class,'Update']);
+Route::get('/sidebar1/delete/{id}',[SidebarAdsController::class,'Delete']);
+// Sidebar ads 2
+Route::get('/sidebar2/all',[SidebarAds1Controller::class,'show'])->name('all.sidebar2');
+Route::post('/sidebar2/add',[SidebarAds1Controller::class,'Store'])->name('store.sidebar2'); 
+Route::get('/sidebar2/edit/{id}',[SidebarAds1Controller::class,'Edit']);
+Route::post('/sidebar2/update/{id}',[SidebarAds1Controller::class,'Update']);
+Route::get('/sidebar2/delete/{id}',[SidebarAds1Controller::class,'Delete']);
+// Footer ads
 Route::get('/brand/all',[BrandController::class,'AllBrand'])->name('all.brand');
 Route::post('/brand/add',[BrandController::class,'StoreBrand'])->name('store.brand'); 
 Route::get('/brand/edit/{id}',[BrandController::class,'Edit']);

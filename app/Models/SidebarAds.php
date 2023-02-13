@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class SidebarAds extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'brand_name',
-        'brand_url',
-        'brand_image',
-        
+        'ads_name',
+        'ads_url',
+        'ads_image',
     ];
 }

@@ -1,11 +1,12 @@
 <x-header/>
+@if($setting)
         @if($setting->news_ticker_status == 'Show')
         <div class="news-ticker-item">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="acme-news-ticker">
-                            <div class="acme-news-ticker-label">Latest News</div>
+                            <div class="acme-news-ticker-label">Latest Post</div>
                             <div class="acme-news-ticker-box">
                                 <ul class="my-news-ticker">
                                     @php $i=0; @endphp
@@ -25,6 +26,7 @@
         </div>
         @else
         <div class="mt-3"></div>
+        @endif
         @endif
         <div class="home-main">
             <div class="container">
@@ -106,7 +108,7 @@
                 </div>
             </div>
         </div>
-        
+        <!--  
         <div class="search-section">
             <div class="container">
                 <div class="inner">
@@ -143,7 +145,7 @@
                 </div>
             </div>
         </div>
-        
+        -->
         <div class="home-content">
             <div class="container">
                 <div class="row">
@@ -158,7 +160,7 @@
                                         <h2>{{ $category->category_name ?? '' }}</h2>
                                     </div>
                                     <div class="col-lg-6 col-md-12 see-all">
-                                        <a href="{{url('/category/'.$category->id)}}" class="btn btn-primary btn-sm">See All News</a>
+                                        <a href="{{url('/allpost/'.$category->id)}}" class="btn btn-primary btn-sm">See All Post</a>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="bar"></div>
@@ -252,15 +254,15 @@
                             <div class="widget">
                                 <div class="news">
                                     <div class="news-heading">
-                                        <h2>Popular News</h2>
+                                        <h2>Recent/Popular Post</h2>
                                     </div>           
                         
                                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Recent News</button>
+                                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Recent post</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
-                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Popular News</button>
+                                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Popular post</button>
                                         </li>
                                     </ul>
                                     <div class="tab-content" id="pills-tabContent">
@@ -334,9 +336,11 @@
 
                             <div class="widget">
                                 <div class="ad-sidebar">
-                                    <a href=""><img src="{{asset ('fontend/uploads/ad-3.png')}}" alt=""></a>
+                                    <a href="{{ $brands->brand_name ??''}}" target="_blank"><img src="{{ asset($brands->brand_image ?? '') }}" alt="{{ $brands->brand_name ?? '' }}"></a>
                                 </div>
                             </div>
+
+                            
                         <!--  
                             <div class="widget">
                                 <div class="tag-heading">
@@ -550,7 +554,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href=""><img src="{{ asset($brands->brand_image ?? 'fontend/uploads/ad-1.png') }}" alt="{{ $brands->brand_name ?? '' }}"></a>
+                        <a href="{{ $brands->brand_name ??''}}" target="_blank"><img src="{{ asset($brands->brand_image ?? '') }}" alt="{{ $brands->brand_name ?? '' }}"></a>
                     </div>
                 </div>
             </div>

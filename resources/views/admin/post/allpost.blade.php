@@ -23,16 +23,16 @@ tinymce.init({
                         <thead>
                             <tr>
                                 <th scope="col">SL No</th>
-                                <th scope="col">Catagory</th>
-                                <th scope="col">Post Title</th>
-                                <th scope="col">Post Image</th>
-                                <th scope="col">Author</th>
+                                <th scope="col" class="text-center">Catagory</th>
+                                <th scope="col" class="text-center">Post Title</th>
+                                <th scope="col" class="text-center">Post Image</th>
+                                <th scope="col" class="text-center">Author</th>
                                 <!-- <th scope="col">Post Details</th> -->
-                                <th scope="col">Visitors</th>
+                                <th scope="col" class="text-center">Visitors</th>
                                 <!-- <th scope="col">Share</th> -->
                                 <!-- <th scope="col">Comment</th> -->
-                                <th scope="col">Create At</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-center">Create At</th>
+                                <th scope="col" class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>

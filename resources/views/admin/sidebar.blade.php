@@ -32,18 +32,37 @@
 
                 
                   <!-- <li  class="has-sub active expand" > -->
-                  <li  class="{{ Request::is('brand/all') || Request::is('setting') ? 'active expand' : 'has-sub'}}" >
+                  <li  class="{{ Request::is('brand/all') || Request::is('setting') || Request::is('header1/all') || Request::is('header2/all') || Request::is('sidebar1/all') || Request::is('sidebar2/all') ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
                       aria-expanded="false" aria-controls="dashboard">
                       <i class="mdi mdi-view-dashboard-outline"></i>
                       <span class="nav-text">Home</span> <b class="caret"></b>
                     </a>
                     <!-- <ul  class="collapse show"  id="dashboard" data-parent="#sidebar-menu"> -->
-                    <ul  class="{{ Request::is('brand/all') || Request::is('setting') ? 'collapsec sow' : 'collapse'}}"  id="dashboard" data-parent="#sidebar-menu">
+                    <ul  class="{{ Request::is('brand/all') || Request::is('setting') || Request::is('header1/all') || Request::is('header2/all') || Request::is('sidebar1/all') || Request::is('sidebar2/all') ? 'collapsec sow' : 'collapse'}}"  id="dashboard" data-parent="#sidebar-menu">
                       <div class="sub-menu"> 
                         <li  class="{{ Request::is('setting') ? 'active' : ''}}">
                           <a class="sidenav-item-link" href="{{ route('setting')}}">
                             <span class="nav-text">Latest News</span>
+                          </a>
+                        </li>
+                        <li  class="{{ Request::is('header1/all') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('all.header1')}}">
+                            <span class="nav-text">Header Ads 1</span>
+                          </a>
+                        </li>
+                        <li  class="{{ Request::is('header2/all') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('all.header2')}}">
+                            <span class="nav-text">Header Ads 2</span>
+                          </a>
+                        </li><li  class="{{ Request::is('sidebar1/all') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('all.sidebar1')}}">
+                            <span class="nav-text">Sidebar Ads 1</span>
+                          </a>
+                        </li>
+                        <li  class="{{ Request::is('sidebar2/all') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('all.sidebar2')}}">
+                            <span class="nav-text">Sidebar Ads 2</span>
                           </a>
                         </li>
                         <li  class="{{ Request::is('brand/all') ? 'active' : ''}}">
