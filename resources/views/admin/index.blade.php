@@ -1,12 +1,18 @@
 @extends('admin.admin_master')
 @section('admin')
 <!-- Top Statistics -->
+@php
+  $cat = DB::table('categories')->get();
+  $subcat = DB::table('sub_catagories')->get();
+  $posts = DB::table('posts')->get();
+  $post = DB::table('posts')->sum('visitors');
+@endphp
 <div class="row">
     <div class="col-xl-3 col-sm-6">
     <div class="card card-mini mb-4">
     <div class="card-body">
-        <h2 class="mb-1">71,503</h2>
-        <p>Online Signups</p>
+        <h2 class="mb-1">{{ count($cat) }}</h2>
+        <p>Category</p>
         <div class="chartjs-wrapper">
         <canvas id="barChart"></canvas>
         </div>
@@ -16,8 +22,8 @@
     <div class="col-xl-3 col-sm-6">
     <div class="card card-mini  mb-4">
     <div class="card-body">
-        <h2 class="mb-1">9,503</h2>
-        <p>New Visitors Today</p>
+        <h2 class="mb-1">{{ count($subcat) }}</h2>
+        <p>Sub Category</p>
         <div class="chartjs-wrapper">
         <canvas id="dual-line"></canvas>
         </div>
@@ -27,8 +33,8 @@
     <div class="col-xl-3 col-sm-6">
     <div class="card card-mini mb-4">
     <div class="card-body">
-        <h2 class="mb-1">71,503</h2>
-        <p>Monthly Total Order</p>
+        <h2 class="mb-1">{{ count($posts) }}</h2>
+        <p>Posts</p>
         <div class="chartjs-wrapper">
         <canvas id="area-chart"></canvas>
         </div>
@@ -38,8 +44,8 @@
     <div class="col-xl-3 col-sm-6">
     <div class="card card-mini mb-4">
     <div class="card-body">
-        <h2 class="mb-1">9,503</h2>
-        <p>Total Revenue This Year</p>
+        <h2 class="mb-1">{{ $post }}</h2>
+        <p>PostS View</p>
         <div class="chartjs-wrapper">
         <canvas id="line"></canvas>
         </div>
