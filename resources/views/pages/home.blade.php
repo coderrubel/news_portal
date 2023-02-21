@@ -98,16 +98,17 @@
                 </div>
             </div>
         </div>
-        
+        @if($header1)
         <div class="ad-section-2">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href=""><img src="uploads/ad-1.png')}}" alt=""></a>
+                        <a href="{{ $header1->ads_url ??''}}" target="_blank"><img src="{{ asset($header1->ads_image ?? '') }}" alt="{{ $header1->ads_name ?? '' }}"></a>
                     </div>
                 </div>
             </div>
         </div>
+        @endif
         <!--  
         <div class="search-section">
             <div class="container">
@@ -151,7 +152,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-md-6 left-col">
                         <div class="left">
-                            <!-- News Of Category  -->
+                            <!-- News  Category  -->
                             @if($categories)
                             @foreach($categories as $category)
                             <div class="news-total-item">
@@ -245,12 +246,20 @@
                             </div>
                             @endforeach
                             @endif
-                            <!-- End News Of Category  -->
+                            <!-- End News Category  -->
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 sidebar-col">
                         <div class="sidebar">
+                            @if($sidebar)
+                            <div class="widget">
+                                <div class="ad-sidebar">
+                                    <a href="{{ $sidebar->ads_url ??''}}" target="_blank"><img src="{{ asset($sidebar->ads_image ?? '') }}" alt="{{ $sidebar->ads_name ?? '' }}"></a>
+                                </div>
+                            </div>
+                            @endif
 
+                            @if($post)
                             <div class="widget">
                                 <div class="news">
                                     <div class="news-heading">
@@ -333,14 +342,16 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
 
+                            @if($sidebar1)
                             <div class="widget">
                                 <div class="ad-sidebar">
-                                    <a href="{{ $brands->brand_name ??''}}" target="_blank"><img src="{{ asset($brands->brand_image ?? '') }}" alt="{{ $brands->brand_name ?? '' }}"></a>
+                                    <a href="{{ $sidebar1->ads_url ??''}}" target="_blank"><img src="{{ asset($sidebar1->ads_image ?? '') }}" alt="{{ $sidebar1->ads_name ?? '' }}"></a>
                                 </div>
                             </div>
+                            @endif
 
-                            
                         <!--  
                             <div class="widget">
                                 <div class="tag-heading">
@@ -409,13 +420,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="widget">
-                                <div class="ad-sidebar">
-                                    <a href=""><img src="{{asset ('fontend/uploads/ad-3.png')}}" alt=""></a>
-                                </div>
-                            </div>
-                        
+                          
                             <div class="widget">
                                 <div class="poll-heading">
                                     <h2>Online Poll</h2>
@@ -549,7 +554,7 @@
         </div>
         
         
-        
+    @if($brands)
         <div class="ad-section-3">
             <div class="container">
                 <div class="row">
@@ -559,5 +564,5 @@
                 </div>
             </div>
         </div>
-
+    @endif                                        
 <x-footer/>

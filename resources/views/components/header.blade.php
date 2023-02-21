@@ -93,11 +93,13 @@
                             </a>
                         </div>
                     </div>
+                    @if($header)
                     <div class="col-md-8">
                         <div class="ad-section-1">
-                            <a href=""><img src="uploads/ad-1.png')}}" alt=""></a>
+                            <a href="{{ $header->ads_url ??''}}" target="_blank"><img src="{{ asset($header->ads_image ?? '') }}" alt="{{ $header->ads_name ?? '' }}"></a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
