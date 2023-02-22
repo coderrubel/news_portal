@@ -18,7 +18,6 @@ class PageController extends Controller
         // Home page
         public function homePage(){
         $setting = DB::table('settings')->first();
-        $header = HeaderAds::latest()->first();
         $header1 = HeaderAds1::latest()->first();
         $sidebar = SidebarAds::latest()->first();
         $sidebar1 = SidebarAds1::latest()->first();
@@ -29,7 +28,6 @@ class PageController extends Controller
         // $sub_catagory_data = SubCatagory::with('rCaregory')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
         $categories  = Category::where('show_on_menu','Show')->get();
         return view('pages.home',compact('setting','brands','header1','sidebar','sidebar1','post','new_post_details','popular_post','categories'));
-        return view('components.header',compact('header'));
         }
 
         // Post Details

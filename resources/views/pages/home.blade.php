@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        @if($header1)
+        @if(!empty($header1->ads_image))
         <div class="ad-section-2">
             <div class="container">
                 <div class="row">
@@ -251,7 +251,7 @@
                     </div>
                     <div class="col-lg-4 col-md-6 sidebar-col">
                         <div class="sidebar">
-                            @if($sidebar)
+                            @if(!empty($sidebar->ads_image))
                             <div class="widget">
                                 <div class="ad-sidebar">
                                     <a href="{{ $sidebar->ads_url ??''}}" target="_blank"><img src="{{ asset($sidebar->ads_image ?? '') }}" alt="{{ $sidebar->ads_name ?? '' }}"></a>
@@ -344,7 +344,7 @@
                             </div>
                             @endif
 
-                            @if($sidebar1)
+                            @if(!empty($sidebar1->ads_image))
                             <div class="widget">
                                 <div class="ad-sidebar">
                                     <a href="{{ $sidebar1->ads_url ??''}}" target="_blank"><img src="{{ asset($sidebar1->ads_image ?? '') }}" alt="{{ $sidebar1->ads_name ?? '' }}"></a>
@@ -554,7 +554,7 @@
         </div>
         
         
-    @if($brands)
+    @if(!empty($brands->brand_image))
         <div class="ad-section-3">
             <div class="container">
                 <div class="row">

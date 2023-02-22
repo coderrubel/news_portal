@@ -89,11 +89,14 @@
                     <div class="col-md-4 d-flex align-items-center">
                         <div class="logo">
                             <a href="{{url('/')}}">
-                                <img src="uploads/logo.png')}}" alt="">
+                                <img src="{{asset('fontend/uploads/logo.png')}}" alt="">
                             </a>
                         </div>
                     </div>
-                    @if($header)
+                    @php
+                    $header = DB::table('header_ads')->orderBy('id','DESC')->first();
+                    @endphp
+                    @if(!empty($header->ads_image))
                     <div class="col-md-8">
                         <div class="ad-section-1">
                             <a href="{{ $header->ads_url ??''}}" target="_blank"><img src="{{ asset($header->ads_image ?? '') }}" alt="{{ $header->ads_name ?? '' }}"></a>

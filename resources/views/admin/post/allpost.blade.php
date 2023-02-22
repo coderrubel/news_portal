@@ -83,6 +83,7 @@ tinymce.init({
                             <div class="my-2">
                                 <!-- Sub catagory id -->
                                 <label for="addcategory" class="form-label d-block">Select Catagory *</label>
+                                @error('category_id')<p class="text-danger">{{ $message }}</p>@enderror    
                                 @error('sub_category_id')<p class="text-danger">{{ $message }}</p>@enderror  
                                 <select name="sub_category_id" class="form-control rounded mt-2" id="sub_category" onchange="getCategory()">
                                     <option>Select one</option>
@@ -98,7 +99,7 @@ tinymce.init({
                                 <input type="text" name="post_title" class="form-control rounded mb-2" id="post" placeholder="Post Title">
                                  <!-- post deltils -->
                                 <label for="postdetaile" class="form-label mt-2 mb-1">Post Details *</label>
-                                @error('post_detail')<p class="text-danger">{{ $message }}</p>@enderror    
+                                @error('post_detail')<p class="text-danger">{{ $message }}</p>@enderror 
                                 <textarea name="post_detail" id="mytextarea" class="form-control  mb-2" row="15"></textarea>
                                 <!-- post image -->
                                 <label for="post_photo" class="form-label mt-2 mb-1">Post Image *</label>

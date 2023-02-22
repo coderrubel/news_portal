@@ -30,17 +30,22 @@ class PostController extends Controller
     public function AddPost(Request $request){
         // form validate
         $validated = $request->validate([
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
             'post_title' => 'required|unique:posts|max:150|min:3',
             'post_detail' => 'required|min:10',
             'post_photo' => 'required|mimes:jpg,png,jpeg,webp|max:1024',
         ],
         [
             // custom error message
+            'category_id.required'=>'Please Select One Category',
+            'sub_category_id.required'=>'Please Select One Category',
             'post_title.required'=>'Please Input Post Title',
             'post_title.unique'=>'Please Input Unique Post Title',
             'post_title.max'=>'Post Title Less Then 150 Character',
             'post_title.min'=>'Post Title More Then 3 Character',
             'post_detail.required'=>'Please Input Post Details',
+            'post_detail.min'=>'Post Details More Then 10 Character',
             'post_photo.required'=>'Please Input Post Image',
         ]);
 
@@ -83,11 +88,15 @@ class PostController extends Controller
     public function UpdatePost(Request $request, $id){
         // form validate
         $validated = $request->validate([
+            'category_id' => 'required',
+            'sub_category_id' => 'required',
             'post_title' => 'required|max:150|min:3',
             'post_detail' => 'required|min:10',
         ],
         [
             // custom error message
+            'category_id.required'=>'Please Select One Category',
+            'sub_category_id.required'=>'Please Select One Category',
             'post_title.required'=>'Please Input Post Title',
             'post_title.unique'=>'Please Input Unique Post Title',
             'post_title.max'=>'Post Title Less Then 150 Character',
