@@ -20,7 +20,7 @@
                             <th scope="col" class="text-center">Show on Menu</th>
                             <th scope="col" class="text-center">Show on Home</th>
                             <th scope="col" class="text-center">Menu Order</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,10 +28,10 @@
                             @foreach($subcagagorys as $row)
                             <tr>
                             <th scope="row">{{ $row->rCaregory->category_name }}</th>
-                            <td>{{ $row->sub_category_name }}</td>
-                            <td>{{ $row->show_on_menu }}</td>
-                            <td>{{ $row->show_on_home }}</td>
-                            <td>{{ $row->sub_catagory_order }}</td>
+                            <td class="text-center">{{ $row->sub_category_name }}</td>
+                            <td class="text-center">{{ $row->show_on_menu }}</td>
+                            <td class="text-center">{{ $row->show_on_home }}</td>
+                            <td class="text-center">{{ $row->sub_catagory_order }}</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -109,16 +109,16 @@
                                 <th scope="col" class="text-center">Sub Category Name</th>
                                 <th scope="col" class="text-center">Show on Menu</th>
                                 <th scope="col" class="text-center">Menu Order</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="text-right">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($trachCat as $row)
                                 <tr>
                                 <th scope="row">{{ $row->rCaregory->category_name }}</th>    
-                                <td>{{ $row->sub_category_name }}</td>
-                                <td>{{ $row->show_on_menu }}</td>
-                                <td>{{ $row->sub_catagory_order }}</td>
+                                <td class="text-center">{{ $row->sub_category_name }}</td>
+                                <td class="text-center">{{ $row->show_on_menu }}</td>
+                                <td class="text-center">{{ $row->sub_catagory_order }}</td>
                                 <td class="text-right">
                                     <div class="dropdown show d-inline-block widget-dropdown">
                                         <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>

@@ -23,8 +23,7 @@ class CreatePostsTable extends Migration
             $table->string('post_photo')->nullable();
             $table->string('user_name')->nullable();
             $table->integer('admin_id')->nullable();
-            $table->integer('is_share')->nullable();
-            $table->integer('is_comment')->nullable();
+            $table->integer('active')->nullable();
             $table->timestamps();
             $table->SoftDeletes();
         });

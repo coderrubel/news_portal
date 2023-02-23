@@ -42,16 +42,11 @@ tinymce.init({
                                      <option value="1" @if($post->visitors == 1) selected @endif>Yes</option>
                                      <option value="0" @if($post->visitors == 0) selected @endif>No</option>
                                     </select> -->
-                                    <label for="addcategory" class="form-label d-block mt-2 mb-0">Post Share</label>
-                                    <select name="is_share" class="form-control rounded" >
-                                     <option value="1" @if($post->is_share == 1) selected @endif>Yes</option>
-                                     <option value="0" @if($post->is_share == 0) selected @endif>No</option>
+                                    <label for="addcategory" class="form-label d-block mt-2 mb-0">Post Status</label>
+                                    <select name="active" class="form-control rounded" >
+                                     <option value="1" @if($post->active == 1) selected @endif>Active</option>
+                                     <option value="0" @if($post->active == 0) selected @endif>Inactive</option>
                                     </select>
-                                    <label for="addcategory" class="form-label d-block mt-2 mb-0">Post Comment Show</label>
-                                    <select name="is_comment" class="form-control rounded">
-                                     <option value="1" @if($post->is_comment == 1) selected @endif>Yes</option>
-                                     <option value="0" @if($post->is_comment == 0) selected @endif>No</option>
-                                     </select>
                                     <!-- post image -->
                                     <label for="post_photo" class="form-label d-block mt-2 mb-0">Post Image</label>
                                     @error('image')<p class="text-danger">{{ $message }}</p>@enderror    

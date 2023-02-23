@@ -22,7 +22,7 @@
                             <th scope="col" class="text-center">Menu Order</th>
                             <th scope="col" class="text-center">Created By</th>
                             <th scope="col" class="text-center">Created At</th>
-                            <th scope="col">Action</th>
+                            <th scope="col" class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,11 +30,11 @@
                             @foreach($categories as $category)
                             <tr>
                             <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
-                            <td>{{ $category->category_name }}</td>
-                            <td>{{ $category->show_on_menu }}</td>
-                            <td>{{ $category->catagory_order }}</td>
-                            <td>{{ $category->user->name }}</td>
-                            <td>
+                            <td class="text-center">{{ $category->category_name }}</td>
+                            <td class="text-center">{{ $category->show_on_menu }}</td>
+                            <td class="text-center">{{ $category->catagory_order }}</td>
+                            <td class="text-center">{{ $category->user->name }}</td>
+                            <td class="text-center">
                                 @if($category->created_at == NULL)
                                     <span class="text-danger">No Date Set</span>
                                 @else 
@@ -113,10 +113,10 @@
                                 @foreach($trachCat as $trach)
                                 <tr>
                                     <td>{{ $trach->category_name }}</td>
-                                    <td>{{ $trach->show_on_menu }}</td>
-                                    <td>{{ $trach->catagory_order }}</td>
-                                    <td>{{ $trach->user->name }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $trach->show_on_menu }}</td>
+                                    <td class="text-center">{{ $trach->catagory_order }}</td>
+                                    <td class="text-center">{{ $trach->user->name }}</td>
+                                    <td class="text-center">
                                         @if($trach->created_at == NULL)
                                             <span class="text-danger">No Date Set</span>
                                         @else 

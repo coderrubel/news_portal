@@ -22,16 +22,14 @@ tinymce.init({
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">SL No</th>
-                                <th scope="col" class="text-center">Catagory</th>
-                                <th scope="col" class="text-center">Post Title</th>
-                                <th scope="col" class="text-center">Post Image</th>
-                                <th scope="col" class="text-center">Author</th>
-                                <!-- <th scope="col">Post Details</th> -->
-                                <th scope="col" class="text-center">Visitors</th>
-                                <!-- <th scope="col">Share</th> -->
-                                <!-- <th scope="col">Comment</th> -->
-                                <th scope="col" class="text-center">Create At</th>
+                                <th scope="col">Serial</th>
+                                <th class="text-center">Catagory</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Author</th>
+                                <th class="text-center">Visitors</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Create At</th>
                                 <th scope="col" class="text-right">Action</th>
                             </tr>
                         </thead>
@@ -43,17 +41,16 @@ tinymce.init({
                                 <td>{{ $row->post_title }}</td>
                                 <!-- <td>{{ $row->post_detail }}</td> -->
                                 <td><img src="{{ asset($row->post_photo) }}" style="height:40px; width:70px;"></td>
-                                <td>{{ $row->user_name }}</td>
-                                <td>@if($row->visitors == NULL) 0 @else {{ $row->visitors }} @endif</td>
-                                <td>
+                                <td class="text-center">{{ $row->user_name }}</td>
+                                <td class="text-center">@if($row->visitors == NULL) 0 @else {{ $row->visitors }} @endif</td>
+                                <td class="text-center">@if($row->active == NULL) Inactive @else Active @endif</td>
+                                <td class="text-center">
                                 @if($row->created_at == NULL)
                                     <span class="text-danger">No Date Set</span>
                                 @else 
                                     {{ $row->created_at->diffForHumans() }}
                                 @endif
                                 </td>
-                                <!-- <td>@if($row->is_share == 1) Yes @else No @endif</td> -->
-                                <!-- <td> @if($row->is_comment == 1) Yes @else No @endif</td> -->
                                 <td class="text-right">
                                     <div class="dropdown show d-inline-block widget-dropdown">
                                         <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -105,30 +102,12 @@ tinymce.init({
                                 <label for="post_photo" class="form-label mt-2 mb-1">Post Image *</label>
                                 @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
-                                 <!-- visitors -->
-                                <!-- <label for="addcategory" class="form-label d-block">Post Visitors Show</label>
-                                <select name="visitors" class="form-control rounded mt-2">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select> -->
-                                <!-- Share -->
-                                <label for="addcategory" class="form-label d-block">Post Share Show</label>
-                                <select name="is_share" class="form-control rounded mt-2">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
+                                 <!-- Active -->
+                                <label class="form-label d-block">Post Status</label>
+                                <select name="active" class="form-control rounded mt-2">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
                                 </select>
-                                <!-- comment -->
-                                <label for="addcategory" class="form-label d-block mt-2 mb-1">Post Comment Show</label>
-                                <select name="is_comment" class="form-control rounded mt-2">
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                                <!-- Tags -->
-                                <!-- <label for="postdetaile" class="form-label">Post Tags</label>
-                                @error('post_tag')<p class="text-danger">{{ $message }}</p>@enderror    
-                                <input type="text" name="post_tags" class="form-control rounded mb-2" id="postdetails" placeholder="Post Tags"> -->
-                                
-                                
                                 <button type="submit" class="btn btn-primary mt-2">Add Post</button>
                             </div>
                         </form>  
@@ -146,15 +125,12 @@ tinymce.init({
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">SL No</th>
-                                    <th scope="col">Catagory</th>
-                                    <th scope="col">Post Title</th>
-                                    <th scope="col">Author</th>
-                                    <!-- <th scope="col">Post Details</th> -->
-                                    <th scope="col">Visitors</th>
-                                    <!-- <th scope="col">Share</th> -->
-                                    <!-- <th scope="col">Comment</th> -->
-                                    <th scope="col">Create At</th>
+                                    <th scope="col">Serial</th>
+                                    <th class="text-center">Catagory</th>
+                                    <th class="text-center">Post Title</th>
+                                    <th class="text-center">Author</th>
+                                    <th class="text-center">Visitors</th>
+                                    <th class="text-center">Create At</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -162,19 +138,17 @@ tinymce.init({
                                 @foreach($trachCat as $row)
                                 <tr>
                                     <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
-                                    <td>{{ $row->rCaregory->sub_category_name }}</td>
-                                    <td>{{ $row->post_title }}</td>
-                                    <td>{{ $row->user_name }}</td>
-                                    <td>{{ $row->visitors }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $row->rCaregory->sub_category_name }}</td>
+                                    <td class="text-center">{{ $row->post_title }}</td>
+                                    <td class="text-center">{{ $row->user_name }}</td>
+                                    <td class="text-center">{{ $row->visitors }}</td>
+                                    <td class="text-center">
                                     @if($row->created_at == NULL)
                                         <span class="text-danger">No Date Set</span>
                                     @else 
                                         {{ $row->created_at->diffForHumans() }}
                                     @endif
                                     </td>
-                                    <!-- <td>{{ $row->is_share }}</td> -->
-                                    <!-- <td>{{ $row->is_comment }}</td> -->
                                     <td class="text-right">
                                         <div class="dropdown show d-inline-block widget-dropdown">
                                             <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>

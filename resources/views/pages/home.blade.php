@@ -1,5 +1,5 @@
 <x-header/>
-@if($setting)
+    @if($setting)
         @if($setting->news_ticker_status == 'Show')
         <div class="news-ticker-item">
             <div class="container">
@@ -25,9 +25,9 @@
             </div>
         </div>
         @else
-        <div class="mt-3"></div>
+        <div class="mb-3"></div>
         @endif
-        @endif
+    @endif
         <div class="home-main">
             <div class="container">
                 <div class="row g-2">
@@ -173,7 +173,7 @@
                                 $subpost = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
                                             ->join('categories','categories.id','=','posts.category_id')
                                             ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
-                                            ->select('posts.id','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                            ->select('posts.id','posts.active','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                             ->get();
                                 @endphp
                                 <div class="row">
@@ -181,6 +181,7 @@
                                         @php $i=0; @endphp 
                                         @foreach($subpost  as $post)
                                         @php $i++; @endphp
+                                        @if($post->active == 1)
                                         @if($i == 1)
                                         <div class="left-side">
                                             <div class="photo">
@@ -205,6 +206,7 @@
                                             <p>{!! $post->post_detail??'' !!}</p>
                                         </div>
                                         @endif
+                                        @endif
                                         @endforeach
                                     </div>
                                     <div class="col-lg-6 col-md-12">
@@ -213,10 +215,11 @@
                                             $subposts = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
                                                         ->join('categories','categories.id','=','posts.category_id')
                                                         ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
-                                                        ->select('posts.id','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                                        ->select('posts.id','posts.active','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                                         ->skip(1)->take(4)->get();
                                             @endphp
                                             @foreach($subposts  as $post)
+                                            @if($post->active == 1)
                                             <div class="right-side-item">
                                                 <div class="left">
                                                     <img src="{{ asset($post->post_photo??'') }}" alt="">
@@ -239,6 +242,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            @endif
                                             @endforeach
                                         </div>
                                     </div>
