@@ -43,30 +43,5 @@
                         </table>
                     </div>
                 </div>
-                <!-- Add Brand
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card card-header">Add Slider </div>
-                        <div class="card card-body">
-                            <form action="{{ route('store.brand')}}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="my-2">
-                                    <label for="addcategory" class="form-label">Slider Name</label>
-                                    @error('brand_name')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror    
-                                    <input type="text" name="brand_name" class="form-control rounded" id="addcategory" placeholder="Brand Name">
-                                    <label for="addimg" class="form-label">Brand Image</label>
-                                    @error('brand_image')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror    
-                                    <input type="file" name="brand_image" class="form-control rounded" id="addimg">
-                                    <button type="submit" class="btn btn-primary mt-2">Add Brand</button>
-                                </div>
-                            </form>  
-                        </div>
-                    </div>
-                </div>
-                 -->
             </div>
 @endsection

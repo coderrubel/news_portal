@@ -125,6 +125,11 @@ Route::get('/setting',[SettingController::class,'Setting'])->name('setting');
 Route::post('/setting/add',[SettingController::class,'AddSetting'])->name('store.news'); 
 Route::get('/setting/edit/{id}',[SettingController::class,'EditSetting']);
 Route::post('/setting/update/{id}',[SettingController::class,'Update']);
+// All Users
+Route::get('/user/list',[SettingController::class,'allUsers'])->name('user.list');
+Route::get('/user/edit/{id}',[SettingController::class,'userEdit']);
+Route::post('/user/update/{id}',[SettingController::class,'userUpdate']);
+Route::get('/user/delete/{id}',[SettingController::class,'userDelete']);
 
 // Home Controller
 // Slider

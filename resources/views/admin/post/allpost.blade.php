@@ -8,7 +8,11 @@ tinymce.init({
     selector: '#mytextarea'
 });
 </script>
-        <!-- All Category Section -->
+@php
+$auth = Auth::user()->id;
+$rolls = DB::table('users')->select('users.type','users.id')->where('users.id', $auth)->first();
+@endphp
+        <!-- All post Section -->
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -18,7 +22,7 @@ tinymce.init({
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
-                    <div class="d-flex justify-content-between card-header"><span>All Post</span> <span>Total Post: {{ count($post)}}</span></div>
+                    <div class="d-flex justify-content-between card-header"><span>All Post</span> @if($rolls->type == 1 || $rolls->type == 2)<span>Total Post: {{ count($post)}}</span>@endif</div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -28,13 +32,16 @@ tinymce.init({
                                 <th class="text-center">Image</th>
                                 <th class="text-center">Author</th>
                                 <th class="text-center">Visitors</th>
+                                @if($rolls->type == 1 || $rolls->type == 2)
                                 <th class="text-center">Status</th>
+                                @endif
                                 <th class="text-center">Create At</th>
                                 <th scope="col" class="text-right">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($post as $row)
+                            @if($row->admin_id == $auth || $rolls->type == 1 || $rolls->type == 2)
                             <tr>
                                 <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
                                 <td>{{ $row->rCaregory->sub_category_name }}</td>
@@ -43,7 +50,9 @@ tinymce.init({
                                 <td><img src="{{ asset($row->post_photo) }}" style="height:40px; width:70px;"></td>
                                 <td class="text-center">{{ $row->user_name }}</td>
                                 <td class="text-center">@if($row->visitors == NULL) 0 @else {{ $row->visitors }} @endif</td>
+                                @if($rolls->type == 1 || $rolls->type == 2)
                                 <td class="text-center">@if($row->active == NULL) Inactive @else Active @endif</td>
+                                @endif
                                 <td class="text-center">
                                 @if($row->created_at == NULL)
                                     <span class="text-danger">No Date Set</span>
@@ -65,6 +74,7 @@ tinymce.init({
                                     </div>
                                 </td>
                             </tr>
+                            @endif
                             @endforeach
                         </tbody>
                     </table>
@@ -102,12 +112,14 @@ tinymce.init({
                                 <label for="post_photo" class="form-label mt-2 mb-1">Post Image *</label>
                                 @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
-                                 <!-- Active -->
+                                <!-- Post status -->
+                                @if($rolls->type == 1 || $rolls->type == 2)
                                 <label class="form-label d-block">Post Status</label>
                                 <select name="active" class="form-control rounded mt-2">
                                     <option value="1">Active</option>
                                     <option value="0">Inactive</option>
                                 </select>
+                                @endif
                                 <button type="submit" class="btn btn-primary mt-2">Add Post</button>
                             </div>
                         </form>  

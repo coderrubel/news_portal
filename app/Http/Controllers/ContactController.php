@@ -19,10 +19,10 @@ class ContactController extends Controller
     // Contact Form
     public function ContactForm(Request $request){
         $validateDate = $request->validate([
-            'name' => 'required|max:25|min:4',
-            'email' => 'required|max:35|min:8',
+            'name' => 'required|max:25',
+            'email' => 'required|email',
             'subject' => 'required|max:45|min:4',
-            'message' => 'required|max:415|min:4',
+            'message' => 'required|min:4',
         ]);
         ContactForm::insert([
             'name' => $request->name,

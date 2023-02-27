@@ -63,6 +63,7 @@ class PostController extends Controller
             'post_title' => $request->post_title,
             'post_photo' => $last_img,
             'user_name' => Auth::user()->name,
+            'admin_id' => Auth::user()->id,
             'post_detail' => $request->post_detail,
             'visitors' => $request->visitors,
             'active' => $request->active,

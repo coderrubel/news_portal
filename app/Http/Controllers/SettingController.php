@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -42,11 +43,7 @@ class SettingController extends Controller
     }
     // Edit Setting
     public function EditSetting($id){
-        // Data update use Eloquent ORM & Models
         $setting = Setting::find($id);
-        // Data update use Query Builder
-        // $categories = DB::table('categories')->where('id',$id)->first();
-        // return view('admin.news.edit');
        return view('admin.news.edit',compact('setting'));
     }
 
@@ -69,6 +66,27 @@ class SettingController extends Controller
         return Redirect()->route('setting')->with('success','Update Setting Successfully');
     }
 
-
+    // All User
+    public function allUsers(){
+        $users = User::get();
+        return view('admin.users.index',compact('users'));
+    }
+    // Edit User
+    public function userEdit($id){
+        $users = User::find($id);
+       return view('admin.users.edit',compact('users'));
+    }
+    // Update User
+    public function userUpdate(Request $request, $id){
+        $update = User::find($id)->update([
+            'type'=> $request->type,
+        ]);
+        return Redirect()->route('user.list')->with('success','User Permission Updated Successfully');
+    }
+    // Delete User
+    public function userDelete($id){
+        $delete = User::find($id)->delete();
+        return Redirect()->back()->with('success','User Delete Successfully');
+    }
 
    }

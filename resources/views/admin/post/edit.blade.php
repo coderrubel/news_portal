@@ -36,17 +36,18 @@ tinymce.init({
                                     @endforeach
                                     <input type="hidden" id="category_id" name="category_id" value="">
                                     </select>  
-                                    <!-- Post Visitors -->
-                                    <!-- <label for="addcategory" class="form-label d-block mt-2 mb-0">Post View Show</label>
-                                    <select name="visitors" class="form-control rounded">
-                                     <option value="1" @if($post->visitors == 1) selected @endif>Yes</option>
-                                     <option value="0" @if($post->visitors == 0) selected @endif>No</option>
-                                    </select> -->
+                                    <!-- Post Status -->
+                                    @php
+                                    $auth = Auth::user()->id;
+                                    $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', $auth)->first();
+                                    @endphp
+                                    @if($rolls->type == 1 || $rolls->type == 2)
                                     <label for="addcategory" class="form-label d-block mt-2 mb-0">Post Status</label>
                                     <select name="active" class="form-control rounded" >
                                      <option value="1" @if($post->active == 1) selected @endif>Active</option>
                                      <option value="0" @if($post->active == 0) selected @endif>Inactive</option>
                                     </select>
+                                    @endif
                                     <!-- post image -->
                                     <label for="post_photo" class="form-label d-block mt-2 mb-0">Post Image</label>
                                     @error('image')<p class="text-danger">{{ $message }}</p>@enderror    

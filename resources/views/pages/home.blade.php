@@ -27,6 +27,8 @@
         @else
         <div class="mb-3"></div>
         @endif
+    @else
+    <div class="mb-3"></div>
     @endif
         <div class="home-main">
             <div class="container">
