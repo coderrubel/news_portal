@@ -70,6 +70,7 @@ Route::get('/post/restore/{id}',[PostController::class,'Restore']);
 Route::get('/post/pdelete/{id}',[PostController::class,'PDelete']);
 
 // Category Controller
+Route::middleware(['admin'])->group(function () {
 Route::get('/category/all',[CategoryController::class,'AallCategory'])->name('all.category');
 Route::post('/category/add',[CategoryController::class,'AddCategory'])->name('store.category'); 
 Route::get('/category/edit/{id}',[CategoryController::class,'EditCategory']);
@@ -130,7 +131,7 @@ Route::get('/user/list',[SettingController::class,'allUsers'])->name('user.list'
 Route::get('/user/edit/{id}',[SettingController::class,'userEdit']);
 Route::post('/user/update/{id}',[SettingController::class,'userUpdate']);
 Route::get('/user/delete/{id}',[SettingController::class,'userDelete']);
-
+});
 // Home Controller
 // Slider
 Route::get('/home/slider',[HomeController::class,'HomeSlider'])->name('home.slider'); 
