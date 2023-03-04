@@ -97,24 +97,6 @@
                       </div>
                     </ul>
                   </li>
-                  <!-- Setting -->
-                  <li  class="{{ Request::is('setting') ? 'active expand' : 'has-sub' }}" >
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
-                      aria-expanded="false" aria-controls="dashboard">
-                      <i class="mdi mdi mdi-settings"></i>
-                      <span class="nav-text">Setting</span> <b class="caret"></b>
-                    </a>
-                    <!-- <ul  class="collapse show"  id="dashboard" data-parent="#sidebar-menu"> -->
-                    <ul  class="{{ Request::is('setting') ? 'collapsec sow' : 'collapse'}}"  id="dashboard" data-parent="#sidebar-menu">
-                      <div class="sub-menu"> 
-                        <li  class="{{ Request::is('setting') ? 'active' : ''}}">
-                          <a class="sidenav-item-link" href="{{ route('setting')}}">
-                            <span class="nav-text">Latest Posts</span>
-                          </a>
-                        </li>
-                      </div>
-                    </ul>
-                  </li>
                   <!-- Pages -->
                   <li  class="{{ Request::is('home/about') || Request::is('home/slider')  ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
@@ -193,6 +175,28 @@
                         <li  class="{{ Request::is('admin/message') ? 'active' : 'has-sub'}}" >
                           <a class="sidenav-item-link" href="{{ route('admin.message')}}">
                             <span class="nav-text">Contact Message</span> 
+                          </a>
+                        </li>
+                      </div>
+                    </ul>
+                  </li>
+                  <!-- Setting -->
+                  <li  class="{{ Request::is('setting') || Request::is('logo/all') ? 'active expand' : 'has-sub' }}" >
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
+                      aria-expanded="false" aria-controls="dashboard">
+                      <i class="mdi mdi mdi-settings"></i>
+                      <span class="nav-text">Setting</span> <b class="caret"></b>
+                    </a>
+                    <ul  class="{{ Request::is('setting') || Request::is('logo/all') ? 'collapsec sow' : 'collapse'}}"  id="dashboard" data-parent="#sidebar-menu">
+                      <div class="sub-menu"> 
+                        <li  class="{{ Request::is('logo/all') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('all.logo')}}">
+                            <span class="nav-text">Logo</span>
+                          </a>
+                        </li>
+                        <li  class="{{ Request::is('setting') ? 'active' : ''}}">
+                          <a class="sidenav-item-link" href="{{ route('setting')}}">
+                            <span class="nav-text">Latest Posts</span>
                           </a>
                         </li>
                       </div>

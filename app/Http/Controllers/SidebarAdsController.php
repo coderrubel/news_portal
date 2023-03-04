@@ -32,7 +32,7 @@ class SidebarAdsController extends Controller
      $name_genarate = hexdec(uniqid());
      $img_ext = strtolower($ads_image->getClientOriginalExtension());
      $img_name = $name_genarate.'.'.$img_ext;
-     $up_location = 'image/brand/';
+     $up_location = 'image/Ads/';
      $last_img = $up_location.$img_name;
      $ads_image->move($up_location,$img_name);
  
@@ -67,7 +67,7 @@ class SidebarAdsController extends Controller
          $name_genarate = hexdec(uniqid());
          $img_ext = strtolower($ads_image->getClientOriginalExtension());
          $img_name = $name_genarate.'.'.$img_ext;
-         $up_location = 'image/brand/';
+         $up_location = 'image/Ads/';
          $last_img = $up_location.$img_name;
          $ads_image->move($up_location,$img_name);
  

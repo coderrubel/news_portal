@@ -86,13 +86,19 @@
         <div class="heading-area">
             <div class="container">
                 <div class="row">
+                    @php
+                    $logos = DB::table('logos')->orderBy('id','DESC')->first();
+                    @endphp
+                    @if(!empty($logos->image))
                     <div class="col-md-4 d-flex align-items-center">
                         <div class="logo">
                             <a href="{{url('/')}}">
-                                <img src="{{asset('fontend/uploads/logo.png')}}" alt="">
+                                <img src="{{asset($logos->image ?? '')}}" alt="{{ $logos->name??''}}">
                             </a>
                         </div>
                     </div>
+                    @endif
+
                     @php
                     $header = DB::table('header_ads')->orderBy('id','DESC')->first();
                     @endphp
