@@ -71,9 +71,8 @@
                             <li>
                                 <div class="language-switch">
                                     <select name="">
+                                        <option value="">Bangla</option>
                                         <option value="">English</option>
-                                        <option value="">Hindi</option>
-                                        <option value="">Arabic</option>
                                     </select>
                                 </div>
                             </li>
