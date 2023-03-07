@@ -21,7 +21,7 @@ class Admin
 
         $auth = Auth::user()->id;
         $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', $auth)->first();
-        if(!$rolls->type == 1){
+        if(!$rolls->type == 'admin'){
             return redirect('login');
         }
         return $next($request);

@@ -16,7 +16,7 @@ class Post extends Model
         'post_title',
         'post_photo',
         'post_detail',
-        'active',
+        'status',
         'visitors'
     ];
 

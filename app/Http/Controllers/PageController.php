@@ -22,9 +22,9 @@ class PageController extends Controller
         $sidebar = SidebarAds::latest()->first();
         $sidebar1 = SidebarAds1::latest()->first();
         $brands = Brand::latest()->first();
-        $post = Post::latest()->where('active','1')->get();
-        $new_post_details = Post::latest('id', 'desc')->where('active','1')->get();
-        $popular_post = Post::latest('visitors', 'desc')->where('active','1')->get();
+        $post = Post::latest()->where('status','active')->get();
+        $new_post_details = Post::latest('id', 'desc')->where('status','active')->get();
+        $popular_post = Post::latest('visitors', 'desc')->where('status','active')->get();
         // $sub_catagory_data = SubCatagory::with('rCaregory')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
         $categories  = Category::where('show_on_menu','Show')->get();
         return view('pages.home',compact('setting','brands','header1','sidebar','sidebar1','post','new_post_details','popular_post','categories'));

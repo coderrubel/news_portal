@@ -36,15 +36,6 @@
                                         <option value="Show" @if($subcagagorys->show_on_menu == 'Show') Selected @endif >Show</option>
                                         <option value="Hide" @if($subcagagorys->show_on_menu == 'Hide') Selected @endif >Hide</option>
                                     </select>
-
-                                    <label for="addcategory" class="form-label mt-2 mb-0">Show On Home</label>
-                                    @error('show_on_home')
-                                        <p class="text-danger">{{ $message }}</p>
-                                    @enderror  
-                                    <select name="show_on_home" class="form-control rounded mt-2" value="{{ $subcagagorys->show_on_home }}">
-                                        <option value="Show" @if($subcagagorys->show_on_home == 'Show') Selected @endif >Show</option>
-                                        <option value="Hide" @if($subcagagorys->show_on_home == 'Hide') Selected @endif >Hide</option>
-                                    </select>
                                     <button type="submit" class="btn btn-primary mt-2">Update Sub Category</button>
                                 </div>
                             </form>  

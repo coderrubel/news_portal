@@ -18,7 +18,6 @@
                             <th scope="col">Category Name</th>
                             <th scope="col" class="text-center">Sub Category Name</th>
                             <th scope="col" class="text-center">Show on Menu</th>
-                            <th scope="col" class="text-center">Show on Home</th>
                             <th scope="col" class="text-center">Menu Order</th>
                             <th scope="col" class="text-right">Action</th>
                             </tr>
@@ -30,7 +29,6 @@
                             <th scope="row">{{ $row->rCaregory->category_name }}</th>
                             <td class="text-center">{{ $row->sub_category_name }}</td>
                             <td class="text-center">{{ $row->show_on_menu }}</td>
-                            <td class="text-center">{{ $row->show_on_home }}</td>
                             <td class="text-center">{{ $row->sub_catagory_order }}</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
@@ -82,13 +80,6 @@
                                     <option value="Show">Show</option>
                                     <option value="Hide">Hide</option>
                                 </select>
-                                
-                                <label for="addcategory" class="form-label d-block">Show on Home</label>
-                                <select name="show_on_home" class="form-control rounded mt-2">
-                                    <option value="Show">Show</option>
-                                    <option value="Hide">Hide</option>
-                                </select>
-                                
                                 <button type="submit" class="btn btn-primary mt-2">Add Sub Category</button>
                             </div>
                         </form>  

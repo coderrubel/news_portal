@@ -13,7 +13,6 @@ class SubCatagory extends Model
         'category_id',
         'sub_category_name',
         'show_on_menu',
-        'show_on_home',
         'sub_catagory_order',
     ];
 
