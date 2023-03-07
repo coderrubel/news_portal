@@ -17,9 +17,9 @@
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror  
                                     <select name="type" class="form-control rounded mt-2" value="{{ $users->type }}">
-                                        <option value="" @if($users->type == '') Selected @endif >User</option>
-                                        <option value="2" @if($users->type == '2') Selected @endif >Mentor</option>
-                                        <option value="1" @if($users->type == '1') Selected @endif >Admin</option>
+                                        <option value="user" @if($users->type == 'user') Selected @endif >User</option>
+                                        <option value="mentor" @if($users->type == 'mentor') Selected @endif >Mentor</option>
+                                        <option value="admin" @if($users->type == 'admin') Selected @endif >Admin</option>
                                     </select>
 
                                     <button type="submit" class="btn btn-primary mt-2">Update User Permission</button>

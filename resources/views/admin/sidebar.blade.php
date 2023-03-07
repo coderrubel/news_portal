@@ -33,7 +33,7 @@
                   $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', $auth)->first();
                   @endphp
                   <!-- Mentor -->
-                  @if($rolls->type == 2)
+                  @if($rolls->type == 'mentor')
                   <!-- Category -->
                   <li  class="{{ Request::is('category/all') || Request::is('subcategory/all') ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"  aria-expanded="false" aria-controls="charts">
@@ -73,7 +73,7 @@
                     </ul>
                   </li>
                   <!-- Admin -->
-                  @if($rolls->type == 1)
+                  @if($rolls->type == 'admin')
                   <!-- Category -->
                   <li  class="{{ Request::is('category/all') || Request::is('subcategory/all') ? 'active expand' : 'has-sub'}}" >
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"

@@ -22,7 +22,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
-                    <div class="d-flex justify-content-between card-header"><span>All Post</span> @if($rolls->type == 1 || $rolls->type == 2)<span>Total Post: {{ count($post)}}</span>@endif</div>
+                    <div class="d-flex justify-content-between card-header"><span>All Post</span> @if($rolls->type == 'admin' || $rolls->type == 'mentor')<span>Total Post: {{ count($post)}}</span>@endif</div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -32,7 +32,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                 <th class="text-center">Image</th>
                                 <th class="text-center">Author</th>
                                 <th class="text-center">Visitors</th>
-                                @if($rolls->type == 1 || $rolls->type == 2)
+                                @if($rolls->type == 'admin' || $rolls->type == 'mentor')
                                 <th class="text-center">Status</th>
                                 @endif
                                 <th class="text-center">Create At</th>
@@ -41,7 +41,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                         </thead>
                         <tbody>
                             @foreach($post as $row)
-                            @if($row->admin_id == $auth || $rolls->type == 1 || $rolls->type == 2)
+                            @if($row->admin_id == $auth || $rolls->type == 'admin' || $rolls->type == 'mentor')
                             <tr>
                                 <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
                                 <td>{{ $row->rCaregory->sub_category_name }}</td>
@@ -50,8 +50,8 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                 <td><img src="{{ asset($row->post_photo) }}" style="height:40px; width:70px;"></td>
                                 <td class="text-center">{{ $row->user_name }}</td>
                                 <td class="text-center">@if($row->visitors == NULL) 0 @else {{ $row->visitors }} @endif</td>
-                                @if($rolls->type == 1 || $rolls->type == 2)
-                                <td class="text-center">@if($row->active == NULL) Inactive @else Active @endif</td>
+                                @if($rolls->type == 'admin' || $rolls->type == 'mentor')
+                                <td class="text-center">@if($row->status == 'inactive') Inactive @else Active @endif</td>
                                 @endif
                                 <td class="text-center">
                                 @if($row->created_at == NULL)
@@ -113,11 +113,15 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                 @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
                                 <!-- Post status -->
-                                @if($rolls->type == 1 || $rolls->type == 2)
+                                @if($rolls->type == 'admin' || $rolls->type == 'mentor')
                                 <label class="form-label d-block">Post Status</label>
-                                <select name="active" class="form-control rounded mt-2">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactive</option>
+                                <select name="status" class="form-control rounded mt-2">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                                @else($rolls->type == 'user')
+                                <select name="status" class="form-control rounded mt-2" hidden>
+                                    <option value="inactive">Inactive</option>
                                 </select>
                                 @endif
                                 <button type="submit" class="btn btn-primary mt-2">Add Post</button>

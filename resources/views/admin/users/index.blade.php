@@ -25,7 +25,7 @@
                             <td class="text-center">{{$i++}}</td>
                             <td class="text-center">{{$user->name }}</td>
                             <td class="text-center">{{$user->email }}</td>
-                            <td class="text-center">@if($user->type == 1) Admin @elseif($user->type == 2) Mentor @else User @endif</td>
+                            <td class="text-center">@if($user->type == 'admin') Admin @elseif($user->type == 'mentor') Mentor @else User @endif</td>
                             <td class="text-center">
                                 <a href="{{ url('/user/edit/'.$user->id) }}" class="btn btn-sm btn-info">Edit</a>
                                 <a href="{{ url('/user/delete/'.$user->id) }}" class="btn btn-sm btn-danger disabled" onclick="return confirm('Are you sure to delete')">Delete</a>

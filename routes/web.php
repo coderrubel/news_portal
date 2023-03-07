@@ -64,14 +64,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 // Post Controller
 Route::get('/post/all',[PostController::class,'AllPost'])->name('all.post');
 Route::post('/post/add',[PostController::class,'AddPost'])->name('store.post'); 
-// admin middleware
-
 Route::get('/post/edit/{id}',[PostController::class,'EditPost']);
 Route::post('/post/update/{id}',[PostController::class,'UpdatePost']);
 Route::get('/softdelete/post/{id}',[PostController::class,'SoftDelete']);
 Route::get('/post/restore/{id}',[PostController::class,'Restore']);
 Route::get('/post/pdelete/{id}',[PostController::class,'PDelete']);
 
+// admin middleware
 Route::middleware(['admin'])->group(function () {
 // Category Controller
 Route::get('/category/all',[CategoryController::class,'AallCategory'])->name('all.category');

@@ -66,7 +66,7 @@ class PostController extends Controller
             'admin_id' => Auth::user()->id,
             'post_detail' => $request->post_detail,
             'visitors' => $request->visitors,
-            'active' => $request->active,
+            'status' => $request->status,
             'created_at' => Carbon::now()
         ]);
 
@@ -126,7 +126,7 @@ class PostController extends Controller
                 'post_title' => $request->post_title,
                 'post_detail' => $request->post_detail,
                 'post_photo' => $last_img,         
-                'active' => $request->active,
+                'status' => $request->status,
                 'visitors' => $request->visitors,
             ]);
             }
@@ -144,7 +144,7 @@ class PostController extends Controller
                     'post_title' => $request->post_title,
                     'post_detail' => $request->post_detail,
                     'post_photo' => $last_img,
-                    'active' => $request->active,
+                    'status' => $request->status,
                     'visitors' => $request->visitors,
                 ]);
             }
@@ -157,7 +157,7 @@ class PostController extends Controller
                 'sub_category_id'=> $request->sub_category_id,
                 'post_title' => $request->post_title,
                 'post_detail' => $request->post_detail,
-                'active' => $request->active,
+                'status' => $request->status,
                 'visitors' => $request->visitors,
             ]);
             return Redirect()->route('all.post')->with('success','Update Post Successfully');
