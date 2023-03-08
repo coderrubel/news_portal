@@ -18,17 +18,21 @@ class PostController extends Controller
     }
 
     public function AllPost(){
-        // Eloquent ORM
         $post = Post::latest()->paginate(15);
+        $activePost = Post::latest()->where('status','active')->paginate(15);
+        $inactivePost = Post::latest()->where('status','inactive')->paginate(15);
         $catagory = Category::orderBy('catagory_order','asc')->get();
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
         $trachCat =  Post::onlyTrashed()->latest()->paginate(15);
-        return view('admin.post.allpost',compact('post','catagory','subcagagorys','trachCat'));
+        return view('admin.post.allpost',compact('post','activePost','inactivePost','catagory','subcagagorys','trachCat'));
     }
-
+    public function storePost(){
+        $catagory = Category::orderBy('catagory_order','asc')->get();
+        $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
+        return view('admin.post.addpost',compact('catagory','subcagagorys'));
+    }
     // Add Post
     public function AddPost(Request $request){
-        // form validate
         $validated = $request->validate([
             'category_id' => 'required',
             'sub_category_id' => 'required',
@@ -56,7 +60,6 @@ class PostController extends Controller
         $up_location = 'image/post/';
         $last_img = $up_location.$img_name;
         $post_photo->move($up_location,$img_name);
-        // Data insert use Eloquent ORM & Models
         Post::insert([
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
@@ -70,23 +73,19 @@ class PostController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        return Redirect()->back()->with('success','Create Post Successfully');
+        return Redirect()->route('all.post')->with('success','Create Post Successfully');
 
     }
      // Edit Sub Category
      public function EditPost($id){
-        // Data update use Eloquent ORM & Models
         $post = Post::find($id);
         $catagory = Category::orderBy('catagory_order','asc')->get();
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
-        // Data update use Query Builder
-        // $categories = DB::table('categories')->where('id',$id)->first();
 
         return view('admin.post.edit',compact('post','catagory','subcagagorys'));
     }
     // Update Post
     public function UpdatePost(Request $request, $id){
-        // form validate
         $validated = $request->validate([
             'category_id' => 'required',
             'sub_category_id' => 'required',

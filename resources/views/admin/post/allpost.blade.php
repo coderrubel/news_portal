@@ -12,9 +12,9 @@ tinymce.init({
 $auth = Auth::user()->id;
 $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', $auth)->first();
 @endphp
-        <!-- All post Section -->
+        <!-- All Active Post Section -->
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
                     @if(session('success'))
                         <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
@@ -22,7 +22,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
-                    <div class="d-flex justify-content-between card-header"><span>All Post</span> @if($rolls->type == 'admin' || $rolls->type == 'mentor')<span>Total Post: {{ count($post)}}</span>@endif</div>
+                    <div class="d-flex justify-content-between card-header"><span>All Active Posts</span> @if($rolls->type == 'admin' || $rolls->type == 'mentor')<span>Total Active Posts: {{ count($activePost)}}</span>@endif</div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -40,10 +40,10 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($post as $row)
+                            @foreach($activePost as $row)
                             @if($row->admin_id == $auth || $rolls->type == 'admin' || $rolls->type == 'mentor')
                             <tr>
-                                <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
+                                <th scope="row">{{ $activePost->firstItem()+$loop->index }}</th>
                                 <td>{{ $row->rCaregory->sub_category_name }}</td>
                                 <td>{{ $row->post_title }}</td>
                                 <!-- <td>{{ $row->post_detail }}</td> -->
@@ -80,72 +80,83 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                     </table>
                 </div>
             </div>
-            <!-- Add Category -->
-            <div class="col-md-4">
+        </div>
+        <!-- All Inactive Post Section -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card card-header">Add Post </div>
-                    <div class="card card-body">
-                        <form action="{{ route('store.post')}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="my-2">
-                                <!-- Sub catagory id -->
-                                <label for="addcategory" class="form-label d-block">Select Catagory *</label>
-                                @error('category_id')<p class="text-danger">{{ $message }}</p>@enderror    
-                                @error('sub_category_id')<p class="text-danger">{{ $message }}</p>@enderror  
-                                <select name="sub_category_id" class="form-control rounded mt-2" id="sub_category" onchange="getCategory()">
-                                    <option>Select one</option>
-                                    @foreach($subcagagorys as $item)
-                                    <option value="{{ $item->id }}">{{ $item->sub_category_name }} ({{ $item->rCaregory->category_name}})</option>
-                                    @endforeach
-                                    <input type="hidden" id="category_id" name="category_id" value="">
-                                </select> 
-                                
-                                <!-- Post title -->
-                                <label for="post" class="form-label mt-2 mb-1">Post Title *</label>
-                                @error('post_title')<p class="text-danger">{{ $message }}</p>@enderror    
-                                <input type="text" name="post_title" class="form-control rounded mb-2" id="post" placeholder="Post Title">
-                                 <!-- post deltils -->
-                                <label for="postdetaile" class="form-label mt-2 mb-1">Post Details *</label>
-                                @error('post_detail')<p class="text-danger">{{ $message }}</p>@enderror 
-                                <textarea name="post_detail" id="mytextarea" class="form-control  mb-2" row="15"></textarea>
-                                <!-- post image -->
-                                <label for="post_photo" class="form-label mt-2 mb-1">Post Image *</label>
-                                @error('image')<p class="text-danger">{{ $message }}</p>@enderror    
-                                <input type="file" class="form-control-file form-control mb-2 p-2" id="post_photo" name="post_photo">
-                                <!-- Post status -->
+                    <div class="d-flex justify-content-between card-header"><span>All Inactive Posts</span> @if($rolls->type == 'admin' || $rolls->type == 'mentor')<span>Total Inactive Posts: {{ count($inactivePost)}}</span>@endif</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Serial</th>
+                                <th class="text-center">Catagory</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Author</th>
+                                <th class="text-center">Visitors</th>
                                 @if($rolls->type == 'admin' || $rolls->type == 'mentor')
-                                <label class="form-label d-block">Post Status</label>
-                                <select name="status" class="form-control rounded mt-2">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
-                                @else($rolls->type == 'user')
-                                <select name="status" class="form-control rounded mt-2" hidden>
-                                    <option value="inactive">Inactive</option>
-                                </select>
+                                <th class="text-center">Status</th>
                                 @endif
-                                <button type="submit" class="btn btn-primary mt-2">Add Post</button>
-                            </div>
-                        </form>  
-                    </div>
+                                <th class="text-center">Create At</th>
+                                <th scope="col" class="text-right">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($inactivePost as $row)
+                            @if($row->admin_id == $auth || $rolls->type == 'admin' || $rolls->type == 'mentor')
+                            <tr>
+                                <th scope="row">{{ $inactivePost->firstItem()+$loop->index }}</th>
+                                <td>{{ $row->rCaregory->sub_category_name }}</td>
+                                <td>{{ $row->post_title }}</td>
+                                <!-- <td>{{ $row->post_detail }}</td> -->
+                                <td><img src="{{ asset($row->post_photo) }}" style="height:40px; width:70px;"></td>
+                                <td class="text-center">{{ $row->user_name }}</td>
+                                <td class="text-center">@if($row->visitors == NULL) 0 @else {{ $row->visitors }} @endif</td>
+                                @if($rolls->type == 'admin' || $rolls->type == 'mentor')
+                                <td class="text-center">@if($row->status == 'inactive') Inactive @else Active @endif</td>
+                                @endif
+                                <td class="text-center">
+                                @if($row->created_at == NULL)
+                                    <span class="text-danger">No Date Set</span>
+                                @else 
+                                    {{ $row->created_at->diffForHumans() }}
+                                @endif
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown show d-inline-block widget-dropdown">
+                                        <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('post/edit/'.$row->id) }}">Edit</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('softdelete/post/'.$row->id) }}">Remove</a>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endif
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        
-       
         <!-- SoftDelete Section -->
         <div class="row justify-content-start mt-4">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card card-header">Trasht  Category</div>
+                    <div class="card card-header">Remove Posts</div>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Serial</th>
                                     <th class="text-center">Catagory</th>
                                     <th class="text-center">Post Title</th>
+                                    <th class="text-center">Image</th>
                                     <th class="text-center">Author</th>
-                                    <th class="text-center">Visitors</th>
                                     <th class="text-center">Create At</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -156,8 +167,8 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                     <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
                                     <td class="text-center">{{ $row->rCaregory->sub_category_name }}</td>
                                     <td class="text-center">{{ $row->post_title }}</td>
+                                    <td><img src="{{ asset($row->post_photo) }}" style="height:40px; width:70px;"></td>
                                     <td class="text-center">{{ $row->user_name }}</td>
-                                    <td class="text-center">{{ $row->visitors }}</td>
                                     <td class="text-center">
                                     @if($row->created_at == NULL)
                                         <span class="text-danger">No Date Set</span>
