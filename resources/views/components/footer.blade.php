@@ -2,7 +2,7 @@
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="item">
                             <h2 class="heading">About Us</h2>
                             <p>
@@ -10,7 +10,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="item">
                             <h2 class="heading">Useful Links</h2>
                             <ul class="useful-links">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="item">
                             <h2 class="heading">Contact</h2>
                             <div class="list-item">
@@ -60,6 +60,7 @@
                             </ul>
                         </div>
                     </div>
+                <!--
                     <div class="col-md-3">
                         <div class="item">
                             <h2 class="heading">Newsletter</h2>
@@ -76,13 +77,13 @@
                             </form>
                         </div>
                     </div>
-
+                -->
                 </div>
             </div>
         </div>
 
         <div class="copyright">
-            Copyright 2022, ArefinDev. All Rights Reserved.
+            Copyright 2023, <a href="https://github.com/coderrubel" target="_blank">CoderRubel</a>. All Rights Reserved.
         </div>
      
         <div class="scroll-top">

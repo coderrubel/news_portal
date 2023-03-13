@@ -66,8 +66,13 @@
                             <li class="menu"><a href="{{url('/faq');}}">FAQ</a></li>
                             <li class="menu"><a href="{{url('/about');}}">About</a></li>
                             <li class="menu"><a href="{{url('/contact');}}">Contact</a></li>
+                            @if (Auth::check())
+                                <li class="menu"><a href="{{route('dashboard')}}">Dashboard</a></li>
+                                <li class="menu"><a href="{{route('user.logout')}}">Logout</a></li>
+                            @else
                             <li class="menu"><a href="{{route('login')}}">Login</a></li>
                             <li class="menu"><a href="{{route('register')}}">Sign Up</a></li>
+                            @endif
                             <li>
                                 <div class="language-switch">
                                     <select name="">

@@ -148,24 +148,16 @@
                         {{Auth::user()->name}} <small class="pt-1"> {{ Auth::user()->email }}</small>
                         </div>
                       </li>
-
+                    <!-- User Setting
                       <li>
                         <a href="profile.html">
                           <i class="mdi mdi-account"></i> My Profile
                         </a>
                       </li>
                       <li>
-                        <a href="email-inbox.html">
-                          <i class="mdi mdi-email"></i> Message
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#"> <i class="mdi mdi-diamond-stone"></i> Projects </a>
-                      </li>
-                      <li>
                         <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
                       </li>
-
+                    -->
                       <li class="dropdown-footer">
                         <a href="{{ route('user.logout')}}"> <i class="mdi mdi-logout"></i> Log Out </a>
                       </li>
