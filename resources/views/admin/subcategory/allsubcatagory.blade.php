@@ -17,8 +17,7 @@
                             <tr>
                             <th scope="col">Category Name</th>
                             <th scope="col" class="text-center">Sub Category Name</th>
-                            <th scope="col" class="text-center">Show on Menu</th>
-                            <th scope="col" class="text-center">Menu Order</th>
+                            <th scope="col" class="text-center">Created At</th>
                             <th scope="col" class="text-right">Action</th>
                             </tr>
                         </thead>
@@ -28,8 +27,7 @@
                             <tr>
                             <th scope="row">{{ $row->rCaregory->category_name }}</th>
                             <td class="text-center">{{ $row->sub_category_name }}</td>
-                            <td class="text-center">{{ $row->show_on_menu }}</td>
-                            <td class="text-center">{{ $row->sub_catagory_order }}</td>
+                            <td class="text-center">{{ date('d-M-Y', strtotime($row->created_at)); }}</td>
                             <td class="text-right">
                               <div class="dropdown show d-inline-block widget-dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
@@ -71,15 +69,6 @@
                                 <label for="addcategory" class="form-label">Sub Category Name*</label>
                                 @error('sub_category_name')<p class="text-danger">{{ $message }}</p>@enderror    
                                 <input type="text" name="sub_category_name" class="form-control rounded mb-2" id="addcategory" placeholder="Sub Category Name">
-                                <label for="addcategory" class="form-label">Sub Category Order</label>
-                                @error('sub_catagory_order')<p class="text-danger">{{ $message }}</p>@enderror
-                                <input type="text" name="sub_catagory_order" class="form-control rounded mb-2" id="order" placeholder="Sub Catagory Order">
-                                
-                                <label for="addcategory" class="form-label d-block">Show on Menu</label>
-                                <select name="show_on_menu" class="form-control rounded mb-2">
-                                    <option value="Show">Show</option>
-                                    <option value="Hide">Hide</option>
-                                </select>
                                 <button type="submit" class="btn btn-primary mt-2">Add Sub Category</button>
                             </div>
                         </form>  
@@ -98,8 +87,7 @@
                                 <tr>
                                 <th scope="col">Category Name</th>
                                 <th scope="col" class="text-center">Sub Category Name</th>
-                                <th scope="col" class="text-center">Show on Menu</th>
-                                <th scope="col" class="text-center">Menu Order</th>
+                                <th scope="col" class="text-center">Created At</th>
                                 <th scope="col" class="text-right">Action</th>
                                 </tr>
                             </thead>
@@ -108,8 +96,7 @@
                                 <tr>
                                 <th scope="row">{{ $row->rCaregory->category_name }}</th>    
                                 <td class="text-center">{{ $row->sub_category_name }}</td>
-                                <td class="text-center">{{ $row->show_on_menu }}</td>
-                                <td class="text-center">{{ $row->sub_catagory_order }}</td>
+                                <td class="text-center">{{ date('d-M-Y', strtotime($row->created_at)); }}</td>
                                 <td class="text-right">
                                     <div class="dropdown show d-inline-block widget-dropdown">
                                         <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>

@@ -28,7 +28,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                             <tr>
                                 <th scope="col">Serial</th>
                                 <th class="text-center">Catagory</th>
-                                <th class="text-center">Title</th>
+                                <th class="text-center">Post Title</th>
                                 <th class="text-center">Image</th>
                                 <th class="text-center">Author</th>
                                 <th class="text-center">Visitors</th>
@@ -91,7 +91,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                             <tr>
                                 <th scope="col">Serial</th>
                                 <th class="text-center">Catagory</th>
-                                <th class="text-center">Title</th>
+                                <th class="text-center">Post Title</th>
                                 <th class="text-center">Image</th>
                                 <th class="text-center">Author</th>
                                 <th class="text-center">Visitors</th>

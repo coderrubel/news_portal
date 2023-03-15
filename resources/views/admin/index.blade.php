@@ -34,7 +34,7 @@
     <div class="card card-mini mb-4">
     <div class="card-body">
         <h2 class="mb-1">{{ count($posts) }}</h2>
-        <p>Posts</p>
+        <p>Post</p>
         <div class="chartjs-wrapper">
         <canvas id="area-chart"></canvas>
         </div>
@@ -45,7 +45,7 @@
     <div class="card card-mini mb-4">
     <div class="card-body">
         <h2 class="mb-1">{{ $post }}</h2>
-        <p>PostS View</p>
+        <p>Post View</p>
         <div class="chartjs-wrapper">
         <canvas id="line"></canvas>
         </div>

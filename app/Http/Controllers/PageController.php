@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\HeaderAds;
 use App\Models\HeaderAds1;
 use App\Models\SidebarAds;
-use App\Models\SidebarAds1;
 use App\Models\Brand;
 use App\Models\Post;
-use App\Models\SubCatagory;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
@@ -20,14 +18,11 @@ class PageController extends Controller
         $setting = DB::table('settings')->first();
         $header1 = HeaderAds1::latest()->first();
         $sidebar = SidebarAds::latest()->first();
-        $sidebar1 = SidebarAds1::latest()->first();
         $brands = Brand::latest()->first();
         $post = Post::latest()->where('status','active')->get();
         $new_post_details = Post::latest('id', 'desc')->where('status','active')->get();
-        $popular_post = Post::latest('visitors', 'desc')->where('status','active')->get();
-        // $sub_catagory_data = SubCatagory::with('rCaregory')->orderBy('sub_catagory_order','asc')->where('show_on_home','Show')->get();
         $categories  = Category::where('show_on_menu','Show')->get();
-        return view('pages.home',compact('setting','brands','header1','sidebar','sidebar1','post','new_post_details','popular_post','categories'));
+        return view('pages.home',compact('setting','brands','header1','sidebar','post','new_post_details','categories'));
         }
 
         // Post Details

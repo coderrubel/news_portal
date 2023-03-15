@@ -29,7 +29,6 @@ class SubCategoryController extends Controller
         // form validate
         $validated = $request->validate([
             'sub_category_name' => 'required|unique:sub_catagories|max:35|min:3',
-            'sub_catagory_order' => 'required|integer|unique:sub_catagories',
         ],
         [
             // custom error message
@@ -37,15 +36,12 @@ class SubCategoryController extends Controller
             'sub_category_name.unique'=>'Please Input Unique Sub Category Name',
             'sub_category_name.max'=>'Category Name Less Then 36 Character',
             'sub_category_name.min'=>'Category Name More Then 3 Character',
-            'sub_catagory_order.integer'=>'Integer Number Only',
-            'sub_catagory_order.unique'=>'Unique Number Only',
         ]);
         // Data insert use Eloquent ORM & Models
         SubCatagory::insert([
             'category_id'=> $request->category_id,
             'sub_category_name' => $request->sub_category_name,
-            'show_on_menu' => $request->show_on_menu,
-            'sub_catagory_order' => $request->sub_catagory_order,
+            'created_at' => Carbon::now()
         ]);
         return Redirect()->back()->with('success','Insert Category Successfully');
 
@@ -61,21 +57,16 @@ class SubCategoryController extends Controller
     public function UpdateSubCategory(Request $request, $id){
         $validated = $request->validate([
             'sub_category_name' => 'required|max:35|min:3',
-            'sub_catagory_order' => 'required|integer|unique:sub_catagories',
         ],
         [
             // custom error message
             'sub_category_name.required'=>'Please Input Sub Category Name',
             'sub_category_name.max'=>'Category Name Less Then 36 Character',
             'sub_category_name.min'=>'Category Name More Then 3 Character',
-            'sub_catagory_order.integer'=>'Integer Number Only',
-            'sub_catagory_order.unique'=>'Unique Number Only',
         ]);
         $update = SubCatagory::find($id)->update([
             'category_id'=> $request->category_id,
             'sub_category_name' => $request->sub_category_name,
-            'sub_catagory_order' => $request->sub_catagory_order,
-            'show_on_menu' => $request->show_on_menu,
         ]);
         return Redirect()->route('all.subcategory')->with('success','Update Sub Category Successfully');
     }

@@ -12,8 +12,6 @@ class SubCatagory extends Model
     protected $fillable = [
         'category_id',
         'sub_category_name',
-        'show_on_menu',
-        'sub_catagory_order',
     ];
 
     public function rCaregory(){
@@ -23,6 +21,6 @@ class SubCatagory extends Model
         return $this->hasMany(Post::class);
     }
     public function user(){
-        return $this->hasOne(User::class, 'id','category_name','sub_category_name','show_on_menu','sub_catagory_order');
+        return $this->hasOne(User::class, 'id','category_name','sub_category_name');
     }
 }
