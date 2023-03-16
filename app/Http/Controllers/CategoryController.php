@@ -19,11 +19,6 @@ class CategoryController extends Controller
         // Eloquent ORM
         $categories = Category::latest()->paginate(5);
         $trachCat =  Category::onlyTrashed()->latest()->paginate(4);
-
-
-        // Query Builder
-        // $categories = DB::table('categories')->latest()->get();
-
         return view('admin.category.allcatagory',compact('categories','trachCat'));
     }
 
