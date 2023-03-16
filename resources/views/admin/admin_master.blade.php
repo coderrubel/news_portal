@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Admin Dashboard </title>
+  <title>Dashboard</title>
 
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500" rel="stylesheet"/>
@@ -52,15 +52,7 @@
     <div class="mobile-sticky-body-overlay"></div>
 
     <div class="wrapper">
-      
-              <!--
-          ====================================
-          ——— LEFT SIDEBAR WITH FOOTER
-          =====================================
-        -->
-        @include('admin.sidebar')
-      
-
+    @include('admin.sidebar')
       <div class="page-wrapper">
                   <!-- Header -->
           <header class="main-header " id="header">
@@ -71,16 +63,18 @@
               </button>
               <!-- search form -->
               <div class="search-form d-none d-lg-inline-block">
+                <!--  
                 <div class="input-group">
                   <button type="button" name="search" id="search-btn" class="btn btn-flat">
                     <i class="mdi mdi-magnify"></i>
                   </button>
-                  <input type="text" name="query" id="search-input" class="form-control" placeholder="'button', 'chart' etc."
+                  <input type="text" name="query" id="search-input" class="form-control" 
                     autofocus autocomplete="off" />
                 </div>
                 <div id="search-results-container">
                   <ul id="search-results"></ul>
                 </div>
+                -->
               </div>
 
               <div class="navbar-right ">
@@ -88,11 +82,13 @@
                   <!-- Github Link Button -->
                   <li class="github-link mr-3">
                     <a class="btn btn-outline-secondary btn-sm" href="https://github.com/coderrubel/news_portal" target="_blank">
-                      <span class="d-none d-md-inline-block mr-2">Source Code</span>
+                      <span class="d-none d-md-inline-block mr-2">Live View</span>
                       <i class="mdi mdi-github-circle"></i>
                     </a>
 
                   </li>
+                  <!-- Notification -->
+                  <!--  
                   <li class="dropdown notifications-menu">
                     <button class="dropdown-toggle" data-toggle="dropdown">
                       <i class="mdi mdi-bell-outline"></i>
@@ -134,6 +130,7 @@
                       </li>
                     </ul>
                   </li>
+                  -->
                   <!-- User Account -->
                   <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -148,7 +145,7 @@
                         {{Auth::user()->name}} <small class="pt-1"> {{ Auth::user()->email }}</small>
                         </div>
                       </li>
-                    <!-- User Setting
+                    <!-- User Setting -->
                       <li>
                         <a href="profile.html">
                           <i class="mdi mdi-account"></i> My Profile
@@ -157,7 +154,7 @@
                       <li>
                         <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
                       </li>
-                    -->
+                    
                       <li class="dropdown-footer">
                         <a href="{{ route('user.logout')}}"> <i class="mdi mdi-logout"></i> Log Out </a>
                       </li>
@@ -173,23 +170,13 @@
 
         <div class="content-wrapper">
           <div class="content">						 
-                  <!-- Top Statistics -->
                     @yield('admin')
-
             </div>
         </div>
 
                   <footer class="footer mt-auto">
             <div class="copyright bg-white">
-              <p>
-                &copy; <span id="copy-year">2022</span> Copyright by
-                <a
-                  class="text-primary"
-                  href="https://github.com/coderrubel/news_portal"
-                  target="_blank"
-                  >CoderRubel</a
-                >.
-              </p>
+              <p> &copy; <span id="copy-year">2022</span> Copyright by <a class="text-primary" href="https://github.com/coderrubel/news_portal" target="_blank">CoderRubel</a>. </p>
             </div>
             <script>
                 var d = new Date();

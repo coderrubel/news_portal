@@ -51,13 +51,12 @@
         </div>
     </div>
     </div>
-    </div>
+    </div> 
     </div>
 
-
+<!-- 
     <div class="row">
         <div class="col-xl-8 col-md-12">
-    <!-- Sales Graph -->
     <div class="card card-default" data-scroll-height="675">
     <div class="card-header">
         <h2>Sales Of The Year</h2>
@@ -82,7 +81,6 @@
     </div>
     </div>
         <div class="col-xl-4 col-md-12">
-    <!-- Doughnut Chart -->
     <div class="card card-default" data-scroll-height="675">
     <div class="card-header justify-content-center">
     <h2>Orders Overview</h2>
@@ -115,8 +113,6 @@
 
     <div class="row">
         <div class="col-xl-4 col-lg-6 col-12">
-            
-    <!-- Polar and Radar Chart -->
     <div class="card card-default">
     <div class="card-header justify-content-center">
     <h2>Sales Overview</h2>
@@ -143,7 +139,6 @@
 
         </div>
         <div class="col-xl-4 col-lg-6 col-12"> 
-    <!-- Top Sell Table -->
     <div class="card card-table-border-none" data-scroll-height="550">
     <div class="card-header justify-content-between">
     <h2>Sold by Units</h2>
@@ -207,9 +202,8 @@
     </div>
     </div>
         <div class="col-xl-4 col-12">
-    <!-- Notification Table -->
     <div class="card card-default" data-scroll-height="550">
-        <div class="card-header justify-content-between ">
+      <div class="card-header justify-content-between ">
         <h2>Latest Notifications</h2>
         <div>
             <button class="text-black-50 mr-2 font-size-20"><i class="mdi mdi-cached"></i></button>
@@ -281,37 +275,36 @@
             <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
         </div>
 
-        <div class="media py-3 align-items-center justify-content-between">
-            <div class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-warning text-white">
-            <i class="mdi mdi-stack-exchange font-size-20"></i>
+            <div class="media py-3 align-items-center justify-content-between">
+                <div class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-warning text-white">
+                <i class="mdi mdi-stack-exchange font-size-20"></i>
+                </div>
+                <div class="media-body pr-3">
+                <a class="mt-0 mb-1 font-size-15 text-dark" href="#">Support Ticket</a>
+                <p >Emma has placed an new order</p>
+                </div>
+                <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
             </div>
-            <div class="media-body pr-3">
-            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">Support Ticket</a>
-            <p >Emma has placed an new order</p>
-            </div>
-            <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 10 AM</span>
-        </div>
 
-        <div class="media py-3 align-items-center justify-content-between">
-            <div class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-success text-white">
-            <i class="mdi mdi-email-outline font-size-20"></i>
-            </div>
-            <div class="media-body pr-3">
-            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">New Enquiry</a>
-            <p >Phileine has placed an new order</p>
-            </div>
-            <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 9 AM</span>
-        </div>
+            <div class="media py-3 align-items-center justify-content-between">
+                <div class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-success text-white">
+                <i class="mdi mdi-email-outline font-size-20"></i>
+                </div>
+                <div class="media-body pr-3">
+                <a class="mt-0 mb-1 font-size-15 text-dark" href="#">New Enquiry</a>
+                <p >Phileine has placed an new order</p>
+                </div>
+                <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i> 9 AM</span>
+                </div>
 
-        </div>
-        <div class="mt-3"></div>
-    </div>
-</div>
+              </div>
+              <div class="mt-3"></div>
+              </div>
+            </div>
 						</div>
 
 						<div class="row">
 							<div class="col-12"> 
-                  <!-- Recent Order Table -->
                   <div class="card card-table-border-none" id="recent-orders">
                     <div class="card-header justify-content-between">
                       <h2>Recent Orders</h2>
@@ -464,12 +457,11 @@
                       </table>
                     </div>
                   </div>
-</div>
-						</div>
+                </div>
+						  </div>
 
 						<div class="row">
 							<div class="col-xl-6"> 
-                  <!-- To Do list -->
                   <div class="card card-default todo-table" id="todo" data-scroll-height="550">
                     <div class="card-header justify-content-between">
                       <h2>To Do List</h2>
@@ -531,9 +523,8 @@
                     </div>
                     <div class="mt-3"></div>
                   </div>
-</div>
-							<div class="col-xl-6">
-                  <!-- area chart -->
+                </div>
+							  <div class="col-xl-6">
                   <div class="card card-default" >
                     <div class="card-header d-block d-md-flex justify-content-between">
                       <h2>World Wide Customer </h2>
@@ -569,12 +560,10 @@
                       </div>
                     </div>
                   </div>
-</div>
-						</div>
-                        
+                </div>
+						</div>    
 						<div class="row">
 							<div class="col-xl-5">
-                  <!-- New Customers -->
                   <div class="card card-table-border-none"  data-scroll-height="580">
                     <div class="card-header justify-content-between ">
                       <h2>New Customers</h2>
@@ -675,9 +664,8 @@
                       </table>
                     </div>
                   </div>
-</div>
-							<div class="col-xl-7">
-                  <!-- Top Products -->
+            </div>
+						<div class="col-xl-7">
                   <div class="card card-default" data-scroll-height="580">
                     <div class="card-header justify-content-between mb-4">
                       <h2>Top Products</h2>
@@ -743,6 +731,7 @@
                       </div>
                       </div>
                   </div>
-</div>
-						</div>
+                </div>
+	</div>
+-->
  @endsection
