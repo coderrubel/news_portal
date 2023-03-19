@@ -147,14 +147,9 @@
                       </li>
                     <!-- User Setting -->
                       <li>
-                        <a href="profile.html">
-                          <i class="mdi mdi-account"></i> My Profile
-                        </a>
+                        <a href="{{ route('profile.show') }}">
+                          <i class="mdi mdi-account"></i> My Profile </a>
                       </li>
-                      <li>
-                        <a href="#"> <i class="mdi mdi-settings"></i> Account Setting </a>
-                      </li>
-                    
                       <li class="dropdown-footer">
                         <a href="{{ route('user.logout')}}"> <i class="mdi mdi-logout"></i> Log Out </a>
                       </li>
