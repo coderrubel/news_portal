@@ -33,7 +33,7 @@
                             <td class="text-center">{{ $category->category_name }}</td>
                             <td class="text-center">{{ $category->show_on_menu }}</td>
                             <td class="text-center">{{ $category->catagory_order }}</td>
-                            <td class="text-center">{{ $category->user->name }}</td>
+                            <td class="text-center">{{ $category->user->name??'' }}</td>
                             <td class="text-center">
                                 @if($category->created_at == NULL)
                                     <span class="text-danger">No Date Set</span>
@@ -115,7 +115,7 @@
                                     <td>{{ $trach->category_name }}</td>
                                     <td class="text-center">{{ $trach->show_on_menu }}</td>
                                     <td class="text-center">{{ $trach->catagory_order }}</td>
-                                    <td class="text-center">{{ $trach->user->name }}</td>
+                                    <td class="text-center">{{ $trach->user->name??'' }}</td>
                                     <td class="text-center">
                                         @if($trach->created_at == NULL)
                                             <span class="text-danger">No Date Set</span>
