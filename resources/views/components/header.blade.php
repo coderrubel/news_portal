@@ -73,6 +73,7 @@
                             <li class="menu"><a href="{{route('login')}}">Login</a></li>
                             <li class="menu"><a href="{{route('register')}}">Sign Up</a></li>
                             @endif
+                            <!-- 
                             <li>
                                 <div class="language-switch">
                                     <select name="">
@@ -81,6 +82,7 @@
                                     </select>
                                 </div>
                             </li>
+                            -->
                         </ul>
                     </div>
                 </div>
