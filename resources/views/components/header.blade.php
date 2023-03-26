@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		
         <meta name="description" content="">
-        <title>News Portal Website</title>        
+        <title>News Portal</title>        
 		
         <link rel="icon" type="image/png" href="{{asset ('fontend/uploads/favicon.png')}}">
 
@@ -36,19 +36,11 @@
         <!-- Text Eidtor -->
         <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
-
         <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 
         <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6212352ed76fda0a"></script>        
         
-        <!-- Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-84213520-6"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-84213520-6');
-        </script>
+        
 
     </head>
     <body>

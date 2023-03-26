@@ -174,6 +174,7 @@
                                 $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->get();
                                 $subpost = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
                                             ->join('categories','categories.id','=','posts.category_id')
+                                            ->where('posts.status','active')
                                             ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
                                             ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                             ->get();
@@ -183,7 +184,6 @@
                                         @php $i=0; @endphp 
                                         @foreach($subpost  as $post)
                                         @php $i++; @endphp
-                                        @if($post->status == 'active')
                                         @if($i == 1)
                                         <div class="left-side">
                                             <div class="photo">
@@ -207,7 +207,6 @@
                                             </div>
                                             <p>{!! $post->post_detail??'' !!}</p>
                                         </div>
-                                        @endif
                                         @endif
                                         @endforeach
                                     </div>

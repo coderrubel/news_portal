@@ -81,9 +81,8 @@
                 <ul class="nav navbar-nav">
                   <!-- Github Link Button -->
                   <li class="github-link mr-3">
-                    <a class="btn btn-outline-secondary btn-sm" href="https://github.com/coderrubel/news_portal" target="_blank">
+                    <a class="btn btn-outline-secondary btn-sm" href="{{url('/')}}" target="_blank">
                       <span class="d-none d-md-inline-block mr-2">Live View</span>
-                      <i class="mdi mdi-github-circle"></i>
                     </a>
 
                   </li>

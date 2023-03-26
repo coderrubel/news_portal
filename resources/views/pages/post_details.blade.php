@@ -45,6 +45,11 @@
                         <div class="main-text">
                             <p>{!! $post_details->post_detail??'' !!}</p>
                         </div>
+                        
+                        <div class="share-content">
+                            <h2>Share</h2>
+                            <div class="addthis_inline_share_toolbox"></div>
+                        </div>
                         <!--  
                         <div class="tag-section">
                             <h2>Tags</h2>
@@ -56,10 +61,7 @@
                                 <a href=""><span class="badge bg-success">finest</span></a>
                             </div>
                         </div>
-                        <div class="share-content">
-                            <h2>Share</h2>
-                            <div class="addthis_inline_share_toolbox"></div>
-                        </div>
+                         
                         <div class="comment-fb">
                             <h2>Comment</h2>
                             <div id="disqus_thread"></div>
@@ -72,7 +74,7 @@
                                 })();
                             </script>
                         </div>
-                        -->
+                       -->
                         <div class="related-news">
                             <div class="related-news-heading">
                                 <h2>Related Posts</h2>

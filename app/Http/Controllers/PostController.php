@@ -171,12 +171,15 @@ class PostController extends Controller
     // Restore sub Category
     public function Restore($id){
         $delete = Post::withTrashed()->find($id)->restore();
-        return Redirect()->back()->with('success','Sub Category Restore Successfully');
+        return Redirect()->back()->with('success','Post Restore Successfully');
     }
 
     // PDelete sub Category
     public function PDelete($id){
+        $image = Post::onlyTrashed()->find($id);
+        $old_image = $image->post_photo;
+        unlink($old_image);
         $delete = Post::onlyTrashed()->find($id)->forceDelete();
-        return Redirect()->back()->with('success','Sub Category Permanently Deleted');
+        return Redirect()->back()->with('success','Post Permanently Deleted');
     }
    }

@@ -27,7 +27,8 @@ class PageController extends Controller
 
         // Post Details
         public function PostDetails($id){
-            $post_details = Post::where('id', $id)->first();
+                
+            $post_details = Post::where('id', $id)->where('status','active')->first();
             $recent_post = Post::latest('id', 'desc')->get();
             $popular_post = Post::latest('visitors', 'desc')->get();
             $category = Category::get();
@@ -35,7 +36,6 @@ class PageController extends Controller
             $new_value = $post_details->visitors+1;
             $post_details->visitors = $new_value;
             $post_details->update();
-            
             return view('pages.post_details',compact('post_details','recent_post','popular_post','category'));
         }
 
