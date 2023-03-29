@@ -4,11 +4,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Category: {{ $category->category_name }}</h2>
+                        <h2>Category: {{ $category->category_name??'' }}</h2>
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name }}</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name??'' }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -24,7 +24,7 @@
                         <div class="category-page">
                             <div class="row">
                                 
-                                @foreach($recent_post as $post)
+                                @foreach($categorysPost as $post)
                                 @if($post->category_id == $category->id)
                                 <div class="col-lg-6 col-md-12">
                                     <div class="category-page-post-item">
@@ -38,6 +38,9 @@
                                         <div class="date-user">
                                             <div class="user">
                                                 {{ $post->user_name??'' }}
+                                            </div>
+                                            <div class="fas fa-eye" style="margin-right: 20px; margin-top: 3px; position: relative; padding-left: 12px;color: #898989; font-size: 12px;">
+                                                {{ $post->visitors??'0' }}
                                             </div>
                                             <div class="date">
                                                 {{ date('d-M-Y', strtotime($post->created_at)); }}

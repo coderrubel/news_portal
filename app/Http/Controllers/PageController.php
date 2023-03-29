@@ -10,33 +10,40 @@ use App\Models\Brand;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
 class PageController extends Controller
 {
         // Home page
         public function homePage(){
-        $setting = DB::table('settings')->first();
-        $header1 = HeaderAds1::latest()->first();
-        $sidebar = SidebarAds::latest()->first();
-        $brands = Brand::latest()->first();
-        $post = Post::latest()->where('status','active')->get();
-        $new_post_details = Post::latest('id', 'desc')->where('status','active')->get();
-        $categories  = Category::where('show_on_menu','Show')->get();
-        return view('pages.home',compact('setting','brands','header1','sidebar','post','new_post_details','categories'));
+            try{
+                $setting = DB::table('settings')->first();
+                $header1 = HeaderAds1::latest()->first();
+                $sidebar = SidebarAds::latest()->first();
+                $brands = Brand::latest()->first();
+                $post = Post::latest()->where('status','active')->get();
+                $new_post_details = Post::latest('id', 'desc')->where('status','active')->get();
+                $categories  = Category::where('show_on_menu','Show')->get();
+                return view('pages.home',compact('setting','brands','header1','sidebar','post','new_post_details','categories'));
+            }catch (Throwable $e) {
+                abort(404);
+            }
         }
 
         // Post Details
         public function PostDetails($id){
-                
-            $post_details = Post::where('id', $id)->where('status','active')->first();
-            $recent_post = Post::latest('id', 'desc')->get();
-            $popular_post = Post::latest('visitors', 'desc')->get();
-            $category = Category::get();
-            // Visitor 
-            $new_value = $post_details->visitors+1;
-            $post_details->visitors = $new_value;
-            $post_details->update();
-            return view('pages.post_details',compact('post_details','recent_post','popular_post','category'));
+            try {
+                $post_details = Post::where('id', $id)->where('status','active')->first();
+                $relatedPost = Post::latest('visitors', 'desc')->get();
+                $category = Category::get();
+                // Visitor 
+                $new_value = $post_details->visitors+1;
+                $post_details->visitors = $new_value;
+                $post_details->update();
+                return view('pages.post_details',compact('post_details','relatedPost','category'));
+            } catch (Throwable $e) {
+                abort(404);
+            }
         }
 
         // FAQ page
@@ -53,8 +60,7 @@ class PageController extends Controller
         // Category Page
         public function Category($id){
             $category = Category::where('id', $id)->first();
-            $recent_post = Post::latest('id', 'desc')->get();
-            $popular_post = Post::latest('visitors', 'desc')->get();
-            return view('pages.category',compact('category','recent_post','popular_post'));
+            $categorysPost = Post::latest('id', 'desc')->get();
+            return view('pages.category',compact('category','categorysPost'));
         }
 }

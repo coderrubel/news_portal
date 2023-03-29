@@ -47,12 +47,6 @@ class CategoryController extends Controller
             'user_id' => Auth::user()->id,
             'created_at' => Carbon::now()
         ]);
-
-        // Data insert use Query Builder
-        //  $data['category_name'] = $request->category_name;
-        //  $data['user_id'] = Auth::user()->id;
-        //  DB::table('categories')->insert($data);
-
         return Redirect()->back()->with('success','Insert Category Successfully');
 
     }
@@ -61,9 +55,6 @@ class CategoryController extends Controller
     public function EditCategory($id){
         // Data update use Eloquent ORM & Models
         $categories = Category::find($id);
-        // Data update use Query Builder
-        // $categories = DB::table('categories')->where('id',$id)->first();
-
         return view('admin.category.edit',compact('categories'));
     }
 

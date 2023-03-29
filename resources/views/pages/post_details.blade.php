@@ -8,7 +8,7 @@
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{url('/');}}">Home</a></li>
-                                <li class="breadcrumb-item"><a href="{{url('/');}}">{{ $post_details->rCaregory->sub_category_name??'' }}</a></li>
+                                <li class="breadcrumb-item"><a href="{{url('/allpost/'.$post_details->category_id)}}">{{ $post_details->rCaregory->sub_category_name??'' }}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{!! $post_details->post_title??'' !!}</li>
                             </ol>
                         </nav>
@@ -80,7 +80,7 @@
                                 <h2>Related Posts</h2>
                             </div>
                             <div class="related-post-carousel owl-carousel owl-theme">
-                                @foreach($popular_post as $post)
+                                @foreach($relatedPost as $post)
                                 @if($post->rCaregory->category_id == $post_details->category_id)
                                 <div class="item">
                                     <div class="photo">
