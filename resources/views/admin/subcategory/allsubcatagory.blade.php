@@ -12,41 +12,40 @@
                     </div>
                     @endif
                     <div class="d-flex justify-content-between card-header"><span>All Sub Category</span> <span>Total Sub Catagory: {{ count($subcagagorys)}} </span></div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">Category Name</th>
-                            <th scope="col" class="text-center">Sub Category Name</th>
-                            <th scope="col" class="text-center">Created At</th>
-                            <th scope="col" class="text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            @foreach($subcagagorys as $row)
-                            <tr>
-                            <th scope="row">{{ $row->rCaregory->category_name }}</th>
-                            <td class="text-center">{{ $row->sub_category_name }}</td>
-                            <td class="text-center">{{ date('d-M-Y', strtotime($row->created_at)); }}</td>
-                            <td class="text-right">
-                              <div class="dropdown show d-inline-block widget-dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
-                                  <li class="dropdown-item">
-                                    <a href="{{ url('/subcategory/edit/'.$row->id) }}">Edit</a>
-                                  </li>
-                                  <li class="dropdown-item">
-                                    <a href="{{ url('/softdelete/subcategory/'.$row->id) }}">Remove</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="text-center mb-2 px-5">
- 
+                    <div class="table-responsive-sm table-responsive-md">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">Category Name</th>
+                                <th scope="col" class="text-center">Sub Category Name</th>
+                                <th scope="col" class="text-center">Created At</th>
+                                <th scope="col" class="text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                @foreach($subcagagorys as $row)
+                                <tr>
+                                <th scope="row">{{ $row->rCaregory->category_name }}</th>
+                                <td class="text-center">{{ $row->sub_category_name }}</td>
+                                <td class="text-center">{{ date('d-M-Y', strtotime($row->created_at)); }}</td>
+                                <td class="text-right">
+                                <div class="dropdown show d-inline-block widget-dropdown">
+                                    <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                    <li class="dropdown-item">
+                                        <a href="{{ url('/subcategory/edit/'.$row->id) }}">Edit</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ url('/softdelete/subcategory/'.$row->id) }}">Remove</a>
+                                    </li>
+                                    </ul>
+                                </div>
+                                </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -82,6 +81,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card card-header">Trasht  Category</div>
+                    <div class="table-responsive-sm table-responsive-md">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -114,6 +114,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>    
                         <!-- {{$trachCat->appends(['trach' => $trachCat->currentPage()])->links()}} -->
                     <div class="text-center mb-2 px-5">{{ $trachCat->links() }}</div>
                 </div>

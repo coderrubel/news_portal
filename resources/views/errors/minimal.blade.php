@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row mt-3">
                 <div class="col-lg-8 col-md-6">
-                    <div class="d-flex flex-column justify-content-center align-items-center align-self-center">
+                    <div class="d-flex flex-column justify-content-center align-items-center align-self-center" style="height: 30vh;">
                         <h3>@yield('code')</h3>
                         <p>@yield('message')</p>
                     </div>

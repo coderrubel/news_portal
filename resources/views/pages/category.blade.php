@@ -23,9 +23,8 @@
                         
                         <div class="category-page">
                             <div class="row">
-                                
+                                @if(count($category->posts)>0)
                                 @foreach($categorysPost as $post)
-                                @if($post->category_id == $category->id)
                                 <div class="col-lg-6 col-md-12">
                                     <div class="category-page-post-item">
                                         <div class="photo">
@@ -48,8 +47,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endif
                                 @endforeach
+                                @endif
                                 
         
         

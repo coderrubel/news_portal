@@ -13,52 +13,54 @@
                     </div>
                     @endif
                     <div class="d-flex justify-content-between card-header"><span>All Category</span> <span>Total Catagory: {{ count($categories)}}</span></div>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">SL No</th>
-                            <th scope="col" class="text-center">Category Name</th>
-                            <th scope="col" class="text-center">Show on Menu</th>
-                            <th scope="col" class="text-center">Menu Order</th>
-                            <th scope="col" class="text-center">Created By</th>
-                            <th scope="col" class="text-center">Created At</th>
-                            <th scope="col" class="text-right">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            @foreach($categories as $category)
-                            <tr>
-                            <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
-                            <td class="text-center">{{ $category->category_name }}</td>
-                            <td class="text-center">{{ $category->show_on_menu }}</td>
-                            <td class="text-center">{{ $category->catagory_order }}</td>
-                            <td class="text-center">{{ $category->user->name??'' }}</td>
-                            <td class="text-center">
-                                @if($category->created_at == NULL)
-                                    <span class="text-danger">No Date Set</span>
-                                @else 
-                                    {{ $category->created_at->diffForHumans() }}
-                                @endif
-                            </td>
-                            <td class="text-right">
-                                <div class="dropdown show d-inline-block widget-dropdown">
-                                    <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
-                                    <li class="dropdown-item">
-                                        <a href="{{ url('/category/edit/'.$category->id) }}">Edit</a>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <a href="{{ url('/softdelete/category/'.$category->id) }}">Delete</a>
-                                    </li>
-                                    </ul>
-                                </div>
-                            </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="text-center mb-2 px-5">
+                    <div class="table-responsive-sm table-responsive-md">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th scope="col">SL No</th>
+                                <th scope="col" class="text-center">Category Name</th>
+                                <th scope="col" class="text-center">Show on Menu</th>
+                                <th scope="col" class="text-center">Menu Order</th>
+                                <th scope="col" class="text-center">Created By</th>
+                                <th scope="col" class="text-center">Created At</th>
+                                <th scope="col" class="text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                @foreach($categories as $category)
+                                <tr>
+                                <th scope="row">{{ $categories->firstItem()+$loop->index }}</th>
+                                <td class="text-center">{{ $category->category_name }}</td>
+                                <td class="text-center">{{ $category->show_on_menu }}</td>
+                                <td class="text-center">{{ $category->catagory_order }}</td>
+                                <td class="text-center">{{ $category->user->name??'' }}</td>
+                                <td class="text-center">
+                                    @if($category->created_at == NULL)
+                                        <span class="text-danger">No Date Set</span>
+                                    @else 
+                                        {{ $category->created_at->diffForHumans() }}
+                                    @endif
+                                </td>
+                                <td class="text-right">
+                                    <div class="dropdown show d-inline-block widget-dropdown">
+                                        <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('/category/edit/'.$category->id) }}">Edit</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('/softdelete/category/'.$category->id) }}">Delete</a>
+                                        </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                        <div class="text-center mb-2 px-5">
                     <!-- {{$categories->appends(['catagory' => $categories->currentPage()])->links()}} -->
                         {{ $categories->links() }}
                     </div>
@@ -97,6 +99,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card card-header">Trasht  Category</div>
+                    <div class="table-responsive-sm table-responsive-md">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -142,6 +145,7 @@
                                 
                             </tbody>
                         </table>
+                    </div>
                         <!-- {{$trachCat->appends(['trach' => $trachCat->currentPage()])->links()}} -->
                     <div class="text-center mb-2 px-5">{{ $trachCat->links() }}</div>
                 </div>

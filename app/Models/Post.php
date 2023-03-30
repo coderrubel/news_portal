@@ -24,7 +24,7 @@ class Post extends Model
     public function rCaregory(){
         return $this->belongsTo(SubCatagory::class, 'sub_category_id');
     }
-    public function rPost(){
-        return $this->hasMany(Post::class);
+    public function category() {
+        return $this->belongsTo(Category::class);
     }
 }

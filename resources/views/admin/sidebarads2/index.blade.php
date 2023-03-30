@@ -10,47 +10,49 @@
             </div>
             @endif
             <div class="card card-header">All Sidebar-2 Advertisement Size:500x500</div>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">SL No</th>
-                        <th scope="col" class="text-center">Name</th>
-                        <th scope="col" class="text-center">URL</th>
-                        <th scope="col" class="text-center">Image</th>
-                        <th scope="col" class="text-center">Created At</th>
-                        <th scope="col" class="text-right">Action</th>
-                    </tr>
-                    @php($i=1)
-                    @foreach($ads as $ad)
-                    <tr>
-                        <td>{{ $i++ }}</td>
-                        <td class="text-center">{{ $ad->ads_name }}</td>
-                        <td class="text-center">{{ $ad->ads_url }}</td>
-                        <td class="text-center"><img src="{{ asset($ad->ads_image) }}" style="height:50px; width:150px;"></td>
-                        <td class="text-center">
-                            @if($ad->created_at == NULL)
-                            <span class="text-danger">No Date Set</span>
-                            @else 
-                                {{ $ad->created_at->diffForHumans() }}
-                            @endif
-                        </td>
-                        <td class="text-right">
-                            <div class="dropdown show d-inline-block widget-dropdown">
-                                <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
-                                <li class="dropdown-item">
-                                    <a href="{{ url('/sidebar2/edit/'.$ad->id) }}">Edit</a>
-                                </li>
-                                <li class="dropdown-item">
-                                    <a href="{{ url('/sidebar2/delete/'.$ad->id) }}">Delete</a>
-                                </li>
-                                </ul>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </thead>
-            </table>
+            <div class="table-responsive-sm table-responsive-md">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">SL No</th>
+                            <th scope="col" class="text-center">Name</th>
+                            <th scope="col" class="text-center">URL</th>
+                            <th scope="col" class="text-center">Image</th>
+                            <th scope="col" class="text-center">Created At</th>
+                            <th scope="col" class="text-right">Action</th>
+                        </tr>
+                        @php($i=1)
+                        @foreach($ads as $ad)
+                        <tr>
+                            <td>{{ $i++ }}</td>
+                            <td class="text-center">{{ $ad->ads_name }}</td>
+                            <td class="text-center">{{ $ad->ads_url }}</td>
+                            <td class="text-center"><img src="{{ asset($ad->ads_image) }}" style="height:50px; width:150px;"></td>
+                            <td class="text-center">
+                                @if($ad->created_at == NULL)
+                                <span class="text-danger">No Date Set</span>
+                                @else 
+                                    {{ $ad->created_at->diffForHumans() }}
+                                @endif
+                            </td>
+                            <td class="text-right">
+                                <div class="dropdown show d-inline-block widget-dropdown">
+                                    <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+                                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+                                    <li class="dropdown-item">
+                                        <a href="{{ url('/sidebar2/edit/'.$ad->id) }}">Edit</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{ url('/sidebar2/delete/'.$ad->id) }}">Delete</a>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
     <!-- Add Ads -->
