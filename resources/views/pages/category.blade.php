@@ -4,11 +4,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Category: {{ $category->category_name??'' }}</h2>
+                        <h2>Category: {{ $categorysPost->category_name??'' }}</h2>
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">{{ $category->category_name??'' }}</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{ $categorysPost->category_name??'' }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -23,8 +23,8 @@
                         
                         <div class="category-page">
                             <div class="row">
-                                @if(count($category->posts)>0)
-                                @foreach($categorysPost as $post)
+                                @if(count($categorysPost->posts)>0)
+                                @foreach($categorysPost->posts as $post)
                                 <div class="col-lg-6 col-md-12">
                                     <div class="category-page-post-item">
                                         <div class="photo">

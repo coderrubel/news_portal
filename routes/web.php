@@ -54,6 +54,7 @@ Route::post('/post/update/{id}',[PostController::class,'UpdatePost']);
 Route::get('/softdelete/post/{id}',[PostController::class,'SoftDelete']);
 Route::get('/post/restore/{id}',[PostController::class,'Restore']);
 Route::get('/post/pdelete/{id}',[PostController::class,'PDelete']);
+Route::get('get-statusChange',[PostController::class,'statusChange']);
 
 // admin middleware
 Route::middleware(['admin'])->group(function () {

@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\SubCatagory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use DB;
 class PostController extends Controller
 {
     // Login chack
@@ -18,12 +18,25 @@ class PostController extends Controller
 
     public function AllPost(){
         $post = Post::latest()->paginate(15);
-        $activePost = Post::latest()->where('status','active')->paginate(15);
-        $inactivePost = Post::latest()->where('status','inactive')->paginate(15);
-        $catagory = Category::orderBy('catagory_order','asc')->get();
-        $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
-        $trachCat =  Post::onlyTrashed()->latest()->paginate(15);
-        return view('admin.post.allpost',compact('post','activePost','inactivePost','catagory','subcagagorys','trachCat'));
+        $activePost = Post::latest()->paginate(10);
+        // $inactivePost = Post::latest()->where('status','inactive')->paginate(15);
+        // $catagory = Category::orderBy('catagory_order','asc')->get();
+        // $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();
+        // $trachCat =  Post::onlyTrashed()->latest()->paginate(2);
+        return view('admin.post.allpost',compact('post','activePost'));
+        // return view('admin.post.allpost',compact('post','activePost','inactivePost','catagory','subcagagorys','trachCat'));
+    }
+    public function statusChange(Request $request)
+    {
+     $id = $request->id;
+     $status_value = $request->value;
+     if ( $status_value  = '0'){
+        DB::table('posts')->where('id',$id)->update(['status' => 'active']); 
+     }else if($status_value  = '1') {
+        DB::table('posts')->where('id',$id)->update(['status' => 'inactive']); 
+     }
+     return Post::find($id);
+
     }
     public function storePost(){
         $catagory = Category::orderBy('catagory_order','asc')->get();

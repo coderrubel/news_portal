@@ -22,7 +22,9 @@
   <link href="{{ asset('backend/assets/plugins/ladda/ladda.min.css')}}" rel="stylesheet" />
   <link href="{{ asset('backend/assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" />
   <link href="{{ asset('backend/assets/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" />
-
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+  
   <!-- SLEEK CSS -->
   <link id="sleek-css" rel="stylesheet" href="{{ asset('backend/assets/css/sleek.css')}}" />
 
@@ -202,6 +204,8 @@
 <script src="{{ asset('backend/assets/js/chart.js')}}"></script>
 <script src="{{ asset('backend/assets/js/date-range.js')}}"></script>
 <script src="{{ asset('backend/assets/js/map.js')}}"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 <script src="{{ asset('backend/assets/js/custom.js')}}"></script>
 <script>
 
@@ -231,6 +235,23 @@
     });
   }
  
+  $('#example').DataTable();
+
+  function statusChange(id, value){
+    // alert(id);
+    // alert(value);
+    $.ajax({
+      url : "{{url('get-statusChange')}}",
+      type: "get",
+      data: {id : id, value:value},
+      cache : false,
+      success :function(data){
+
+       console.log(data.status);
+      }
+    });
+
+  }
 </script>
 
 

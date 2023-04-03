@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\HeaderAds;
 use App\Models\HeaderAds1;
 use App\Models\SidebarAds;
 use App\Models\Brand;
@@ -61,7 +60,7 @@ class PageController extends Controller
         public function Category($id){
             try {
             $categorysPost = Category::with(['posts'])->where('id', $id)->first();
-            return view('pages.category',compact('category','categorysPost'));
+            return view('pages.category',compact('categorysPost'));
         } catch (\Throwable $e) {
             abort(401);
         }
