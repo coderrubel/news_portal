@@ -235,6 +235,9 @@
     });
   }
  
+  // $('#example').DataTable({
+  //   "lengthMenu": [ [5, 10, 50, -1], [5, 10, 50, "All"] ]
+  // });
   $('#example').DataTable();
 
   function statusChange(id, value){
@@ -244,10 +247,10 @@
       url : "{{url('get-statusChange')}}",
       type: "get",
       data: {id : id, value:value},
-      cache : false,
+      dataType : 'html',
       success :function(data){
-
-       console.log(data.status);
+        // console.log(data);
+          $("#ss"+id).html(data);
       }
     });
 

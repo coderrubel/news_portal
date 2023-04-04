@@ -49,6 +49,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/post/store',[PostController::class,'storePost'])->name('all.store');
 Route::get('/post/all',[PostController::class,'AllPost'])->name('all.post');
 Route::post('/post/add',[PostController::class,'AddPost'])->name('store.post'); 
+Route::get('/post/trash',[PostController::class,'TrashPost'])->name('all.trash');
 Route::get('/post/edit/{id}',[PostController::class,'EditPost']);
 Route::post('/post/update/{id}',[PostController::class,'UpdatePost']);
 Route::get('/softdelete/post/{id}',[PostController::class,'SoftDelete']);

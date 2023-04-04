@@ -57,12 +57,12 @@
           </li>
           @endif
           <!-- Post -->
-          <li  class="{{ Request::is('post/store') || Request::is('post/all')  ? 'active expand' : 'has-sub'}}" >
+          <li  class="{{ Request::is('post/store') || Request::is('post/all') || Request::is('post/trash')  ? 'active expand' : 'has-sub'}}" >
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#post"  aria-expanded="false" aria-controls="post">
               <i class="mdi mdi-book-open-page-variant"></i>
               <span class="nav-text">Post</span> <b class="caret"></b>
             </a>
-            <ul  class="{{ Request::is('post/store') || Request::is('post/all') ? 'collapse show' : 'collapse'}}"  id="post" data-parent="#sidebar-menu">
+            <ul  class="{{ Request::is('post/store') || Request::is('post/all') || Request::is('post/trash') ? 'collapse show' : 'collapse'}}"  id="post" data-parent="#sidebar-menu">
               <div class="sub-menu">
                 <li class="{{ Request::is('post/store') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/post/store')}}">
@@ -72,6 +72,11 @@
                 <li class="{{ Request::is('post/all') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/post/all')}}">
                     <span class="nav-text">All Post</span>
+                  </a>
+                </li>
+                <li class="{{ Request::is('post/trash') ? 'active' : ''}}">
+                  <a class="sidenav-item-link" href="{{url('/post/trash')}}">
+                    <span class="nav-text">Trash Posts</span>
                   </a>
                 </li>
               </div>

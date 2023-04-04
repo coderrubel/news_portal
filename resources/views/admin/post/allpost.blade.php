@@ -17,9 +17,9 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
             <div class="col-md-12">
                 <div class="card p-3">
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+                    <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
                         <strong>{{ session('success') }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
                     <!-- <div class="d-flex justify-content-between card-header"><span>All Active Posts</span> @if($rolls->type == 'admin' || $rolls->type == 'mentor')<span>Total Active Posts: {{ count($activePost)}}</span>@endif</div> -->
@@ -52,12 +52,14 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                     <td class="text-center">{{ $row->user_name }}</td>
                                     <td class="text-center">@if($row->visitors == NULL) 0 @else {{ $row->visitors }} @endif</td>
                                     @if($rolls->type == 'admin' || $rolls->type == 'mentor')
-                                    <td id="ss" class="text-center">
+                                    <td class="text-center">
+                                        <div id="ss{{$row->id}}">
                                         @if($row->status == 'inactive') 
                                       <span class="btn btn-sm btn-danger" onclick="statusChange(<?php echo $row->id ?>,<?php echo '0' ?>)">Inactive</span>   
                                         @elseif($row->status == 'active')
                                        <span class="btn btn-sm btn-success" onclick="statusChange(<?php echo $row->id ?>,<?php echo '1' ?>)">Active</span>      
                                         @endif
+                                        </div>
                                     </td>
                                     @endif
                                     <td class="text-center">
