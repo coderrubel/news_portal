@@ -16,9 +16,8 @@ class PostController extends Controller
     }
 
     public function AllPost(){
-        $post = Post::latest()->paginate(15);
-        $activePost = Post::latest()->paginate(10);
-        return view('admin.post.allpost',compact('post','activePost'));
+        $post = Post::latest()->paginate(10);
+        return view('admin.post.allpost',compact('post'));
     }
     public function statusChange(Request $request)
     {

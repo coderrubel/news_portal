@@ -174,9 +174,10 @@
                                 $subcats = DB::table('sub_catagories')->where('category_id',$category->id)->orderBy('id','DESC')->get();
                                 $subpost = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
                                             ->join('categories','categories.id','=','posts.category_id')
+                                            ->whereNull('posts.deleted_at')
                                             ->where('posts.status','active')
                                             ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
-                                            ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                            ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.deleted_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                             ->get();
                                 @endphp
                                 <div class="row">
@@ -215,8 +216,11 @@
                                             @php
                                             $subposts = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
                                                         ->join('categories','categories.id','=','posts.category_id')
-                                                        ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
-                                                        ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                                        ->whereNull('posts.deleted_at')
+                                                        ->where('posts.status','active')
+                                                        ->where('posts.category_id', $category->id)
+                                                        ->orderBy('posts.id','DESC')
+                                                        ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.deleted_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                                         ->skip(1)->take(4)->get();
                                             @endphp
                                             @foreach($subposts  as $post)

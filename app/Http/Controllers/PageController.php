@@ -22,7 +22,7 @@ class PageController extends Controller
                 $brands = Brand::latest()->first();
                 $post = Post::latest()->where('status','active')->get();
                 $new_post_details = Post::latest('id', 'desc')->where('status','active')->get();
-                $categories  = Category::where('show_on_menu','Show')->get();
+                $categories  = Category::where('show_on_menu','Show')->orderBy('catagory_order','asc')->get();
                 return view('pages.home',compact('setting','brands','header1','sidebar','post','new_post_details','categories'));
             }catch (Throwable $e) {
                 abort(404);

@@ -22,7 +22,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                         <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
-                    <!-- <div class="d-flex justify-content-between card-header"><span>All Active Posts</span> @if($rolls->type == 'admin' || $rolls->type == 'mentor')<span>Total Active Posts: {{ count($activePost)}}</span>@endif</div> -->
+                    <!-- <div class="d-flex justify-content-between card-header"><span>All Active Posts</span> @if($rolls->type == 'admin' || $rolls->type == 'mentor')<span>Total Active Posts: {{ count($post)}}</span>@endif</div> -->
                     <div class="table-responsive-sm table-responsive-md">
                         <table id="example" class="table table-bordered">
                             <thead>
@@ -41,10 +41,10 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($activePost as $row)
+                                @foreach($post as $row)
                                 @if($row->admin_id == $auth || $rolls->type == 'admin' || $rolls->type == 'mentor')
                                 <tr>
-                                    <th scope="row">{{ $activePost->firstItem()+$loop->index }}</th>
+                                    <th scope="row">{{ $post->firstItem()+$loop->index }}</th>
                                     <td class="text-center">{{ $row->rCaregory->sub_category_name }}</td>
                                     <td class="text-center">{{ $row->post_title }}</td>
                                     <!-- <td>{{ $row->post_detail }}</td> -->
@@ -87,6 +87,7 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                 @endforeach
                             </tbody>
                         </table>
+                        {{ $post->links() }}
                     </div>
                 </div>
             </div>

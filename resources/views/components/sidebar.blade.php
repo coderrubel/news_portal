@@ -29,8 +29,10 @@
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     @php 
                     $recentPost = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
-                                                    ->where('status','active')->orderBy('posts.id','DESC')
-                                                    ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                                    ->whereNull('posts.deleted_at')
+                                                    ->where('posts.status','active')
+                                                    ->orderBy('posts.id','DESC')
+                                                    ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.deleted_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                                     ->get();
                     $i=0 @endphp
                     @foreach($recentPost as $post)
@@ -68,9 +70,10 @@
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     @php 
                     $popularPost = DB::table('posts')->join('sub_catagories','sub_catagories.id','=','posts.sub_category_id')
-                                                     ->where('status','active')
+                                                     ->whereNull('posts.deleted_at')
+                                                     ->where('posts.status','active')
                                                      ->orderBy('posts.visitors','DESC')
-                                                     ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                                     ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.deleted_at','posts.updated_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                                      ->get();
                     $i=0
                      @endphp
