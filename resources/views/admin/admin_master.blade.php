@@ -235,10 +235,10 @@
     });
   }
  
-  // $('#example').DataTable({
-  //   "lengthMenu": [ [5, 10, 50, -1], [5, 10, 50, "All"] ]
-  // });
-  $('#example').DataTable();
+  $('#example').DataTable({
+    "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+  });
+  // $('#example').DataTable();
 
   function statusChange(id, value){
     // alert(id);
