@@ -59,7 +59,7 @@ class PageController extends Controller
         // Category Page
         public function Category($id){
             try {
-            $categorysPost = Category::with(['posts'])->where('id', $id)->first();
+            $categorysPost = Category::with(['posts'])->where('id', $id,)->where('show_on_menu','Show')->first();
             return view('pages.category',compact('categorysPost'));
         } catch (\Throwable $e) {
             abort(401);
