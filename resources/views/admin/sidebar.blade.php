@@ -131,6 +131,27 @@
               </div>
             </ul>
           </li>
+          <!-- Doctor -->
+          <li  class="{{ Request::is('doctor/store') || Request::is('doctor/all') ? 'active expand' : 'has-sub'}}" >
+            <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#doctor"  aria-expanded="false" aria-controls="doctor">
+              <i class="mdi mdi-doctor"></i>
+              <span class="nav-text">Docotr</span> <b class="caret"></b>
+            </a>
+            <ul  class="{{ Request::is('doctor/store') || Request::is('doctor/all') ? 'collapse show' : 'collapse'}}"  id="doctor" data-parent="#sidebar-menu">
+              <div class="sub-menu">
+                <li class="{{ Request::is('doctor/store') ? 'active' : ''}}">
+                  <a class="sidenav-item-link" href="{{url('/doctor/store')}}">
+                    <span class="nav-text">Add Doctor</span>
+                  </a>
+                </li>
+                <li class="{{ Request::is('doctor/all') ? 'active' : ''}}">
+                  <a class="sidenav-item-link" href="{{url('/doctor/all')}}">
+                    <span class="nav-text">All Doctor</span>
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </li>
           <!-- Advertisement -->
           <li  class="{{ Request::is('brand/all') || Request::is('header1/all') || Request::is('header2/all') || Request::is('sidebar1/all') || Request::is('sidebar2/all') ? 'active expand' : 'has-sub'}}" >
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#ads" aria-expanded="false" aria-controls="ads">

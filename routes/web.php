@@ -16,6 +16,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\LogoController;
+use App\Http\Controllers\DoctorController;
 
 
 // Home page
@@ -109,7 +110,13 @@ Route::post('/brand/add',[BrandController::class,'StoreBrand'])->name('store.bra
 Route::get('/brand/edit/{id}',[BrandController::class,'Edit']);
 Route::post('/brand/update/{id}',[BrandController::class,'Update']);
 Route::get('/brand/delete/{id}',[BrandController::class,'Delete']);
-
+// Doctor
+Route::get('/doctor/all',[DoctorController::class,'AllDoctor'])->name('all.doctor');
+Route::post('/doctor/add',[DoctorController::class,'AddDoctor'])->name('add.doctor'); 
+Route::get('/doctor/store',[DoctorController::class,'storeDoctor'])->name('store.doctor');
+Route::get('/doctor/edit/{id}',[DoctorController::class,'Edit']);
+Route::post('/doctor/update/{id}',[DoctorController::class,'Update']);
+Route::get('/doctor/delete/{id}',[DoctorController::class,'Delete']);
 // Setting Controller
 Route::get('/setting',[SettingController::class,'Setting'])->name('setting');
 Route::post('/setting/add',[SettingController::class,'AddSetting'])->name('store.news'); 
