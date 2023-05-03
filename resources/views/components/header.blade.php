@@ -21,27 +21,9 @@
         <link rel="stylesheet" href="{{ asset('fontend/css/spacing.css')}}">
         <link rel="stylesheet" href="{{ asset('fontend/css/font_awesome_5_free.min.css')}}">
         <link rel="stylesheet" href="{{ asset('fontend/css/style.css')}}">
-        
-        <!-- All Javascripts -->
-        <script src="{{asset ('fontend/js/jquery-3.6.0.min.js')}}"></script>
-        <script src="{{asset ('fontend/js/bootstrap.min.js')}}"></script>
-        <script src="{{asset ('fontend/js/jquery-ui.js')}}"></script>
-        <script src="{{asset ('fontend/js/jquery.magnific-popup.min.js')}}"></script>
-        <script src="{{asset ('fontend/js/owl.carousel.min.js')}}"></script>
-        <script src="{{asset ('fontend/js/wow.min.js')}}"></script>
-        <script src="{{asset ('fontend/js/select2.full.js')}}"></script>
-        <script src="{{asset ('fontend/js/sweetalert2.min.js')}}"></script>
-        <script src="{{asset ('fontend/js/jquery.waypoints.min.js')}}"></script>
-        <script src="{{asset ('fontend/js/acmeticker.js')}}"></script>
-        <!-- Text Eidtor -->
-        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-
         <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6212352ed76fda0a"></script>        
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
         
-        
-
     </head>
     <body>
         <div class="top">
@@ -129,6 +111,9 @@
                                         <a class="nav-link active" aria-current="page" href="{{url('/allpost/'.$item->id)}}">{{ $item->category_name }}</a>
                                     </li>
                                     @endforeach
+                                    <li class="nav-item">
+                                        <a class="nav-link active" aria-current="page" href="{{url('/doctor');}}">SPECIALIST DOCTORS LIST</a>
+                                    </li>
                                     <!-- 
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

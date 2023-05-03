@@ -90,7 +90,27 @@
             <i class="fas fa-angle-up"></i>
         </div>
 		
-        <script src="{{asset ('fontend/js/custom.js')}}"></script>        
+        <!-- All Javascripts -->
+        <script src="{{asset ('fontend/js/jquery-3.6.0.min.js')}}"></script>
+        <script src="{{asset ('fontend/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset ('fontend/js/jquery-ui.js')}}"></script>
+        <script src="{{asset ('fontend/js/jquery.magnific-popup.min.js')}}"></script>
+        <script src="{{asset ('fontend/js/owl.carousel.min.js')}}"></script>
+        <script src="{{asset ('fontend/js/wow.min.js')}}"></script>
+        <script src="{{asset ('fontend/js/select2.full.js')}}"></script>
+        <script src="{{asset ('fontend/js/sweetalert2.min.js')}}"></script>
+        <script src="{{asset ('fontend/js/jquery.waypoints.min.js')}}"></script>
+        <script src="{{asset ('fontend/js/acmeticker.js')}}"></script>
+        <!-- Text Eidtor -->
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <!-- DataTable -->
+        <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script>
+            $('#example').DataTable({
+                "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
+            });
+        </script>
+        <script src="{{asset ('fontend/js/custom.js')}}"></script>    
 		
    </body>
 </html>

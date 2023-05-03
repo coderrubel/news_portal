@@ -7,6 +7,7 @@ use App\Models\HeaderAds1;
 use App\Models\SidebarAds;
 use App\Models\Brand;
 use App\Models\Post;
+use App\Models\doctor;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -54,6 +55,12 @@ class PageController extends Controller
         public function aboutPage(){
             $abouts = DB::table('abouts')->first();
             return view('pages.about',compact('abouts'));
+        }
+
+        // Doctor page
+        public function doctorPage(){
+            $doctors = doctor::latest()->get();
+            return view('pages.doctor',compact('doctors'));
         }
 
         // Category Page
