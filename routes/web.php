@@ -35,7 +35,7 @@ Route::get('/faq',[PageController::class,'faqPage'])->name('faq');
 Route::get('/about',[PageController::class,'aboutPage'])->name('about');
 
 // Doctor Page
-Route::get('/doctor',[PageController::class,'doctorPage'])->name('doctor');
+Route::get('/doctor_list',[PageController::class,'doctorPage'])->name('doctor');
 
 // Contact Page
 Route::get('/contact',[ContactController::class,'Contact'])->name('contact');

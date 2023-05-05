@@ -17,7 +17,7 @@
 <div class="page-content">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mt-4">
+            <div class="col-lg-8 col-md-6 left-col">
                 <div class="card p-3">
                     <div class="table-responsive-sm table-responsive-md table-responsive">
                         <table id="example" class="table table-hover pt-2">
@@ -68,6 +68,9 @@
                         </table>
                     </div>
                 </div>    
+            </div>
+            <div class="col-lg-4 col-md-6 sidebar-col">
+                <x-sidebar/>
             </div>
         </div>
     </div>

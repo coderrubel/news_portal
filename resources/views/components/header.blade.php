@@ -112,7 +112,7 @@
                                     </li>
                                     @endforeach
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{url('/doctor');}}">SPECIALIST DOCTORS LIST</a>
+                                        <a class="nav-link active" aria-current="page" href="{{url('/doctor_list');}}">SPECIALIST DOCTORS LIST</a>
                                     </li>
                                     <!-- 
                                     <li class="nav-item dropdown">
