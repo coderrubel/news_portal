@@ -14,6 +14,81 @@
         </div>
     </div>
 </div>
+
+<div class="page-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <!--  Search section -->
+                <div class="search-section mb-3">
+                    <form action="{{url('search-doctor')}}" method="post">
+                        @csrf
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <select name="district" id="district" class="form-select">
+                                    <option value="">Select District</option>
+                                    @foreach($districts as $district)
+                                    <option  value="">{{ $district->district }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <select name="specialist"  id="specialist" class="form-select">
+                                    <option value="">Select Specialist</option>
+                                    @foreach($specialists as $specialist)
+                                    <option  value="">{{ $specialist->specialist }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                          <div class="col-md-2">
+                            <div class="form-group">
+                              <button type="submit" class="btn btn-secondary">Filter</button> 
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+                <div class="category-page">
+                    <div class="row">
+                        @foreach($doctors as $row)
+                        <div class="col-lg-2 col-md-4">
+                            <div class="category-page-post-item">
+                                <div class="photo">
+                                    <img src="{{ asset($row->photo) }}" alt="HealthCareBD24">
+                                </div>
+                                <div class="category d-flex justify-content-between">
+                                    <span class="badge bg-success">{{ $row->district }}</span> 
+                                    <span class="badge bg-success">{{ $row->specialist }}</span>
+                                </div>
+                                <h3 class="pt-1"><a href="{{url('/doctor_details/'.$row->id)}}"> {{ $row->name }} </a></h3>
+                                <div class="date-user">
+                                    <div class="date">Updated Date
+                                        @if($row->updated_at == NULL)
+                                            {{ $row->created_at->diffForHumans() }}
+                                        @else 
+                                            {{ $row->updated_at->diffForHumans() }}
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <div class="col-md-12">
+                            {{ $doctors->links() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<!--  
 <div class="page-content">
     <div class="container">
         <div class="row">
@@ -47,7 +122,7 @@
                                     </td>
                                     <td class="text-center"><button data-bs-toggle="modal" data-bs-target="#exampleModal{{$key}}" class="btn btn-sm btn-primary">View</button> </td>
                                         
-                                        <!-- Modal -->
+                                        
                                         <div class="modal fade" id="exampleModal{{$key}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-scrollable">
                                                 <div class="modal-content">
@@ -75,4 +150,5 @@
         </div>
     </div>
 </div>
+-->
 <x-footer/>

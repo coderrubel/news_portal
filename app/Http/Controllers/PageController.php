@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Post;
 use App\Models\doctor;
 use App\Models\Category;
+use App\Models\SubCatagory;
 use Illuminate\Support\Facades\DB;
 use Throwable;
 
@@ -24,7 +25,8 @@ class PageController extends Controller
                 $post = Post::latest()->where('status','active')->get();
                 $new_post_details = Post::latest('id', 'desc')->where('status','active')->get();
                 $categories  = Category::where('show_on_menu','Show')->orderBy('catagory_order','asc')->get();
-                return view('pages.home',compact('setting','brands','header1','sidebar','post','new_post_details','categories'));
+                $subcatagory = SubCatagory::get();
+                return view('pages.home',compact('setting','brands','header1','sidebar','post','new_post_details','categories','subcatagory'));
             }catch (Throwable $e) {
                 abort(404);
             }
@@ -58,9 +60,33 @@ class PageController extends Controller
         }
 
         // Doctor page
-        public function doctorPage(){
-            $doctors = doctor::latest()->get();
-            return view('pages.doctor',compact('doctors'));
+        public function doctorPage(Request $request){
+            $districts = doctor::groupBy('district')->get();
+            $specialists = doctor::groupBy('specialist')->get();
+            $doctors = doctor::latest('visitors', 'desc')->paginate(30);
+            return view('pages.doctor',compact('doctors','specialists','districts'));
+        }
+        
+        // Doctor Search
+        public function doctorSearch(Request $request){
+        $query = DB::table('doctors');
+
+		if ($request->district)
+        $query->where('district', 'LIKE', '%'.$request->district.'%');
+
+        if ($request->specialist)
+        $query->where('specialist', 'LIKE', '%'.$request->specialist.'%');
+        
+        return view('pages.doctor',compact('doctors'));
+
+        // Docotr View    
+        }
+        public function doctorView($id){
+            $doctorview = doctor::where('id',$id)->first();
+            $new_value = $doctorview->visitors+1;
+            $doctorview->visitors = $new_value;
+            $doctorview->update();
+            return view('pages.doctor_view',compact('doctorview'));
         }
 
         // Category Page

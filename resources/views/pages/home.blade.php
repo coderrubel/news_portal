@@ -111,7 +111,7 @@
             </div>
         </div>
     @endif
-        <!--  Search section
+        <!--  Search section -->
         <div class="search-section">
             <div class="container">
                 <div class="inner">
@@ -125,9 +125,9 @@
                             <div class="form-group">
                                 <select name="" class="form-select">
                                     <option value="">Select Category</option>
-                                    <option value="">Sports</option>
-                                    <option value="">National</option>
-                                    <option value="">Lifestyle</option>
+                                    @foreach($categories as $category)
+                                    <option value="">{{ $category->category_name ?? '' }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -135,7 +135,9 @@
                             <div class="form-group">
                                 <select name="" class="form-select">
                                     <option value="">Select SubCategory</option>
-                                    <option value="">Football</option>
+                                    @foreach($subcatagory as $row)
+                                    <option value="">{{ $row->sub_category_name ?? '' }}</option>
+                                    @endforeach
                                     <option value="">Cricket</option>
                                     <option value="">Baseball</option>
                                 </select>
@@ -148,7 +150,7 @@
                 </div>
             </div>
         </div>
-        -->
+        
         <div class="home-content">
             <div class="container">
                 <div class="row">
