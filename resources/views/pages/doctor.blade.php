@@ -24,7 +24,7 @@
     <form action="{{url('search-doctor')}}" method="post">
         @csrf
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="form-group">
                     <select name="district" id="district" class="form-select" onchange="getDoctor();">
                         <option value="all">Select District</option>
@@ -34,7 +34,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="form-group">
                     <select name="specialist" id="specialist" class="form-select" onchange="getSdoctor();">
                         <option value="all">Select Specialist</option>
@@ -42,11 +42,6 @@
                             <option value="{{ $specialist->specialist }}">{{ $specialist->specialist }}</option>
                         @endforeach
                     </select>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-secondary">Filter</button>
                 </div>
             </div>
         </div>

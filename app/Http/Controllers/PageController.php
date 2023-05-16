@@ -67,7 +67,7 @@ class PageController extends Controller
             return view('pages.doctor',compact('doctors','specialists','districts'));
         }
         
-        // Doctor Search
+        // Doctor Search by District
         public function doctorSearch(Request $request){
             $district = $request->district;
             if($district == 'all'){
@@ -75,9 +75,10 @@ class PageController extends Controller
             }else {
                 $doctors = Doctor::where('district',$district)->paginate(30);
             }
-        return view('pages.newDoctor',compact('doctors'));
+            return view('pages.newDoctor',compact('doctors'));
+        }
 
-    }
+        // Doctor Search by Specialist
         public function specialistdoctorSearch(Request $request){
             $district = $request->district;
             $specialist = $request->specialist;
@@ -91,10 +92,10 @@ class PageController extends Controller
             }else {
                 $doctors = Doctor::paginate(30);
             }
-        return view('pages.newDoctor',compact('doctors'));
-
-    }
-    // Docotr View    
+            return view('pages.newDoctor',compact('doctors'));
+        }
+        
+        // Docotr View    
         public function doctorView($id){
             $doctorview = doctor::where('id',$id)->first();
             $new_value = $doctorview->visitors+1;
