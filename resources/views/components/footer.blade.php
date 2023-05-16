@@ -105,12 +105,45 @@
         <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
         <!-- DataTable -->
         <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+        <script src="{{asset ('fontend/js/custom.js')}}"></script>   
         <script>
             $('#example').DataTable({
                 "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]
             });
         </script>
-        <script src="{{asset ('fontend/js/custom.js')}}"></script>    
+ 
+
+        <!-- docotor filter by district -->
+        <script>
+            function getDoctor(){
+              var district = $("#district").val();
+                $.ajax({
+                type: "GET",
+                url: "{{url('get-district-doctor')}}",
+                data: {district:district},
+                cache: false,
+                success: function(data){
+                $("#newDoctor").html(data);
+                }
+                });
+            }
+        </script>
+        <!-- docotor filter by specialist -->
+        <script>
+            function getSdoctor(){
+              var district = $("#district").val();
+              var specialist = $("#specialist").val();
+                $.ajax({
+                type: "GET",
+                url: "{{url('get-specialist-doctor')}}",
+                data: {district:district,specialist:specialist},
+                cache: false,
+                success: function(data){
+                $("#newDoctor").html(data);
+                }
+                });
+            }
+        </script>
 		
    </body>
 </html>

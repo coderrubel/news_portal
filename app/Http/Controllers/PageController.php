@@ -69,18 +69,32 @@ class PageController extends Controller
         
         // Doctor Search
         public function doctorSearch(Request $request){
-        $query = DB::table('doctors');
+            $district = $request->district;
+            if($district == 'all'){
+                $doctors = Doctor::paginate(30);
+            }else {
+                $doctors = Doctor::where('district',$district)->paginate(30);
+            }
+        return view('pages.newDoctor',compact('doctors'));
 
-		if ($request->district)
-        $query->where('district', 'LIKE', '%'.$request->district.'%');
+    }
+        public function specialistdoctorSearch(Request $request){
+            $district = $request->district;
+            $specialist = $request->specialist;
+            if($district == 'all' && $specialist != 'all'){
+                $doctors = Doctor::where('specialist',$specialist)->paginate(30);
+            }else if($district != 'all' && $specialist == 'all') {
+                $doctors = Doctor::where('district',$district)->paginate(30);
+            }
+            else if($district != 'all' && $specialist != 'all') {
+                $doctors = Doctor::where('district',$district)->where('specialist',$specialist)->paginate(30);
+            }else {
+                $doctors = Doctor::paginate(30);
+            }
+        return view('pages.newDoctor',compact('doctors'));
 
-        if ($request->specialist)
-        $query->where('specialist', 'LIKE', '%'.$request->specialist.'%');
-        
-        return view('pages.doctor',compact('doctors'));
-
-        // Docotr View    
-        }
+    }
+    // Docotr View    
         public function doctorView($id){
             $doctorview = doctor::where('id',$id)->first();
             $new_value = $doctorview->visitors+1;
