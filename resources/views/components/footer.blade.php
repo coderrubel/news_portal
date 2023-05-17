@@ -117,10 +117,11 @@
         <script>
             function getDoctor(){
               var district = $("#district").val();
+              var specialist = $("#specialist").val();
                 $.ajax({
                 type: "GET",
                 url: "{{url('get-district-doctor')}}",
-                data: {district:district},
+                data: {district:district,specialist:specialist},
                 cache: false,
                 success: function(data){
                 $("#newDoctor").html(data);

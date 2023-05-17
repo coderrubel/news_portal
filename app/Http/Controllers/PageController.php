@@ -70,10 +70,16 @@ class PageController extends Controller
         // Doctor Search by District
         public function doctorSearch(Request $request){
             $district = $request->district;
-            if($district == 'all'){
-                $doctors = Doctor::paginate(30);
-            }else {
+            $specialist = $request->specialist;
+            if($district == 'all' && $specialist != 'all'){
+                $doctors = Doctor::where('specialist',$specialist)->paginate(30);
+            }else if($district != 'all' && $specialist == 'all') {
                 $doctors = Doctor::where('district',$district)->paginate(30);
+            }
+            else if($district != 'all' && $specialist != 'all') {
+                $doctors = Doctor::where('district',$district)->where('specialist',$specialist)->paginate(30);
+            }else {
+                $doctors = Doctor::paginate(30);
             }
             return view('pages.newDoctor',compact('doctors'));
         }

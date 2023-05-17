@@ -179,7 +179,7 @@
                                             ->whereNull('posts.deleted_at')
                                             ->where('posts.status','active')
                                             ->where('posts.category_id', $category->id)->orderBy('posts.id','DESC')
-                                            ->select('posts.id','posts.status','posts.post_title','posts.post_photo','posts.created_at','posts.updated_at','posts.deleted_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
+                                            ->select('posts.id','posts.status','posts.post_title','post_detail','posts.post_photo','posts.created_at','posts.updated_at','posts.deleted_at','posts.visitors','posts.user_name','sub_catagories.sub_category_name')
                                             ->get();
                                 @endphp
                                 <div class="row">
@@ -208,7 +208,7 @@
                                                     <a href="">{{ date('d-M-Y', strtotime($post->created_at)); }}</a>
                                                 </div>
                                             </div>
-                                            <p>{!! $post->post_detail??'' !!}</p>
+                                            <p>{!! Str::limit($post->post_detail, 160) !!}</p>
                                         </div>
                                         @endif
                                         @endforeach
