@@ -23,7 +23,7 @@ use App\Http\Controllers\DoctorController;
 Route::get('/',[PageController::class,'homePage'])->name('home');
 
 // Post Details
-Route::get('/post_details/{id}',[PageController::class,'PostDetails'])->name('post_details');
+Route::get('/post_details/{slug}',[PageController::class,'PostDetails'])->name('post_details');
 
 // Category page
 Route::get('/allpost/{id}',[PageController::class,'Category'])->name('allpost');
@@ -36,7 +36,7 @@ Route::get('/about',[PageController::class,'aboutPage'])->name('about');
 
 // Doctor Page
 Route::get('/doctor_list',[PageController::class,'doctorPage'])->name('doctor_list');
-Route::get('/doctor_details/{id}',[PageController::class,'doctorView'])->name('doctor_details');
+Route::get('/doctor_details/{slug}',[PageController::class,'doctorView'])->name('doctor_details');
 Route::get('get-district-doctor',[PageController::class,'doctorSearch']);
 Route::get('get-specialist-doctor',[PageController::class,'specialistdoctorSearch']);
 

@@ -11,7 +11,7 @@
                     <span class="badge bg-success">{{ $row->district }}</span> 
                     <span class="badge bg-success">{{ $row->specialist }}</span>
                 </div>
-                <h3 class="pt-1"><a href="{{url('/doctor_details/'.$row->id)}}"> {{ $row->name }} </a></h3>
+                <h3 class="pt-1"><a href="{{url('/doctor_details/'.$row->slug)}}"> {{ $row->name }} </a></h3>
                 <div class="date-user">
                     <div class="date">Updated Date
                         @if($row->updated_at == NULL)

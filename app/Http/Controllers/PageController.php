@@ -33,12 +33,11 @@ class PageController extends Controller
         }
 
         // Post Details
-        public function PostDetails($id){
+        public function PostDetails($slug){
             try {
-                $post_details = Post::where('id', $id)->where('status','active')->first();
+                $post_details = Post::where('slug', $slug)->where('status','active')->first();
                 $relatedPost = Post::latest('visitors', 'desc')->get();
                 $category = Category::get();
-                // Visitor 
                 $new_value = $post_details->visitors+1;
                 $post_details->visitors = $new_value;
                 $post_details->update();
@@ -102,8 +101,8 @@ class PageController extends Controller
         }
         
         // Docotr View    
-        public function doctorView($id){
-            $doctorview = doctor::where('id',$id)->first();
+        public function doctorView($slug){
+            $doctorview = doctor::where('slug',$slug)->first();
             $new_value = $doctorview->visitors+1;
             $doctorview->visitors = $new_value;
             $doctorview->update();

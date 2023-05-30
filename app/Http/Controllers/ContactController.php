@@ -29,6 +29,7 @@ class ContactController extends Controller
             'email' => $request->email,
             'subject' => $request->subject,
             'message' => $request->message,
+            'created_at' => Carbon::now()
         ]);
         return Redirect()->route('contact')->with('success','Your message has been sent. Thank you!');
     }

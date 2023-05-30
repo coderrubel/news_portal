@@ -47,7 +47,7 @@
                                         <div class="category">
                                             <span class="badge bg-success badge-sm">{{ $item->rCaregory->sub_category_name }}</span>
                                         </div>
-                                        <h2 class="pt-1"><a href="{{url('/post_details/'.$item->id)}}">{{ $item->post_title }}</a></h2>
+                                        <h2 class="pt-1"><a href="{{url('/post_details/'.$item->slug)}}">{{ $item->post_title }}</a></h2>
                                         <div class="date-user">
                                             <div class="user">
                                                 <a href="{{url('/post_details/'.$item->id)}}">{{ $item->user_name }}</a>
@@ -81,7 +81,7 @@
                                         <div class="category">
                                             <span class="badge bg-success badge-sm">{{ $item->rCaregory->sub_category_name }}</span>
                                         </div>
-                                        <h2 class="pt-1"><a href="{{url('/post_details/'.$item->id)}}">{{ $item->post_title }}</a></h2>
+                                        <h2 class="pt-1"><a href="{{url('/post_details/'.$item->slug)}}">{{ $item->post_title }}</a></h2>
                                         <div class="date-user">
                                             <div class="user">
                                                 <a href="{{url('/post_details/'.$item->id)}}">{{ $item->user_name }}</a>

@@ -7,7 +7,9 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\SubCatagory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     // Login chack
@@ -77,6 +79,7 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'sub_category_id' => $request->sub_category_id,
             'post_title' => $request->post_title,
+            'slug' => Str::slug($request->post_title, '-'),
             'post_photo' => $last_img,
             'user_name' => Auth::user()->name,
             'admin_id' => Auth::user()->id,
@@ -131,18 +134,33 @@ class PostController extends Controller
             $up_location = 'image/post/';
             $last_img = $up_location.$img_name;
             $post_photo->move($up_location,$img_name);
- 
+            $exist=DB::table('posts')->where('id',$id)->first();
+   
+            if(is_null($exist->slug)){
+                 $slug = Str::slug($request->post_title, '-'); 
+              
+            }else{
+                $slug=$exist->slug;
+            }
+
             $update = Post::find($id)->update([
                 'category_id' => $request->category_id,
                 'sub_category_id'=> $request->sub_category_id,
                 'post_title' => $request->post_title,
+                'slug' =>  $slug,
                 'post_detail' => $request->post_detail,
                 'post_photo' => $last_img,         
                 'status' => $request->status,
-                'visitors' => $request->visitors,
             ]);
             }
             elseif($old_image == ""){
+                $exist=DB::table('posts')->where('id',$id)->first();
+                if(is_null($exist->slug)){
+                 $slug = Str::slug($request->post_title, '-'); 
+                }
+                else{
+                    $slug=$exist->slug;
+                }
                 $name_genarate = hexdec(uniqid());
                 $img_ext = strtolower($post_photo->getClientOriginalExtension());
                 $img_name = $name_genarate.'.'.$img_ext;
@@ -154,21 +172,28 @@ class PostController extends Controller
                     'category_id' => $request->category_id,
                     'sub_category_id'=> $request->sub_category_id,
                     'post_title' => $request->post_title,
+                    'slug' =>  $slug,
                     'post_detail' => $request->post_detail,
                     'post_photo' => $last_img,
                     'status' => $request->status,
-                    'visitors' => $request->visitors,
                 ]);
             }
 
             return Redirect()->route('all.post')->with('success','Update Post Successfully');
         }
         else{
+            $exist=DB::table('posts')->where('id',$id)->first();
+            if(is_null($exist->slug)){
+            $slug = Str::slug($request->post_title, '-'); 
+            }else{
+                $slug=$exist->slug;
+            }
             $update = Post::find($id)->update([
                 'category_id' => $request->category_id,
                 'sub_category_id'=> $request->sub_category_id,
                 'post_title' => $request->post_title,
                 'post_detail' => $request->post_detail,
+                'slug' =>  $slug,
                 'status' => $request->status,
                 'visitors' => $request->visitors,
             ]);

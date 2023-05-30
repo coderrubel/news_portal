@@ -13,6 +13,7 @@ class doctor extends Model
         'specialist',
         'district',
         'chamber',
-        'photo'
+        'photo',
+        'slug'
     ];
 }
