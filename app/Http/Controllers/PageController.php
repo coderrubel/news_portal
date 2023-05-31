@@ -32,7 +32,7 @@ class PageController extends Controller
             }
         }
 
-        // Post Details
+        // Post Details page
         public function PostDetails($slug){
             try {
                 $post_details = Post::where('slug', $slug)->where('status','active')->first();
@@ -45,6 +45,15 @@ class PageController extends Controller
             } catch (Throwable $e) {
                 abort(404);
             }
+        }
+        // Category Page
+        public function Category($category_name){
+            try {
+            $category = Category::where('category_name', $category_name)->where('show_on_menu','Show')->first();
+            return view('pages.category',compact('category'));
+        } catch (\Throwable $e) {
+            abort(401);
+        }
         }
 
         // FAQ page
@@ -109,13 +118,4 @@ class PageController extends Controller
             return view('pages.doctor_view',compact('doctorview'));
         }
 
-        // Category Page
-        public function Category($id){
-            try {
-            $category = Category::where('id', $id,)->where('show_on_menu','Show')->first();
-            return view('pages.category',compact('category'));
-        } catch (\Throwable $e) {
-            abort(401);
-        }
-        }
 }

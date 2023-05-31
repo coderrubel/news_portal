@@ -108,7 +108,7 @@
                                     </li>
                                     @foreach($global_categories as $item)
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="{{url('/allpost/'.$item->id)}}">{{ $item->category_name }}</a>
+                                        <a class="nav-link active" aria-current="page" href="{{url('/allpost/'.$item->category_name)}}">{{ $item->category_name }}</a>
                                     </li>
                                     @endforeach
                                     <li class="nav-item">

@@ -233,7 +233,7 @@ class HomeController extends Controller
 
     // Message
     public function AdminMessage(){
-        $message = ContactForm::all();
+        $message = ContactForm::orderBy('created_at', 'desc')->get();
         return view('admin.contact.message',compact('message'));
     }
 

@@ -26,7 +26,7 @@ Route::get('/',[PageController::class,'homePage'])->name('home');
 Route::get('/post_details/{slug}',[PageController::class,'PostDetails'])->name('post_details');
 
 // Category page
-Route::get('/allpost/{id}',[PageController::class,'Category'])->name('allpost');
+Route::get('/allpost/{category_name}',[PageController::class,'Category'])->name('allpost');
 
 // FAQ Page
 Route::get('/faq',[PageController::class,'faqPage'])->name('faq');
