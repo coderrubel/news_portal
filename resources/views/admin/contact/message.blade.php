@@ -46,10 +46,8 @@
                                 </tr>
                                 @endforeach
                             </thead>
-                            <tbody>
-
-                            </tbody>
                         </table>
+                        <div class="d-flex justify-content-center text-center mb-2 px-5">{{ $message->links() }}</div>
                     </div>
                 </div>
             </div>
