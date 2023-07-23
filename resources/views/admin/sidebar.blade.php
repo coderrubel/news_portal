@@ -108,13 +108,13 @@
             </ul>
           </li>
           <!-- Pages -->
-          <li  class="{{ Request::is('home/about') || Request::is('home/slider')  ? 'active expand' : 'has-sub'}}" >
+          <li  class="{{ Request::is('home/about') ? 'active expand' : 'has-sub'}}" >
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
               aria-expanded="false" aria-controls="pages">
               <i class="mdi mdi-image-filter-none"></i>
               <span class="nav-text">Pages</span> <b class="caret"></b>
             </a>
-            <ul  class="{{ Request::is('home/about') || Request::is('home/slider')  ? 'collapse show' : 'collapse'}}"  id="pages" data-parent="#sidebar-menu">
+            <ul  class="{{ Request::is('home/about') ? 'collapse show' : 'collapse'}}"  id="pages" data-parent="#sidebar-menu">
               <div class="sub-menu">
                 
                 <li  class="{{ Request::is('home/about') ? 'active' : ''}}" >
@@ -122,23 +122,29 @@
                     <span class="nav-text">About</span>
                   </a>
                 </li>
-                <li  class="{{ Request::is('home/slider') ? 'active' : ''}}" >
-                  <a class="sidenav-item-link" href="{{ route('home.slider')}}">
-                    <span class="nav-text">FAQ</span>
-                  </a>
-                </li>  
+                
                 
               </div>
             </ul>
           </li>
           <!-- Doctor -->
-          <li  class="{{ Request::is('doctor/store') || Request::is('doctor/all') ? 'active expand' : 'has-sub'}}" >
+          <li  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'active expand' : 'has-sub'}}" >
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#doctor"  aria-expanded="false" aria-controls="doctor">
               <i class="mdi mdi-doctor"></i>
               <span class="nav-text">Docotr</span> <b class="caret"></b>
             </a>
-            <ul  class="{{ Request::is('doctor/store') || Request::is('doctor/all') ? 'collapse show' : 'collapse'}}"  id="doctor" data-parent="#sidebar-menu">
+            <ul  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'collapse show' : 'collapse'}}"  id="doctor" data-parent="#sidebar-menu">
               <div class="sub-menu">
+                <li class="{{ Request::is('division/all') ? 'active' : ''}}">
+                  <a class="sidenav-item-link" href="{{url('/division/all')}}">
+                    <span class="nav-text">Division</span>
+                  </a>
+                </li>
+                <li class="{{ Request::is('district/all') ? 'active' : ''}}">
+                  <a class="sidenav-item-link" href="{{url('/district/all')}}">
+                    <span class="nav-text">District</span>
+                  </a>
+                </li>
                 <li class="{{ Request::is('doctor/store') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/doctor/store')}}">
                     <span class="nav-text">Add Doctor</span>
@@ -149,6 +155,11 @@
                     <span class="nav-text">All Doctor</span>
                   </a>
                 </li>
+                <li  class="{{ Request::is('home/slider') ? 'active' : ''}}" >
+                  <a class="sidenav-item-link" href="{{ route('home.slider')}}">
+                    <span class="nav-text">Slider</span>
+                  </a>
+                </li>  
               </div>
             </ul>
           </li>

@@ -16,6 +16,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\LogoController;
+use App\Http\Controllers\DivisionController; 
+use App\Http\Controllers\DistrictController; 
 use App\Http\Controllers\DoctorController;
 
 
@@ -116,6 +118,23 @@ Route::post('/brand/add',[BrandController::class,'StoreBrand'])->name('store.bra
 Route::get('/brand/edit/{id}',[BrandController::class,'Edit']);
 Route::post('/brand/update/{id}',[BrandController::class,'Update']);
 Route::get('/brand/delete/{id}',[BrandController::class,'Delete']);
+
+// Division Controller
+Route::get('/division/all',[DivisionController::class,'Aalldivision'])->name('all.division');
+Route::post('/division/add',[DivisionController::class,'Adddivision'])->name('store.division'); 
+Route::get('/division/edit/{id}',[DivisionController::class,'Editdivision']);
+Route::post('/division/update/{id}',[DivisionController::class,'Updatedivision']);
+Route::get('/division/delete/{id}',[DivisionController::class,'Delete']);
+Route::get('get-division',[DivisionController::class,'gdivision']);
+Route::get('get-editdivision',[DivisionController::class,'gEditdivision']);
+
+// District Controller
+Route::get('/district/all',[DistrictController::class,'Aalldistrict'])->name('all.district');
+Route::post('/district/add',[DistrictController::class,'Adddistrict'])->name('store.district'); 
+Route::get('/district/edit/{id}',[DistrictController::class,'Editdistrict']);
+Route::post('/district/update/{id}',[DistrictController::class,'Updatedistrict']);
+Route::get('/district/pdelete/{id}',[DistrictController::class,'PDelete']);
+
 // Doctor
 Route::get('/doctor/all',[DoctorController::class,'AllDoctor'])->name('all.doctor');
 Route::post('/doctor/add',[DoctorController::class,'AddDoctor'])->name('add.doctor'); 
