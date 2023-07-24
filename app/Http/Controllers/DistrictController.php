@@ -64,9 +64,9 @@ class DistrictController extends Controller
     }
 
     // Delete sub Category
-    public function PDelete($id){
+    public function Delete($id){
         District::find($id)->delete();
-        return Redirect()->back()->with('success','District Deleted');
+        return Redirect()->back()->with('success','Deleted District');
     }
    
 }

@@ -58,7 +58,7 @@ class DivisionController extends Controller
     // Delete division
     public function Delete($id){
         Division::find($id)->delete();
-        return Redirect()->back()->with('success','Division Deleted');
+        return Redirect()->back()->with('success','Deleted Division');
     }
 
     // division add on Post page

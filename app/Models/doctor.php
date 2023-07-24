@@ -10,10 +10,20 @@ class doctor extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'specialist',
+        'slug',
+        'gender',
+        'division',
         'district',
+        'specialist',
+        'degree',
+        'designation',
+        'hospital',
+        'bmdc',
+        'mobile1',
+        'mobile2',
         'chamber',
+        'description',
         'photo',
-        'slug'
+        'email'
     ];
 }
