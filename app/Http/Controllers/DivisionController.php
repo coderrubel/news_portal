@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Division;
+use App\Models\District;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,7 @@ class DivisionController extends Controller
             'division' => $request->division,
             'created_at' => Carbon::now()
         ]);
-        return Redirect()->back()->with('success','Insert Division Successfully');
+        return Redirect()->back()->with('success','Division Add Successfully');
 
     }
 
@@ -56,7 +57,7 @@ class DivisionController extends Controller
 
     // Delete division
     public function Delete($id){
-        $delete = Division::onlyTrashed()->find($id)->forceDelete();
+        Division::find($id)->delete();
         return Redirect()->back()->with('success','Division Deleted');
     }
 

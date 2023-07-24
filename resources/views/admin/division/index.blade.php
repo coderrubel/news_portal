@@ -44,7 +44,7 @@
                                             <a href="{{ url('/division/edit/'.$division->id) }}">Edit</a>
                                         </li>
                                         <li class="dropdown-item">
-                                            <a href="{{ url('/division/delete/'.$division->id) }}">Delete</a>
+                                            <a href="{{ url('/division/delete/'.$division->id) }}" onclick="return confirm('Are you sure to delete')">Delete</a>
                                         </li>
                                         </ul>
                                     </div>

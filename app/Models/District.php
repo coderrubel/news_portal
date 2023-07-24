@@ -10,10 +10,12 @@ class District extends Model
     use HasFactory;
     protected $fillable = [
         'id',
+        'division_id',
         'district',
     ];
 
-    public function division(){
-        return $this->hasMany(Division::class,'division_id');
+
+    public function rDivision(){
+        return $this->belongsTo(Division::class, 'division_id');
     }
 }

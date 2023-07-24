@@ -9,7 +9,6 @@ class Division extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
         'division',
     ];
 

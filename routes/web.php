@@ -133,7 +133,7 @@ Route::get('/district/all',[DistrictController::class,'Aalldistrict'])->name('al
 Route::post('/district/add',[DistrictController::class,'Adddistrict'])->name('store.district'); 
 Route::get('/district/edit/{id}',[DistrictController::class,'Editdistrict']);
 Route::post('/district/update/{id}',[DistrictController::class,'Updatedistrict']);
-Route::get('/district/pdelete/{id}',[DistrictController::class,'PDelete']);
+Route::get('/district/delete/{id}',[DistrictController::class,'Delete']);
 
 // Doctor
 Route::get('/doctor/all',[DoctorController::class,'AllDoctor'])->name('all.doctor');
