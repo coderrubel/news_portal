@@ -135,6 +135,13 @@ Route::get('/district/edit/{id}',[DistrictController::class,'Editdistrict']);
 Route::post('/district/update/{id}',[DistrictController::class,'Updatedistrict']);
 Route::get('/district/delete/{id}',[DistrictController::class,'Delete']);
 
+// Specialist Controller
+Route::get('/specialist/all',[DistrictController::class,'Aallspecialist'])->name('all.specialist');
+Route::post('/specialist/add',[DistrictController::class,'Addspecialist'])->name('store.specialist'); 
+Route::get('/specialist/edit/{id}',[DistrictController::class,'Edit']);
+Route::post('/specialist/update/{id}',[DistrictController::class,'Update']);
+Route::get('/specialist/delete/{id}',[DistrictController::class,'Delete']);
+
 // Doctor
 Route::get('/doctor/all',[DoctorController::class,'AllDoctor'])->name('all.doctor');
 Route::post('/doctor/add',[DoctorController::class,'AddDoctor'])->name('add.doctor'); 
