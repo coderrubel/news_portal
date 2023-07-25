@@ -18,6 +18,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\LogoController;
 use App\Http\Controllers\DivisionController; 
 use App\Http\Controllers\DistrictController; 
+use App\Http\Controllers\SpecialistController; 
 use App\Http\Controllers\DoctorController;
 
 
@@ -136,11 +137,11 @@ Route::post('/district/update/{id}',[DistrictController::class,'Updatedistrict']
 Route::get('/district/delete/{id}',[DistrictController::class,'Delete']);
 
 // Specialist Controller
-Route::get('/specialist/all',[DistrictController::class,'Aallspecialist'])->name('all.specialist');
-Route::post('/specialist/add',[DistrictController::class,'Addspecialist'])->name('store.specialist'); 
-Route::get('/specialist/edit/{id}',[DistrictController::class,'Edit']);
-Route::post('/specialist/update/{id}',[DistrictController::class,'Update']);
-Route::get('/specialist/delete/{id}',[DistrictController::class,'Delete']);
+Route::get('/specialist/all',[SpecialistController::class,'Aallspecialist'])->name('all.specialist');
+Route::post('/specialist/add',[SpecialistController::class,'Addspecialist'])->name('store.specialist'); 
+Route::get('/specialist/edit/{id}',[SpecialistController::class,'Edit']);
+Route::post('/specialist/update/{id}',[SpecialistController::class,'Update']);
+Route::get('/specialist/delete/{id}',[SpecialistController::class,'Delete']);
 
 // Doctor
 Route::get('/doctor/all',[DoctorController::class,'AllDoctor'])->name('all.doctor');

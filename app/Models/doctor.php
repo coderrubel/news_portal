@@ -24,6 +24,8 @@ class doctor extends Model
         'chamber',
         'description',
         'photo',
-        'email'
+        'email',
+        'rating',
+        'view'
     ];
 }

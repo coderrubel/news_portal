@@ -31,6 +31,8 @@ class CreateDoctorsTable extends Migration
             $table->text('description')->nullable();
             $table->text('email')->nullable();
             $table->string('photo')->nullable();
+            $table->integer('rating')->nullable();
+            $table->integer('view')->nullable();
             $table->timestamps();
         });
     }

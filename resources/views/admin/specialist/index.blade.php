@@ -11,7 +11,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
-                    <div class="d-flex justify-content-between card-header"><span>All District</span> <span>Total District: {{ count($specs)}} </span></div>
+                    <div class="d-flex justify-content-between card-header"><span>All Specialist</span> <span>Total Specialists: {{ count($specs)}} </span></div>
                     <div class="table-responsive-sm table-responsive-md">
                         <table class="table">
                             <thead>
@@ -52,7 +52,7 @@
                 <div class="card">
                     <div class="card card-header">Add Specialist</div>
                     <div class="card card-body">
-                        <form action="{{ route('store.spec')}}" method="POST">
+                        <form action="{{ route('store.specialist')}}" method="POST">
                             @csrf
                             <div class="my-2">
                                 <label for="addcategory" class="form-label">Specialist*</label>

@@ -128,12 +128,12 @@
             </ul>
           </li>
           <!-- Doctor -->
-          <li  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'active expand' : 'has-sub'}}" >
+          <li  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('specialist/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'active expand' : 'has-sub'}}" >
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#doctor"  aria-expanded="false" aria-controls="doctor">
               <i class="mdi mdi-doctor"></i>
               <span class="nav-text">Docotr</span> <b class="caret"></b>
             </a>
-            <ul  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'collapse show' : 'collapse'}}"  id="doctor" data-parent="#sidebar-menu">
+            <ul  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('specialist/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'collapse show' : 'collapse'}}"  id="doctor" data-parent="#sidebar-menu">
               <div class="sub-menu">
                 <li class="{{ Request::is('division/all') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/division/all')}}">
@@ -143,6 +143,11 @@
                 <li class="{{ Request::is('district/all') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/district/all')}}">
                     <span class="nav-text">District</span>
+                  </a>
+                </li>
+                <li class="{{ Request::is('specialist/all') ? 'active' : ''}}">
+                  <a class="sidenav-item-link" href="{{url('/specialist/all')}}">
+                    <span class="nav-text">Specialist</span>
                   </a>
                 </li>
                 <li class="{{ Request::is('doctor/store') ? 'active' : ''}}">
