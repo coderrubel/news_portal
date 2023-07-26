@@ -15,8 +15,6 @@ class CreateSpecialistsTable extends Migration
     {
         Schema::create('specialists', function (Blueprint $table) {
             $table->id();
-            $table->integer('division_id');
-            $table->integer('district_id');
             $table->string('spec')->unique();
             $table->timestamps();
         });

@@ -18,6 +18,7 @@
                             <th class="text-center">District</th>
                             <th class="text-center">Photo</th>
                             <th class="text-center">Updated</th>
+                            <th class="text-center">Visitors</th>
                             <th scope="col" class="text-right">Action</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                     {{ $row->updated_at->diffForHumans() }}
                                 @endif
                             </td>
+                            <td class="text-center">{{ $row->view??'' }}</td>
                             <td class="text-right">
                                 <div class="dropdown show d-inline-block widget-dropdown">
                                     <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>

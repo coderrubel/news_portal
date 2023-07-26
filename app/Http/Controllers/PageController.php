@@ -71,7 +71,7 @@ class PageController extends Controller
         public function doctorPage(Request $request){
             $districts = doctor::groupBy('district')->get();
             $specialists = doctor::groupBy('specialist')->get();
-            $doctors = doctor::latest('visitors', 'desc')->paginate(30);
+            $doctors = doctor::latest('view', 'desc')->paginate(30);
             return view('pages.doctor',compact('doctors','specialists','districts'));
         }
         
@@ -112,8 +112,8 @@ class PageController extends Controller
         // Docotr View    
         public function doctorView($slug){
             $doctorview = doctor::where('slug',$slug)->first();
-            $new_value = $doctorview->visitors+1;
-            $doctorview->visitors = $new_value;
+            $new_value = $doctorview->view+1;
+            $doctorview->view = $new_value;
             $doctorview->update();
             return view('pages.doctor_view',compact('doctorview'));
         }

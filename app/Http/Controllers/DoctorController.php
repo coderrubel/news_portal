@@ -47,6 +47,7 @@ class DoctorController extends Controller
             'district' => $request->district,
             'chamber' => $request->chamber,
             'photo' => $last_img,
+            'view' => $request->view,
             'slug' => Str::slug($request->name, '-'),
             'created_at' => Carbon::now()
         ]);
