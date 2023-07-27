@@ -28,4 +28,10 @@ class doctor extends Model
         'rating',
         'view'
     ];
+    public function rDivision(){
+        return $this->belongsTo(Division::class, 'division');
+    }
+    public function rDistrict(){
+        return $this->belongsTo(District::class, 'district');
+    }
 }

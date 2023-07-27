@@ -116,14 +116,16 @@
         <!-- docotor filter by district -->
         <script>
             function getDoctor(){
+                var division = $("#division").val();
               var district = $("#district").val();
               var specialist = $("#specialist").val();
                 $.ajax({
                 type: "GET",
                 url: "{{url('get-district-doctor')}}",
-                data: {district:district,specialist:specialist},
+                data: {district:district,specialist:specialist,division:division},
                 cache: false,
                 success: function(data){
+                    console.log(data);
                 $("#newDoctor").html(data);
                 }
                 });
@@ -132,15 +134,31 @@
         <!-- docotor filter by specialist -->
         <script>
             function getSdoctor(){
+              var division = $("#division").val();
               var district = $("#district").val();
               var specialist = $("#specialist").val();
                 $.ajax({
                 type: "GET",
                 url: "{{url('get-specialist-doctor')}}",
-                data: {district:district,specialist:specialist},
+                data: {district:district,specialist:specialist,division:division},
                 cache: false,
                 success: function(data){
+                    console.log(data);
                 $("#newDoctor").html(data);
+                }
+                });
+            }
+        </script>
+        <script>
+            function getDistrict(){
+              var division = $("#division").val();
+                $.ajax({
+                type: "GET",
+                url: "{{url('get-district')}}",
+                data: {division:division},
+                cache: false,
+                success: function(data){
+                $("#district").html(data);
                 }
                 });
             }

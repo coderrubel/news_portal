@@ -234,6 +234,18 @@
       }
     });
   }
+  function getDivis(){
+    var divis = $("#divis").val();
+    $.ajax({
+      url : "{{url('get-distric')}}",
+      type: "get",
+      data: {divis : divis},
+      cache : false,
+      success :function(data){
+        $("#distri").html(data);
+      }
+    });
+  }
  
   $('#example').DataTable({
     "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ]

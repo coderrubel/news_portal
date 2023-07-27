@@ -7,8 +7,10 @@ use App\Models\HeaderAds1;
 use App\Models\SidebarAds;
 use App\Models\Brand;
 use App\Models\Post;
+use App\Models\Division;
 use App\Models\doctor;
 use App\Models\Category;
+use App\Models\District;
 use App\Models\SubCatagory;
 use Illuminate\Support\Facades\DB;
 use Throwable;
@@ -69,27 +71,39 @@ class PageController extends Controller
 
         // Doctor page
         public function doctorPage(Request $request){
-            $districts = doctor::groupBy('district')->get();
+            $division = Division::get();
+            $districts = District::groupBy('district')->get();
             $specialists = doctor::groupBy('specialist')->get();
             $doctors = doctor::latest('view', 'desc')->paginate(30);
-            return view('pages.doctor',compact('doctors','specialists','districts'));
+            return view('pages.doctor',compact('division','doctors','specialists','districts'));
         }
         
         // Doctor Search by District
         public function doctorSearch(Request $request){
+            $division = $request->division;
             $district = $request->district;
             $specialist = $request->specialist;
-            if($district == 'all' && $specialist != 'all'){
+            if($division == 'all' && $specialist != 'all'){
                 $doctors = Doctor::where('specialist',$specialist)->paginate(30);
-            }else if($district != 'all' && $specialist == 'all') {
-                $doctors = Doctor::where('district',$district)->paginate(30);
+            }else if($division != 'all' && $district != 'all' && $specialist == 'all') {
+                $doctors = Doctor::where('division',$division)->where('district',$district)->paginate(30);
             }
-            else if($district != 'all' && $specialist != 'all') {
-                $doctors = Doctor::where('district',$district)->where('specialist',$specialist)->paginate(30);
-            }else {
+            else if($division != 'all' && $specialist != 'all') {
+                $doctors = Doctor::where('division',$division)->where('specialist',$specialist)->paginate(30);
+            } 
+            else {
                 $doctors = Doctor::paginate(30);
             }
             return view('pages.newDoctor',compact('doctors'));
+        }
+        public function getDistrict(Request $request){
+            $division = $request->division;
+            $doctors = District::where('division_id',$division)->get();
+            foreach($doctors as $doctor){
+                echo "<option  value='" . $doctor->id . "'>" . $doctor->district . "</option>";
+            }
+    
+          
         }
 
         // Doctor Search by Specialist

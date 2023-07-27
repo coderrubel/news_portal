@@ -14,11 +14,11 @@
                     <thead>
                         <tr>
                             <th class="text-center">Name</th>
-                            <th class="text-center">Specialist</th>
+                            <th class="text-center">Division</th>
                             <th class="text-center">District</th>
+                            <th class="text-center">Specialist</th>
                             <th class="text-center">Photo</th>
-                            <th class="text-center">Updated</th>
-                            <th class="text-center">Visitors</th>
+                            <th class="text-center">View</th>
                             <th scope="col" class="text-right">Action</th>
                         </tr>
                     </thead>
@@ -26,16 +26,10 @@
                         @foreach($doctors as $row)
                         <tr>
                             <td class="text-center">{{ $row->name }}</td>
+                            <td class="text-center">{{ $row->rDivision->division  }}</td>
+                            <td class="text-center">{{ $row->rDistrict->district }}</td>
                             <td class="text-center">{{ $row->specialist }}</td>
-                            <td class="text-center">{{ $row->district }}</td>
                             <td class="text-center"><img src="{{ asset($row->photo) }}" style="height:40px; width:70px;"></td>
-                            <td class="text-center">
-                                @if($row->updated_at == NULL)
-                                    {{ $row->created_at->diffForHumans() }}
-                                @else 
-                                    {{ $row->updated_at->diffForHumans() }}
-                                @endif
-                            </td>
                             <td class="text-center">{{ $row->view??'' }}</td>
                             <td class="text-right">
                                 <div class="dropdown show d-inline-block widget-dropdown">

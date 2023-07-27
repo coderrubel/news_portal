@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\doctor;
+use App\Models\specialist;
+use App\Models\Division;
+use App\Models\District;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
@@ -20,14 +23,20 @@ class DoctorController extends Controller
         $doctors = doctor::latest()->get();
         return view('admin.doctor.index',compact('doctors'));
     }
+
+    // sotre
     public function storeDoctor(){
-        return view('admin.doctor.add');
+        $divisions = Division::latest()->get();
+        $districts = District::latest()->get();
+        $specs = specialist::latest()->get();
+        return view('admin.doctor.add',compact('divisions','districts','specs'));
     }
 
     // Add Doctor
     public function AddDoctor(Request $request){
         $validated = $request->validate([
             'name' => 'required',
+            'division' => 'required',
             'specialist' => 'required',
             'district' => 'required',
             'chamber' => 'required',
@@ -43,8 +52,9 @@ class DoctorController extends Controller
         $photo->move($up_location,$img_name);
         doctor::insert([
             'name' => $request->name,
-            'specialist' => $request->specialist,
+            'division' => $request->division,
             'district' => $request->district,
+            'specialist' => $request->specialist,
             'chamber' => $request->chamber,
             'photo' => $last_img,
             'view' => $request->view,
@@ -52,6 +62,15 @@ class DoctorController extends Controller
             'created_at' => Carbon::now()
         ]);
         return Redirect()->route('all.doctor')->with('success','Doctor Add Successfully');
+    }
+    public function getDistri(Request $request){
+        $divis = $request->divis;
+        $doctors = District::where('division_id',$divis)->get();
+        foreach($doctors as $doctor){
+            echo "<option  value='" . $doctor->id . "'>" . $doctor->district . "</option>";
+        }
+
+      
     }
     // Edit 
     public function Edit($id){

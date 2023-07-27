@@ -42,6 +42,8 @@ Route::get('/doctor_list',[PageController::class,'doctorPage'])->name('doctor_li
 Route::get('/doctor_details/{slug}',[PageController::class,'doctorView'])->name('doctor_details');
 Route::get('get-district-doctor',[PageController::class,'doctorSearch']);
 Route::get('get-specialist-doctor',[PageController::class,'specialistdoctorSearch']);
+Route::get('get-district',[PageController::class,'getDistrict']);
+
 
 // Contact Page
 Route::get('/contact',[ContactController::class,'Contact'])->name('contact');
@@ -145,6 +147,7 @@ Route::get('/specialist/delete/{id}',[SpecialistController::class,'Delete']);
 
 // Doctor
 Route::get('/doctor/all',[DoctorController::class,'AllDoctor'])->name('all.doctor');
+Route::get('/get-distric',[DoctorController::class,'getDistri']);
 Route::post('/doctor/add',[DoctorController::class,'AddDoctor'])->name('add.doctor'); 
 Route::get('/doctor/store',[DoctorController::class,'storeDoctor'])->name('store.doctor');
 Route::get('/doctor/edit/{id}',[DoctorController::class,'Edit']);

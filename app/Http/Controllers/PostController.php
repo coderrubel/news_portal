@@ -21,6 +21,7 @@ class PostController extends Controller
         $post = Post::latest()->paginate(10);
         return view('admin.post.allpost',compact('post'));
     }
+
     public function statusChange(Request $request)
     {
      $id = $request->id;
@@ -41,6 +42,8 @@ class PostController extends Controller
     echo '<span class="btn btn-sm btn-danger" onclick="statusChange('.$post->id.',0)">Inactive</span>';
  }
     }
+
+    // store
     public function storePost(){
         $catagory = Category::orderBy('catagory_order','asc')->get();
         $subcagagorys = SubCatagory::with('rCaregory')->latest()->get();

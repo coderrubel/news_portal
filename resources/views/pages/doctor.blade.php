@@ -55,17 +55,25 @@
     <form action="{{url('search-doctor')}}" method="post">
         @csrf
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
-                    <select name="district" id="district" class="form-select" onchange="getDoctor();">
+                    <select name="" class="form-select" id="division" onchange="getDoctor();getDistrict()">
                         <option value="all">Select District</option>
-                        @foreach($districts as $district)
-                            <option value="{{ $district->district }}">{{ $district->district }}</option>
+                        @foreach($division as $row)
+                        <option value="{{ $row->id }}">{{ $row->division }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <select name="district" id="district" class="form-select" onchange="getDoctor();">
+                        <option value="all">Select District</option>
+                     
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
                     <select name="specialist" id="specialist" class="form-select" onchange="getSdoctor();">
                         <option value="all">Select Specialist</option>
@@ -89,7 +97,7 @@
                                     <img src="{{ asset($row->photo) }}" alt="HealthCareBD24">
                                 </div>
                                 <div class="category d-flex justify-content-between">
-                                    <span class="badge bg-success">{{ $row->district }}</span> 
+                                    <span class="badge bg-success">{{ $row->rDistrict->district }}</span> 
                                     <span class="badge bg-success">{{ $row->specialist }}</span>
                                 </div>
                                 <h3 class="pt-1"><a href="{{url('/doctor_details/'.$row->slug)}}"> {{ $row->name }} </a></h3>
