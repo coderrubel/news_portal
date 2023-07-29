@@ -78,51 +78,58 @@ class PageController extends Controller
             return view('pages.doctor',compact('division','doctors','specialists','districts'));
         }
         
-        // Doctor Search by District
+        // Doctor Search by Division
         public function doctorSearch(Request $request){
             $division = $request->division;
             $district = $request->district;
             $specialist = $request->specialist;
-            if($division == 'all' && $specialist != 'all'){
-                $doctors = Doctor::where('specialist',$specialist)->paginate(30);
-            }else if($division != 'all' && $district != 'all' && $specialist == 'all') {
-                $doctors = Doctor::where('division',$division)->where('district',$district)->paginate(30);
+            if($division != 'all' && $specialist == 'all'){
+                $doctors = Doctor::where('division',$division)->paginate(30);
             }
             else if($division != 'all' && $specialist != 'all') {
                 $doctors = Doctor::where('division',$division)->where('specialist',$specialist)->paginate(30);
-            } 
+            }
+            else if($division == 'all' && $specialist != 'all') {
+                $doctors = Doctor::where('specialist',$specialist)->paginate(30);
+            }
+            
             else {
                 $doctors = Doctor::paginate(30);
             }
             return view('pages.newDoctor',compact('doctors'));
         }
+        
+        // Doctor Search by Specialist
+        public function specialistdoctorSearch(Request $request){
+            $division = $request->division;
+            $district = $request->district;
+            $specialist = $request->specialist;
+            if($division == 'all' && $specialist != 'all'){
+                $doctors = Doctor::where('specialist',$specialist)->paginate(30);
+            }
+            else if($division != 'all' && $specialist != 'all') {
+                $doctors = Doctor::where('division',$division)->where('specialist',$specialist)->paginate(30);
+            }
+            else if($division != 'all' && $specialist == 'all') {
+                $doctors = Doctor::where('division',$division)->paginate(30);
+            }
+            
+            else {
+                $doctors = Doctor::paginate(30);
+            }
+            return view('pages.newDoctor',compact('doctors'));
+        }
+
+
+        
+        // district by division
         public function getDistrict(Request $request){
             $division = $request->division;
             $doctors = District::where('division_id',$division)->get();
             foreach($doctors as $doctor){
                 echo "<option  value='" . $doctor->id . "'>" . $doctor->district . "</option>";
             }
-    
-          
         }
-
-        // Doctor Search by Specialist
-        public function specialistdoctorSearch(Request $request){
-            $district = $request->district;
-            $specialist = $request->specialist;
-            if($district == 'all' && $specialist != 'all'){
-                $doctors = Doctor::where('specialist',$specialist)->paginate(30);
-            }else if($district != 'all' && $specialist == 'all') {
-                $doctors = Doctor::where('district',$district)->paginate(30);
-            }
-            else if($district != 'all' && $specialist != 'all') {
-                $doctors = Doctor::where('district',$district)->where('specialist',$specialist)->paginate(30);
-            }else {
-                $doctors = Doctor::paginate(30);
-            }
-            return view('pages.newDoctor',compact('doctors'));
-        }
-        
         // Docotr View    
         public function doctorView($slug){
             $doctorview = doctor::where('slug',$slug)->first();

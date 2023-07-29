@@ -7,8 +7,9 @@
                 <div class="photo">
                     <img src="{{ asset($row->photo) }}" alt="HealthCareBD24">
                 </div>
-                <div class="category d-flex justify-content-between">
-                    <span class="badge bg-success">{{ $row->rDistrict->district }}</span> 
+                <div class="category">
+                    <span class="badge bg-success">{{ $row->rDivision->division }}</span><br>
+                    <span class="badge bg-success">{{ $row->rDistrict->district }}</span> <br>
                     <span class="badge bg-success">{{ $row->specialist }}</span>
                 </div>
                 <h3 class="pt-1"><a href="{{url('/doctor_details/'.$row->slug)}}"> {{ $row->name }} </a></h3>

@@ -58,7 +58,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <select name="" class="form-select" id="division" onchange="getDoctor();getDistrict()">
-                        <option value="all">Select District</option>
+                        <option value="all">Select Division</option>
                         @foreach($division as $row)
                         <option value="{{ $row->id }}">{{ $row->division }}</option>
                         @endforeach
@@ -68,8 +68,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <select name="district" id="district" class="form-select" onchange="getDoctor();">
-                        <option value="all">Select District</option>
-                     
+                        <option value="all" selected>Select District</option>
                     </select>
                 </div>
             </div>
@@ -96,8 +95,9 @@
                                 <div class="photo">
                                     <img src="{{ asset($row->photo) }}" alt="HealthCareBD24">
                                 </div>
-                                <div class="category d-flex justify-content-between">
-                                    <span class="badge bg-success">{{ $row->rDistrict->district }}</span> 
+                                <div class="category">
+                                    <span class="badge bg-success">{{ $row->rDivision->division }}</span><br>
+                                    <span class="badge bg-success">{{ $row->rDistrict->district }}</span> <br>
                                     <span class="badge bg-success">{{ $row->specialist }}</span>
                                 </div>
                                 <h3 class="pt-1"><a href="{{url('/doctor_details/'.$row->slug)}}"> {{ $row->name }} </a></h3>

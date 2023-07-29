@@ -39,7 +39,12 @@ class DoctorController extends Controller
             'division' => 'required',
             'specialist' => 'required',
             'district' => 'required',
+            'hospital' => 'required',
+            'designation' => 'required',
+            'degree' => 'required',
             'chamber' => 'required',
+            'mobile1' => 'required',
+            'gender' => 'required',
             'photo' => 'required|mimes:jpg,png,jpeg,webp|max:1024',
         ]);
 
@@ -55,7 +60,16 @@ class DoctorController extends Controller
             'division' => $request->division,
             'district' => $request->district,
             'specialist' => $request->specialist,
+            'bmdc' => $request->bmdc,
+            'gender' => $request->gender,
+            'hospital' => $request->hospital,
+            'designation' => $request->designation,
+            'degree' => $request->degree,
             'chamber' => $request->chamber,
+            'description' => $request->description,
+            'mobile1' => $request->mobile1,
+            'mobile2' => $request->mobile2,
+            'email' => $request->email,
             'photo' => $last_img,
             'view' => $request->view,
             'slug' => Str::slug($request->name, '-'),
@@ -79,12 +93,6 @@ class DoctorController extends Controller
     }
     // Update
     public function Update(Request $request, $id){
-        $validated = $request->validate([
-            'name' => 'required',
-            'specialist' => 'required',
-            'district' => 'required',
-            'chamber' => 'required',
-        ]);
         $photo = $request->file('photo');
         if($photo){
         $old_image = $request->old_image;
@@ -108,7 +116,16 @@ class DoctorController extends Controller
             'name' => $request->name,
             'specialist' => $request->specialist,
             'district' => $request->district,
+            'gender' => $request->gender,
+            'bmdc' => $request->bmdc,    
+            'hospital' => $request->hospital,
+            'designation' => $request->designation,
+            'degree' => $request->degree,
             'chamber' => $request->chamber,
+            'description' => $request->description,
+            'mobile1' => $request->mobile1,
+            'mobile2' => $request->mobile2,
+            'email' => $request->email,
             'photo' => $last_img,
             'slug' => $slug
         ]);
@@ -133,6 +150,15 @@ class DoctorController extends Controller
                 'specialist' => $request->specialist,
                 'district' => $request->district,
                 'chamber' => $request->chamber,
+                'description' => $request->description,
+                'hospital' => $request->hospital,
+                'designation' => $request->designation,
+                'degree' => $request->degree,
+                'bmdc' => $request->bmdc,
+                'gender' => $request->gender,
+                'mobile1' => $request->mobile1,
+                'mobile2' => $request->mobile2,
+                'email' => $request->email,
                 'photo' => $last_img,
                 'slug' => $slug,
             ]);
@@ -153,6 +179,15 @@ class DoctorController extends Controller
                 'specialist' => $request->specialist,
                 'district' => $request->district,
                 'chamber' => $request->chamber,
+                'description' => $request->description,
+                'hospital' => $request->hospital,
+                'designation' => $request->designation,
+                'degree' => $request->degree,
+                'bmdc' => $request->bmdc,
+                'gender' => $request->gender,
+                'mobile1' => $request->mobile1,
+                'mobile2' => $request->mobile2,
+                'email' => $request->email,
                 'slug' => $slug,
             ]);
             return Redirect()->route('all.doctor')->with('success','Update Doctor Successfully');
