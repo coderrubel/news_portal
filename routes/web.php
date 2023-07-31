@@ -40,6 +40,7 @@ Route::get('/about',[PageController::class,'aboutPage'])->name('about');
 // Doctor Page
 Route::get('/doctor_list',[PageController::class,'doctorPage'])->name('doctor_list');
 Route::get('/doctor_details/{slug}',[PageController::class,'doctorView'])->name('doctor_details');
+Route::get('get-ddistrict-doctor',[PageController::class,'doctordSearch']);
 Route::get('get-district-doctor',[PageController::class,'doctorSearch']);
 Route::get('get-specialist-doctor',[PageController::class,'specialistdoctorSearch']);
 Route::get('get-district',[PageController::class,'getDistrict']);

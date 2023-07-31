@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <select name="" class="form-select" id="division" onchange="getDoctor();getDistrict()">
+                    <select name="" class="form-select" id="division" onchange="getdDoctor();getDistrict()">
                         <option value="all">Select Division</option>
                         @foreach($division as $row)
                         <option value="{{ $row->id }}">{{ $row->division }}</option>

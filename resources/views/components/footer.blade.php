@@ -113,6 +113,24 @@
         </script>
  
 
+        <!-- docotor filter by division -->
+        <script>
+            function getdDoctor(){
+                var division = $("#division").val();
+              var district = $("#district").val();
+              var specialist = $("#specialist").val();
+                $.ajax({
+                type: "GET",
+                url: "{{url('get-ddistrict-doctor')}}",
+                data: {district:district,specialist:specialist,division:division},
+                cache: false,
+                success: function(data){
+                    console.log(data);
+                $("#newDoctor").html(data);
+                }
+                });
+            }
+        </script>
         <!-- docotor filter by district -->
         <script>
             function getDoctor(){

@@ -46,19 +46,26 @@ tinymce.init({
                                             <select name="division" class="form-control rounded mt-2" id="divis" onchange="getDivis();">
                                                 <option>Select Division</option>
                                                 @foreach($divisions as $row)
-                                                <option value="{{ $row->id }}">{{ $row->division }}</option>
+                                                <option value="{{ $row->id }}" @if($doctor->division==  $row->id) selected @endif>{{ $row->division }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-4 col-sm-12 col-xm-12">
                                             <label for="distri" class="form-label d-block">Select District</label>
+                                            @php
+                                            $distt= DB::table('districts')->where('id',$doctor->district)->first();
+                                            @endphp
                                             <select name="district" value="{{ $doctor->district }}" class="form-control rounded mt-2" id="distri">
+                                                <option value="{{$doctor->district}}" selected>{{ $distt->district}}</option>
                                             </select>
                                         </div>
                                         <div class="col-md-4 col-sm-12 col-xm-12">
                                             <label for="spec" class="form-label d-block">Select Specialist</label>
                                             <select name="specialist" class="form-control rounded mt-2" id="spec">
-                                                <option value="{{ $doctor->specialist }}">{{ $doctor->specialist }}</option>
+                                                <option>Select Division</option>
+                                                @foreach($specs as $row)
+                                                <option value="{{ $row->id }}" @if($doctor->specialist ==  $row->spec ) selected @endif>{{ $row->spec }}</option>
+                                                @endforeach
                                             </select>
                                         </div>    
                                     </div>
