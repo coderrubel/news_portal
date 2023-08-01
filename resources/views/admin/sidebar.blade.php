@@ -128,6 +128,7 @@
             </ul>
           </li>
           <!-- Doctor -->
+          @endif
           <li  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('specialist/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'active expand' : 'has-sub'}}" >
             <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#doctor"  aria-expanded="false" aria-controls="doctor">
               <i class="mdi mdi-doctor"></i>
@@ -135,6 +136,7 @@
             </a>
             <ul  class="{{ Request::is('doctor/store') || Request::is('division/all') || Request::is('district/all') || Request::is('specialist/all') || Request::is('doctor/all') || Request::is('home/slider') ? 'collapse show' : 'collapse'}}"  id="doctor" data-parent="#sidebar-menu">
               <div class="sub-menu">
+              @if($rolls->type == 'admin')
                 <li class="{{ Request::is('division/all') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/division/all')}}">
                     <span class="nav-text">Division</span>
@@ -150,11 +152,13 @@
                     <span class="nav-text">Specialist</span>
                   </a>
                 </li>
+                @endif
                 <li class="{{ Request::is('doctor/store') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/doctor/store')}}">
                     <span class="nav-text">Add Doctor</span>
                   </a>
                 </li>
+                @if($rolls->type == 'admin')
                 <li class="{{ Request::is('doctor/all') ? 'active' : ''}}">
                   <a class="sidenav-item-link" href="{{url('/doctor/all')}}">
                     <span class="nav-text">All Doctor</span>

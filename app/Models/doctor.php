@@ -26,6 +26,7 @@ class doctor extends Model
         'photo',
         'email',
         'rating',
+        'status',
         'view'
     ];
     public function rDivision(){

@@ -252,6 +252,7 @@
   });
   // $('#example').DataTable();
 
+  // post active inactive
   function statusChange(id, value){
     // alert(id);
     // alert(value);
@@ -263,6 +264,20 @@
       success :function(data){
         // console.log(data);
           $("#ss"+id).html(data);
+      }
+    });
+
+  }
+
+    // Doctor active inactive
+    function dstatusChange(id, value){
+    $.ajax({
+      url : "{{url('get-dstatusChange')}}",
+      type: "get",
+      data: {id : id, value:value},
+      dataType : 'html',
+      success :function(data){
+          $("#dd"+id).html(data);
       }
     });
 

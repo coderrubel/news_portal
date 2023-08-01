@@ -72,20 +72,22 @@ class DoctorController extends Controller
             'email' => $request->email,
             'photo' => $last_img,
             'view' => $request->view,
+            'status' => $request->status,
             'slug' => Str::slug($request->name, '-'),
             'created_at' => Carbon::now()
         ]);
         return Redirect()->route('all.doctor')->with('success','Doctor Add Successfully');
     }
+
+    // District store
     public function getDistri(Request $request){
         $divis = $request->divis;
         $doctors = District::where('division_id',$divis)->get();
         foreach($doctors as $doctor){
             echo "<option  value='" . $doctor->id . "'>" . $doctor->district . "</option>";
         }
-
-      
     }
+
     // Edit 
     public function Edit($id){
         $doctor = doctor::find($id);
@@ -130,6 +132,7 @@ class DoctorController extends Controller
             'mobile1' => $request->mobile1,
             'mobile2' => $request->mobile2,
             'email' => $request->email,
+            'status' => $request->status,
             'photo' => $last_img,
         ]);
         }
@@ -163,6 +166,7 @@ class DoctorController extends Controller
                 'mobile1' => $request->mobile1,
                 'mobile2' => $request->mobile2,
                 'email' => $request->email,
+                'status' => $request->status,
                 'photo' => $last_img,
             ]);
         }
@@ -191,6 +195,7 @@ class DoctorController extends Controller
                 'description' => $request->description,
                 'mobile1' => $request->mobile1,
                 'mobile2' => $request->mobile2,
+                'status' => $request->status,
                 'email' => $request->email,
             ]);
             return Redirect()->route('all.doctor')->with('success','Update Doctor Successfully');

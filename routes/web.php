@@ -154,6 +154,7 @@ Route::get('/doctor/store',[DoctorController::class,'storeDoctor'])->name('store
 Route::get('/doctor/edit/{id}',[DoctorController::class,'Edit']);
 Route::post('/doctor/update/{id}',[DoctorController::class,'Update']);
 Route::get('/doctor/delete/{id}',[DoctorController::class,'Delete']);
+Route::get('get-dstatusChange',[DoctorController::class,'dstatusChange']);
 // Setting Controller
 Route::get('/setting',[SettingController::class,'Setting'])->name('setting');
 Route::post('/setting/add',[SettingController::class,'AddSetting'])->name('store.news'); 

@@ -33,6 +33,7 @@ class CreateDoctorsTable extends Migration
             $table->string('photo')->nullable();
             $table->integer('rating')->nullable();
             $table->integer('view')->nullable();
+            $table->string('status')->default('inactive');
             $table->timestamps();
         });
     }

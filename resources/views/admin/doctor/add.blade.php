@@ -8,6 +8,10 @@ tinymce.init({
     selector: '#mytextarea1'
 });
 </script>
+@php
+$auth = Auth::user()->id;
+$rolls = DB::table('users')->select('users.type','users.id')->where('users.id', $auth)->first();
+@endphp
 <div class="row justify-content-center">
     <div class="col-md-10">
         <div class="card">
@@ -75,6 +79,7 @@ tinymce.init({
                                 <input type="text" name="designation" class="form-control rounded mb-2" id="designation" placeholder="Designation">
                             </div>
                             <div class="col-md-4 col-sm-12 col-xm-12">
+                                @error('hospital')<p class="text-danger">{{ $message }}</p>@enderror 
                                 <label for="hospital" class="form-label mt-2 mb-1">Hospital Name *</label>
                                 <input type="text" name="hospital" class="form-control rounded mb-2" id="hospital" placeholder="Hospital Name">
                             </div>
@@ -111,6 +116,19 @@ tinymce.init({
                         <label for="photo" class="form-label mt-2 mb-1">Doctor Photo *</label>
                         @error('photo')<p class="text-danger">{{ $message }}</p>@enderror    
                         <input type="file" class="form-control-file form-control mb-2 p-2" id="photo" name="photo">
+
+                        <!-- status -->
+                        @if($rolls->type == 'admin' || $rolls->type == 'mentor')
+                        <label class="form-label d-block">Status</label>
+                        <select name="status" class="form-control rounded mt-2">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        @else($rolls->type == 'user')
+                        <select name="status" class="form-control rounded mt-2" hidden>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        @endif
 
                         <button type="submit" class="btn btn-primary mt-2">Add Doctor</button>
                     </div>

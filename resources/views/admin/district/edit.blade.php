@@ -1,6 +1,5 @@
 @extends('admin.admin_master')
 @section('admin')
-
     <div class="py-12">
         <div class="container">
             <div class="row justify-content-center">
