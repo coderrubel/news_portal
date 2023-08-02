@@ -118,6 +118,20 @@ tinymce.init({
                                     <label for="photo" class="form-label mt-2 mb-1">Doctor Photo</label>
                                     @error('photo')<p class="text-danger">{{ $message }}</p>@enderror    
                                     <input type="file" class="form-control-file form-control mb-2 p-2" id="photo" name="photo">
+                                    
+                                    <!-- Status -->
+                                    @php
+                                    $auth = Auth::user()->id;
+                                    $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', $auth)->first();
+                                    @endphp
+                                    @if($rolls->type == 'admin' || $rolls->type == 'mentor')
+                                    <label for="addcategory" class="form-label d-block mt-2 mb-0">Status</label>
+                                    <select name="status" class="form-control rounded" >
+                                     <option value="active" @if($doctor->status == 'active') selected @endif>Active</option>
+                                     <option value="inactive" @if($doctor->status == 'inactive') selected @endif>Inactive</option>
+                                    </select>
+                                    @endif
+
                                     <button type="submit" class="btn btn-primary mt-2">Update</button>
                                 </div>
                             </form>  

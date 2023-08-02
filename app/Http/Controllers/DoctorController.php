@@ -210,4 +210,25 @@ class DoctorController extends Controller
     doctor::find($id)->delete();
     return Redirect()->back()->with('success','Doctor Delete Successfully');
     }
+
+    public function dstatusChange(Request $request) {
+     $id = $request->id;
+     $status_value = $request->value;
+     if ( $status_value  == '0'){
+        doctor::find($id)->update([        
+            'status' => 'active',
+        ]);
+     }else if($status_value  == '1') {
+        doctor::find($id)->update([        
+            'status' => 'inactive',
+        ]);
+     }
+   $post =  doctor::find($id);
+   if($post->status == 'active'){
+    echo '<span class="btn btn-sm btn-success" onclick="dstatusChange('.$post->id.',1)">Active</span>';
+   }
+   else if($post->status == 'inactive') {
+    echo '<span class="btn btn-sm btn-danger" onclick="dstatusChange('.$post->id.',0)">Inactive</span>';
+    }
+    }
 }

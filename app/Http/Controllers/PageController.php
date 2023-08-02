@@ -77,6 +77,8 @@ class PageController extends Controller
             $doctors = doctor::latest('view', 'desc')->paginate(30);
             return view('pages.doctor',compact('division','doctors','specialists','districts'));
         }
+
+        // Doctor Search by Division
         public function doctordSearch(Request $request){
             $division = $request->division;
             $district = $request->district;
