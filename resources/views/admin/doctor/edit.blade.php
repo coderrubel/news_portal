@@ -44,7 +44,6 @@ tinymce.init({
                                         <div class="col-md-4 col-sm-12 col-xm-12">
                                             <label for="divis" class="form-label d-block">Select Division</label>
                                             <select name="division" class="form-control rounded mt-2" id="divis" onchange="getDivis();">
-                                                <option>Select Division</option>
                                                 @foreach($divisions as $row)
                                                 <option value="{{ $row->id }}" @if($doctor->division==  $row->id) selected @endif>{{ $row->division }}</option>
                                                 @endforeach
@@ -62,9 +61,8 @@ tinymce.init({
                                         <div class="col-md-4 col-sm-12 col-xm-12">
                                             <label for="spec" class="form-label d-block">Select Specialist</label>
                                             <select name="specialist" class="form-control rounded mt-2" id="spec">
-                                                <option>Select Division</option>
                                                 @foreach($specs as $row)
-                                                <option value="{{ $row->id }}" @if($doctor->specialist ==  $row->spec ) selected @endif>{{ $row->spec }}</option>
+                                                <option value="{{ $row->spec }}" @if($doctor->specialist ==  $row->id ) selected @endif>{{ $row->spec }}</option>
                                                 @endforeach
                                             </select>
                                         </div>    
