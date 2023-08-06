@@ -25,8 +25,8 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                             @if($rolls->type == 'admin' || $rolls->type == 'mentor')
                             <th class="text-center">View</th>
                             <th class="text-center">Status</th>
-                            @endif
                             <th class="text-right">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -48,20 +48,20 @@ $rolls = DB::table('users')->select('users.type','users.id')->where('users.id', 
                                 @endif
                                 </div>
                             </td>
-                            @endif
                             <td class="text-right">
                                 <div class="dropdown show d-inline-block widget-dropdown">
                                     <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
-                                    <li class="dropdown-item">
-                                        <a href="{{ url('doctor/edit/'.$row->id) }}"><span class="btn btn-sm btn-info">Edit</span></a>
-                                    </li>
-                                    <li class="dropdown-item">
-                                        <a href="{{ url('doctor/delete/'.$row->id) }}"><span class="btn btn-sm btn-danger">Delete</span></a>
-                                    </li>
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('doctor/edit/'.$row->id) }}"><span class="btn btn-sm btn-info">Edit</span></a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a href="{{ url('doctor/delete/'.$row->id) }}"><span class="btn btn-sm btn-danger">Delete</span></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     </tbody>

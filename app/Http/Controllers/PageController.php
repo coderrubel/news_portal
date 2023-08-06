@@ -74,7 +74,7 @@ class PageController extends Controller
             $division = Division::get();
             $districts = District::groupBy('district')->get();
             $specialists = doctor::groupBy('specialist')->get();
-            $doctors = doctor::latest('view', 'desc')->paginate(30);
+            $doctors = doctor::where('status','active')->latest('rating', 'desc')->latest('view', 'desc')->paginate(15);
             return view('pages.doctor',compact('division','doctors','specialists','districts'));
         }
 

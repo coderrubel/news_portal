@@ -100,7 +100,7 @@
                                             <!--<p class="details px-1" style="width:60%">{!! Illuminate\Support\Str::limit(strip_tags($row->degree, 20)); !!}</p> -->
                                         </div>
                                     </div>
-                                    <h3 class="text-center" style="font-size: 15px;"> {{ $row->name }} </h3>
+                                    <h3 class="text-center mb-0 p-1" style="font-size: 14px;"> {{ $row->name }} </h3>
                                     <p class="badge bg-website d-block mb-1">{{ $row->rDivision->division }}</p> 
                                     <p class="badge bg-website d-block mb-1">{{ $row->rDistrict->district }}</p> 
                                     <p class="badge bg-website d-block mb-1">{{ $row->specialist }}</p>

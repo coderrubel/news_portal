@@ -1,4 +1,4 @@
-<x-header/>
+<x-header title="{{ $doctorview->name }}"/>
     <div class="page-top">
         <div class="container">
             <div class="row">
@@ -19,25 +19,40 @@
                 <div class="col-lg-8 col-md-6">
                     <div class="card mb-3">
                       <div class="row g-0">
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-12 col-xm-12">
                           <img src="{{ asset($doctorview->photo) }}" class="img-fluid rounded-start" style="max-height:160px">
                         </div>
-                        <div class="col-md-10">
-                          <div class="card-body">
-                            <h5 class="card-title">{!! $doctorview->name??'' !!}</h5>
-                            <p class="card-text">{!! $doctorview->specialist??'' !!}</p>
-                            <p class="card-text"><span class="badge bg-success">{!! $doctorview->district??'' !!}</span></p>
-                            @if($doctorview->updated_at == NULL)
-                            <p class="card-text"><small class="text-body-secondary">Last updated {{ $doctorview->created_at->format('d M Y')??''}}</small></p>
-                            @else
-                            <p class="card-text"><small class="text-body-secondary">Last updated {{ $doctorview->updated_at->format('d M Y')??''}}</small></p>
-                            @endif
-                          </div>
+                        <div class="col-md-7 col-sm-12 col-xm-12">
+                          <div class="card-body pb-0">
+                            <h5 style="margin-bottom: 1px;">{!! $doctorview->name??'' !!}</h5>
+                            <i>{!! $doctorview->degree??'' !!}</i>
+                            <p style="font-weight: bold;margin-bottom: 1px;margin-top: 10px;">{{ $doctorview->hospital }}</p>
+                            <i>{{ $doctorview->designation }}</i>
+                            <p class="mt-2"><span class="badge bg-website">{!! $doctorview->rDivision->division??'' !!}</span>  <span class="badge bg-website">{!! $doctorview->rDistrict->district??'' !!}</span>  <span class="badge bg-website">{!! $doctorview->specialist??'' !!}</span></p>
+                           </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xm-12">
+                            <div class="card-body pb-0 text-center">
+                                @isset( $doctorview->bmdc )
+                                <span class="badge bg-website" style="font-size: 12px;">BMDC No: {!! $doctorview->bmdc??'' !!}</span><br>
+                                @endisset
+                                @isset( $doctorview->mobile1 )
+                                <span>For Appointment<br>
+                                    <a href="tel:{!! $doctorview->mobile1??'' !!}">{!! $doctorview->mobile1??'' !!}</a><br>
+                                    <a href="tel:{!! $doctorview->mobile2??'' !!}">{!! $doctorview->mobile2??'' !!}</a>
+                                </span>
+                                @endisset
+                                @isset( $doctorview->email )
+                                <br><i>{!! $doctorview->email??'' !!}</i>
+                                @endisset
+                            </div>
                         </div>
                       </div>
                       <div class="row g-0 border-top">
                           <div class="card-body">
-                             <p class="card-text">{!! $doctorview->chamber??'' !!}</p>
+                             <p class="card-text">{!! $doctorview->chamber??'' !!}</p><hr>
+                             <p class="mt-2">{!! $doctorview->description??'' !!}</p>
+                             <i>Updated At {{ $doctorview->created_at->format('d M Y')??''}}</i>
                           </div>
                       </div>
                     </div>
@@ -47,8 +62,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
-       
+    </div>    
 <x-footer/>
