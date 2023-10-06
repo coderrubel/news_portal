@@ -20,7 +20,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\DistrictController; 
 use App\Http\Controllers\SpecialistController; 
 use App\Http\Controllers\DoctorController;
-
+use Illuminate\Support\Facades\Auth;
 
 // Home page
 Route::get('/',[PageController::class,'homePage'])->name('home');
@@ -56,6 +56,7 @@ Route::get('/user/logout',[AuthControllar::class,'Logout'])->name('user.logout')
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.index');
+    Auth::routes();
 })->name('dashboard');
 
 // Post Controller
