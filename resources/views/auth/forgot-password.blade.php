@@ -4,11 +4,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Login</h2>
+                        <h2>Forgot Password</h2>
                         <nav class="breadcrumb-container">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Login</li>
+                                <li class="breadcrumb-item active" aria-current="page">Forgot Password</li>
                             </ol>
                         </nav>
                     </div>

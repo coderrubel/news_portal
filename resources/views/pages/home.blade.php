@@ -112,6 +112,7 @@
         </div>
     @endif
         <!--  Search section -->
+        <!--
         <div class="search-section">
             <div class="container">
                 <div class="inner">
@@ -150,7 +151,7 @@
                 </div>
             </div>
         </div>
-        
+        -->
         <div class="home-content">
             <div class="container">
                 <div class="row">

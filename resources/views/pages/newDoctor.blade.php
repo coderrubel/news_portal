@@ -1,6 +1,4 @@
 @if(count($doctors)>=1)
-
-
     @foreach($doctors as $row)
         <div class="col-lg-4 col-md-6">
             <a href="{{url('/doctor_details/'.$row->slug)}}" style="color: #212529;" onmouseover="this.style.color='#5374d3'" onmouseout="this.style.color='#212529'">
@@ -21,9 +19,6 @@
             </a>
         </div>
     @endforeach
-        <div class="col-md-12">
-          
-        </div>
 @else
     <div class="col-md-12">
         <h4 class="text-center">No Record Found</h4>

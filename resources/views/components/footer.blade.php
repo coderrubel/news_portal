@@ -83,7 +83,7 @@
         </div>
 
         <div class="copyright">
-            Copyright 2023, <a href="https://github.com/coderrubel" target="_blank">CoderRubel</a>. All Rights Reserved.
+            Copyright {{date('Y')}}, <a href="https://github.com/coderrubel" target="_blank">CoderRubel</a>. All Rights Reserved.
         </div>
      
         <div class="scroll-top">
